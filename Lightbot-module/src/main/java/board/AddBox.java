@@ -6,7 +6,7 @@ import java.util.List;
 import enums.LightStatus;
 import enums.TypeOfBox;
 import model.Board;
-import model.IObjectGraphic;
+import model.interfaces.IObjectGraphic;
 import validators.ValidatorBoard;
 
 public class AddBox {

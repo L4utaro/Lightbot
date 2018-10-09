@@ -40,12 +40,14 @@ public class GameController {
 			} catch (InterruptedException e) {
 				e.printStackTrace();
 			}
-			if(this.validatorGame.avatarIsOutOfPathPossible()) {
-				System.out.println();
-			} else if (this.validatorGame.avatarIsOutOfPathPossible()) {
-				
-			}
 			this.map.printMap();
+//			if(this.validatorGame.avatarIsOutOfPathPossible()) {
+//				System.out.println("Game Over: The avatar go out of path possible");
+//				throw new IllegalArgumentException("");
+//			}
+		}
+		if (!this.validatorGame.allLightsAreTurnedOn(this.map)) {
+			System.out.println("Game Over: The avatar don't turned on all the lights");
 		}
 	}
 

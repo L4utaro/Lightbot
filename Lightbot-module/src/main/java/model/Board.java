@@ -6,6 +6,7 @@ import java.util.List;
 
 import enums.LightStatus;
 import enums.TypeOfBox;
+import model.interfaces.IObjectGraphic;
 
 public class Board {
 	private Box[][] boxes;
@@ -25,7 +26,7 @@ public class Board {
 		if ((boxes.length < box.x) || (0 > box.x) || (boxes[0].length < box.y) || (0 > box.y)) {
 			throw new IllegalArgumentException("No se puede acceder a la casilla, excede el limite del mapa");
 		}
-		return boxes[box.x-1][box.y-1].getObjectGraphic() != null;
+		return (boxes[box.x-1][box.y-1].getObjectGraphic() != null);
 	}
 
 	public Box getBox(Point pointBox) {

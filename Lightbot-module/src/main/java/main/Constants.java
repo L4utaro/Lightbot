@@ -11,11 +11,11 @@ public class Constants {
 	public static final String NAME_POSLIGHT_PROPERTIES = "posLight";
 	public static final String NAME_PATHPOSSIBLE_PROPERTIES = "pathPossible";
 
-	public static final String ROUTE_JSON_INSTRUCTIONS_1 = "src/main/resources/configurationActions/actions.json";
-	public static final String ROUTE_JSON_INSTRUCTIONS_2 = "src/main/resources/configurationActions/actions2.json";
-	public static final String ROUTE_TXT_INSTRUCTIONS_3 = "src/main/resources/configurationActions/actions3.txt";
-	public static final String ROUTE_JSON_INSTRUCTIONS_INVALID_1 = "src/main/resources/configurationActions/actionsInvalid1.json";
-	public static final String ROUTE_JSON_INSTRUCTIONS_INVALID_2 = "src/main/resources/configurationActions/actionsInvalid2.json";
-	public static final String ROUTE_TXT_INSTRUCTIONS_INVALID_3 = "src/main/resources/configurationActions/actionsInvalid3.txt";
+	public static final String ROUTE_JSON_ACTIONS_1 = "src/main/resources/configurationActions/actions.json";
+	public static final String ROUTE_JSON_ACTIONS_2 = "src/main/resources/configurationActions/actions2.json";
+	public static final String ROUTE_TXT_ACTIONS_3 = "src/main/resources/configurationActions/actions3.txt";
+	public static final String ROUTE_JSON_ACTIONS_INVALID_1 = "src/main/resources/configurationActions/actionsInvalid1.json";
+	public static final String ROUTE_JSON_ACTIONS_INVALID_2 = "src/main/resources/configurationActions/actionsInvalid2.json";
+	public static final String ROUTE_TXT_ACTIONS_INVALID_3 = "src/main/resources/configurationActions/actionsInvalid3.txt";
 
 }

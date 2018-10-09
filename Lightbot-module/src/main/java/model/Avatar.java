@@ -1,5 +1,7 @@
 package model;
 
+import model.interfaces.IObjectGraphic;
+
 //import enums.Orientation;
 
 public class Avatar implements IObjectGraphic {

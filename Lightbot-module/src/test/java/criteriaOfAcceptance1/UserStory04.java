@@ -23,7 +23,7 @@ public class UserStory04 {
 	 */
 	@Test
 	public void checkActionsTest01() {
-		this.creator.createActionsByJson(Constants.ROUTE_JSON_INSTRUCTIONS_2);
+		this.creator.createActionsByJson(Constants.ROUTE_JSON_ACTIONS_2);
 		assertNotEquals(this.creator.getActionsCommand().size(), 0);
 	}
 	/**
@@ -35,7 +35,7 @@ public class UserStory04 {
 	 */
 	@Test(expected = IllegalArgumentException.class)
 	public void checkActionsTest02() {
-		this.creator.createActionsByJson(Constants.ROUTE_JSON_INSTRUCTIONS_INVALID_2);
+		this.creator.createActionsByJson(Constants.ROUTE_JSON_ACTIONS_INVALID_2);
 	}
 	/**
 	 * Leer la colección de acciones [commandRight, commandMove, commandLeft,

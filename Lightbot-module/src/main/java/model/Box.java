@@ -2,6 +2,7 @@ package model;
 
 import enums.LightStatus;
 import enums.TypeOfBox;
+import model.interfaces.IObjectGraphic;
 
 public class Box {
 	private TypeOfBox typeOfBox;

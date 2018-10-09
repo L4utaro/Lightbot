@@ -37,6 +37,13 @@ public class AddBoxTest {
 		this.addBox.addBoxWalk(new Point(1,1));
 		assertTrue(this.board.getBox(new Point(1,1)).getTypeOfBox().equals(TypeOfBox.WALK));
 	}
+	
+	@Test(expected = IllegalArgumentException.class)
+	public void addFailBoxWalkTest() {
+		List<Point> positionsWalks = new ArrayList<Point>();
+		positionsWalks.add(new Point (4,4));
+		this.addBox.addBoxesWalk(positionsWalks);
+	}
 
 	@Test
 	public void addBoxNoWalkTest() {

@@ -5,6 +5,7 @@ import java.awt.Point;
 import board.Builder;
 import enums.LightStatus;
 import enums.TypeOfBox;
+import model.interfaces.IObjectGraphic;
 
 public class Map {
 	private Board board;

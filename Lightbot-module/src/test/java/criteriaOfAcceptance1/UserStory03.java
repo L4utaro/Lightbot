@@ -33,7 +33,7 @@ public class UserStory03 {
 
 	@Test(expected = IllegalArgumentException.class)
 	public void argumentsInvalidTest02() {
-		this.txtImplementation = new TxtImplementation(Constants.ROUTE_TXT_INSTRUCTIONS_INVALID_3);
+		this.txtImplementation = new TxtImplementation(Constants.ROUTE_TXT_ACTIONS_INVALID_3);
 		this.txtImplementation.createColecctionOfActions();
 	}
 	
@@ -46,7 +46,7 @@ public class UserStory03 {
 	 */
 	@Test
 	public void test03() {
-		this.txtImplementation = new TxtImplementation(Constants.ROUTE_TXT_INSTRUCTIONS_3);
+		this.txtImplementation = new TxtImplementation(Constants.ROUTE_TXT_ACTIONS_3);
 		this.txtImplementation.createColecctionOfActions();
 		assertEquals(this.txtImplementation.getActionsCommand().size(), 9);
 	}

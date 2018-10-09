@@ -2,8 +2,6 @@ package validators;
 
 import java.awt.Point;
 
-import org.w3c.dom.events.EventException;
-
 import enums.TypeOfBox;
 import model.Board;
 
@@ -17,7 +15,7 @@ public class ValidatorBoard implements IValidator {
 	public boolean isValidPositionForBox(Point position) {
 		try {
 			this.board.getBox(position);
-		} catch (EventException e) {
+		} catch (Exception e) {
 			return false;
 		}
 		return true;
