@@ -43,6 +43,6 @@ public class UserStory02 {
 	public void test03() {
 		this.jsonImplementation = new JsonImplementation(Constants.ROUTE_JSON_ACTIONS_2);
 		this.jsonImplementation.createColecctionOfActions();
-		assertEquals(this.jsonImplementation.getActionsCommand().size(), 8);
+		assertEquals(this.jsonImplementation.getInvokerCommands().size(), 8);
 	}
 }

@@ -36,7 +36,6 @@ public class GameGenerator {
 	public void createActionsByJson(String jsonRoute) {
 		this.jsonImplementation = new JsonImplementation(jsonRoute);
 		this.jsonImplementation.createColecctionOfActions();
-		this.actionsCommand = this.jsonImplementation.getActionsCommand();
 		this.invokerCommands = this.jsonImplementation.getInvokerCommands();
 	}
 
