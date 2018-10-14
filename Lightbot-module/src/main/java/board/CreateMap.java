@@ -37,4 +37,8 @@ public class CreateMap {
 	public MapProperties getMapProperties() {
 		return mapProperties;
 	}
+
+	public void setValidatorCreateMap(ValidatorCreateMap validatorCreateMap) {
+		this.validatorCreateMap = validatorCreateMap;
+	}
 }

@@ -31,17 +31,13 @@ public class MapProperties {
 	}
 
 	public void loadDataProperties() {
-		Point mapSize = loadPosition(Constants.NAME_SIZEMAP_PROPERTIES);
-		Point posAvatar = loadPosition(Constants.NAME_POSAVATAR_PROPERTIES);
+		Point mapSize = getPointOfProperties(Constants.NAME_SIZEMAP_PROPERTIES);
+		Point posAvatar = getPointOfProperties(Constants.NAME_POSAVATAR_PROPERTIES);
 		List<Point> posLight = loadPositionsOfPoint(Constants.NAME_POSLIGHT_PROPERTIES);
 		List<Point> posOfPathPossible = loadPositionsOfPoint(Constants.NAME_PATHPOSSIBLE_PROPERTIES);
 		this.electionMap = new ElectionMap(mapSize, posAvatar, posLight, posOfPathPossible);
 	}
-
-	public Point loadPosition(String name) {
-		return getPointOfProperties(name);
-	}
-
+	
 	public List<Point> loadPositionsOfPoint(String parameter) {
 		List<Point> posOfPathPossible = new ArrayList<Point>();
 		for (int i = 1; i < properties.getProperty(parameter).length() - 2; i++) {

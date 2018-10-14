@@ -16,5 +16,10 @@ public class InvokerCommand {
 
 	public void executeCommand(Map map) {
 		this.command.executeCommand(map);
+		try {
+			Thread.sleep(1000);
+		} catch (InterruptedException e) {
+			e.printStackTrace();
+		}
 	}
 }

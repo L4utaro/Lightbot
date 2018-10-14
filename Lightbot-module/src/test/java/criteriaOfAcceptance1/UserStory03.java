@@ -48,6 +48,6 @@ public class UserStory03 {
 	public void test03() {
 		this.txtImplementation = new TxtImplementation(Constants.ROUTE_TXT_ACTIONS_3);
 		this.txtImplementation.createColecctionOfActions();
-		assertEquals(this.txtImplementation.getActionsCommand().size(), 9);
+		assertEquals(this.txtImplementation.getInvokerCommands().size(), 9);
 	}
 }

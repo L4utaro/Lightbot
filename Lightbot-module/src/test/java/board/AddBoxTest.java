@@ -1,5 +1,6 @@
 package board;
 
+import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertTrue;
 
@@ -66,11 +67,26 @@ public class AddBoxTest {
 		assertNotNull(this.board.getBox(new Point(2,2)).getObjectGraphic());
 	}
 	
+	@Test(expected = IllegalArgumentException.class)
+	public void addInvalidObjectGraphicTest() {
+		this.addBox.addBoxWalk(new Point(2,2));
+		this.addBox.addObjectGraphic(new Point(2,3), new Avatar());
+	}
+	
 	@Test
 	public void addLightsTest() {
 		this.addBox.addBoxWalk(new Point(1,1));
 		List<Point> posOfLights = new ArrayList<Point>();
 		posOfLights.add(new Point (1,1));
+		this.addBox.addLights(posOfLights, LightStatus.OFF);
+		assertNotNull(this.board.getBox(new Point(1,1)).getLightStatus());
+	}
+
+	@Test(expected = IllegalArgumentException.class)
+	public void addInvalidLightsTest() {
+		this.addBox.addBoxWalk(new Point(1,1));
+		List<Point> posOfLights = new ArrayList<Point>();
+		posOfLights.add(new Point (2,3));
 		this.addBox.addLights(posOfLights, LightStatus.OFF);
 		assertNotNull(this.board.getBox(new Point(1,1)).getLightStatus());
 	}
@@ -83,10 +99,18 @@ public class AddBoxTest {
 		assertTrue(this.addBox.validatePositions(positionsOfStructure));
 	}
 
-	@Test
+	@Test(expected = IllegalArgumentException.class)
 	public void validateFalsePositionsTest() {
+		this.addBox.addObjectGraphic(new Point(2,1), new Avatar());
 		List<Point> positionsOfStructure = new ArrayList<Point>();
 		positionsOfStructure.add(new Point (1,1));
-		assertTrue(this.addBox.validatePositions(positionsOfStructure));
+		positionsOfStructure.add(new Point (2,1));
+		positionsOfStructure.add(new Point (3,1));
+		assertFalse(this.addBox.validatePositions(positionsOfStructure));
+	}
+
+	@Test
+	public void getBoardTest() {
+		assertNotNull(this.addBox.getBoard());
 	}
 }

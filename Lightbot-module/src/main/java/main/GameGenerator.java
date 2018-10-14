@@ -4,7 +4,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import board.CreateMap;
-import commands.interfaces.ICommand;
 import commands.invoker.InvokerCommand;
 import controllers.GameController;
 import lectors.implementation.JsonImplementation;
@@ -15,14 +14,12 @@ public class GameGenerator {
 	private Map map;
 	private JsonImplementation jsonImplementation;
 	private TxtImplementation txtImplementation;
-	private List<ICommand> actionsCommand;
 	private GameController gameController;
 	private List<InvokerCommand> invokerCommands;
 
-	//aca meti en invoker command
-	
+	// aca meti en invoker command
+
 	public GameGenerator() {
-		this.actionsCommand = new ArrayList<ICommand>();
 		this.invokerCommands = new ArrayList<InvokerCommand>();
 	}
 
@@ -42,20 +39,19 @@ public class GameGenerator {
 	public void createActionsByTxt(String txtRoute) {
 		this.txtImplementation = new TxtImplementation(txtRoute);
 		this.txtImplementation.createColecctionOfActions();
-		this.actionsCommand = this.txtImplementation.getActionsCommand();
+		this.invokerCommands = this.txtImplementation.getInvokerCommands();
 	}
 
 	public void runActions() {
 		this.gameController = new GameController(this.map);
-		//this.gameController.run(this.actionsCommand);
-		this.gameController.run2(this.invokerCommands);
+		this.gameController.run(this.invokerCommands);
 	}
 
 	public Map getMap() {
 		return map;
 	}
 
-	public List<ICommand> getActionsCommand() {
-		return actionsCommand;
+	public List<InvokerCommand> getInvokerCommands() {
+		return invokerCommands;
 	}
 }

@@ -14,6 +14,7 @@ public class UserStory04 {
 	@Before
 	public void init() {
 		this.creator = new GameGenerator();
+		this.creator.createMap(Constants.ROUTE_MAP_PROPERTIES);
 	}
 	/**
 	 * Leer la colección de acciones [commandRight, commandMove, commandLeft,
@@ -24,7 +25,7 @@ public class UserStory04 {
 	@Test
 	public void checkActionsTest01() {
 		this.creator.createActionsByJson(Constants.ROUTE_JSON_ACTIONS_2);
-		assertNotEquals(this.creator.getActionsCommand().size(), 0);
+		assertNotEquals(this.creator.getInvokerCommands().size(), 0);
 	}
 	/**
 	 * Leer la colección de acciones [commandRight, commandMove, commandLeft,
@@ -36,6 +37,7 @@ public class UserStory04 {
 	@Test(expected = IllegalArgumentException.class)
 	public void checkActionsTest02() {
 		this.creator.createActionsByJson(Constants.ROUTE_JSON_ACTIONS_INVALID_2);
+		this.creator.runActions();
 	}
 	/**
 	 * Leer la colección de acciones [commandRight, commandMove, commandLeft,
@@ -46,5 +48,9 @@ public class UserStory04 {
 	 * deberá lanzar un IllegalArgumentException, indicando que alguna luz no se
 	 * encuentran encendida.
 	 */
-
+	@Test(expected = IllegalArgumentException.class)
+	public void checkActionsTest03() {
+		this.creator.createActionsByJson(Constants.ROUTE_JSON_ACTIONS_2);
+		this.creator.runActions();
+	}
 }
