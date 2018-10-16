@@ -7,6 +7,7 @@ import enums.LightStatus;
 import enums.TypeOfBox;
 import model.Avatar;
 import model.Map;
+import validators.interfaces.IValidator;
 
 public class ValidatorCreateMap implements IValidator {
 	private Map map;
@@ -18,10 +19,7 @@ public class ValidatorCreateMap implements IValidator {
 	}
 
 	public boolean isValidMap() {
-		if (checkSizeBoard() && checkAvatarPosition() && checkLights() && checkRoad()) {
-			return false;
-		}
-		return true;
+		return !(checkSizeBoard() && checkAvatarPosition() && checkLights() && checkRoad());
 	}
 
 	public boolean checkRoad() {
@@ -33,10 +31,9 @@ public class ValidatorCreateMap implements IValidator {
 		return true;
 	}
 
-	@SuppressWarnings("unlikely-arg-type")
 	public boolean checkLights() {
 		for(Point pos: this.mapProperties.getElectionMap().getPosLight()) {
-			if(this.map.getBox(pos).getObjectGraphic().equals(LightStatus.OFF)) {
+			if(this.map.getBox(pos).getLightStatus().equals(LightStatus.OFF)) {
 				return false;
 			}
 		}

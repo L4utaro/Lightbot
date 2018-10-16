@@ -5,6 +5,8 @@ import java.util.List;
 
 import org.json.simple.JSONArray;
 
+import validators.interfaces.IValidator;
+
 public class ValidatorJson implements IValidator {
 	private List<String> instrucctionsValids;
 

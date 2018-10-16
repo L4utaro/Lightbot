@@ -3,6 +3,7 @@ package validators;
 import java.awt.Point;
 
 import model.Map;
+import validators.interfaces.IValidator;
 
 public class ValidatorPathOfObjectGraphic implements IValidator {
 	private ValidatorBoard validatorBoard;

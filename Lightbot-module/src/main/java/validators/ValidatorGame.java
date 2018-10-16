@@ -5,6 +5,7 @@ import java.awt.Point;
 import enums.LightStatus;
 import enums.TypeOfBox;
 import model.Map;
+import validators.interfaces.IValidator;
 
 public class ValidatorGame implements IValidator {
 	private Map map;
