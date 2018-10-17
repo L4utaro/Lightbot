@@ -39,4 +39,10 @@ public class BoxTest {
 		this.box.setTypeOfBox(TypeOfBox.NO_WALK);
 		assertEquals(this.box.getTypeOfBox(), TypeOfBox.NO_WALK);
 	}
+	
+	@Test
+	public void test05() {
+		this.box.setLightStatus(LightStatus.ON);
+		assertEquals(this.box.getLightStatus(), LightStatus.ON);
+	}
 }

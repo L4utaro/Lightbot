@@ -51,4 +51,8 @@ public class JsonImplementation {
 	public List<InvokerCommand> getInvokerCommands() {
 		return invokerCommands;
 	}
+
+	public JSONArray getActionsJson() {
+		return actionsJson;
+	}
 }

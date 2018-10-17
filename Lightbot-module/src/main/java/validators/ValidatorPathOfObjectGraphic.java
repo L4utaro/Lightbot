@@ -14,6 +14,6 @@ public class ValidatorPathOfObjectGraphic implements IValidator {
 
 	public boolean validatePositionForObjectGraphic(Point newPosition) {
 		return this.validatorBoard.isValidPositionForBox(newPosition)
-				|| this.validatorBoard.isValidPositionForObjectGraphic(newPosition);
+				&& this.validatorBoard.isValidPositionForObjectGraphic(newPosition);
 	}
 }

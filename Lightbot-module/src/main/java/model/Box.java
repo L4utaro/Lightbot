@@ -47,11 +47,10 @@ public class Box {
 
 	public void changeStateLight() {
 		this.lightStatus = (this.lightStatus == LightStatus.OFF) ? LightStatus.ON : LightStatus.OFF;
-//		if (this.lightStatus == LightStatus.OFF) {
-//			this.lightStatus = LightStatus.ON;
-//		} else {
-//			this.lightStatus = LightStatus.OFF;
-//		}
+	}
+
+	public void setLightStatus(LightStatus lightStatus) {
+		this.lightStatus = lightStatus;
 	}
 
 	public LightStatus getLightStatus() {

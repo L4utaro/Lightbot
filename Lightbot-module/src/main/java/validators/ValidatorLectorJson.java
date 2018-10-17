@@ -16,9 +16,7 @@ public class ValidatorLectorJson implements IValidator {
 		Object obj;
 		try {
 			obj = parser.parse(new FileReader(routeCodeJSON));
-		} catch (IOException e) {
-			return false;
-		} catch (ParseException e) {
+		} catch (IOException | ParseException e) {
 			return false;
 		}
 		return true;

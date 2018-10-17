@@ -52,4 +52,8 @@ public class TxtImplementation {
 	public List<InvokerCommand> getInvokerCommands() {
 		return invokerCommands;
 	}
+
+	public JSONArray getActionsJson() {
+		return actionsJson;
+	}
 }

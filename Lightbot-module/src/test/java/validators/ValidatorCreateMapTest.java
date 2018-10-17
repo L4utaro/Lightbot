@@ -12,12 +12,15 @@ import org.junit.Test;
 
 import board.Builder;
 import classProperties.MapProperties;
+import enums.TypeOfBox;
 import main.Constants;
 import model.Map;
 
 public class ValidatorCreateMapTest {
 	private ValidatorCreateMap validatorCreateMap;
-
+	private Map map;
+	private MapProperties mapProperties;
+	
 	@Before
 	public void init() {
 		List<Point> posOfPathPossible = new ArrayList<Point>();
@@ -28,34 +31,48 @@ public class ValidatorCreateMapTest {
 		posOfPathPossible.add(new Point(3, 3));
 		List<Point> posOfLights = new ArrayList<Point>();
 		posOfLights.add(new Point(3, 3));
-		Map map = new Map(new Builder(new Point(3, 3)).whitRoadPossible(posOfPathPossible).whitAvatar(new Point(1, 1))
+		this.map = new Map(new Builder(new Point(3, 3)).whitRoadPossible(posOfPathPossible).whitAvatar(new Point(1, 1))
 				.whitLights(posOfLights));
-		MapProperties mapProperties = new MapProperties(Constants.ROUTE_MAP_PROPERTIES);
+		this.mapProperties = new MapProperties(Constants.ROUTE_MAP_PROPERTIES);
 		this.validatorCreateMap = new ValidatorCreateMap(map, mapProperties);
 	}
 
 	@Test
 	public void test01() {
-		assertFalse(this.validatorCreateMap.checkAvatarPosition());
+		assertTrue(this.validatorCreateMap.isAValidAvatarPosition());
 	}
 
 	@Test
 	public void test02() {
-		assertFalse(this.validatorCreateMap.checkLights());
+		assertTrue(this.validatorCreateMap.isAValidLights());
 	}
 
 	@Test
 	public void test03() {
-		assertFalse(this.validatorCreateMap.checkRoad());
+		assertTrue(this.validatorCreateMap.isAValidRoad());
 	}
 
 	@Test
 	public void test04() {
-		assertFalse(this.validatorCreateMap.checkSizeBoard());
+		assertTrue(this.validatorCreateMap.isAValidSizeBoard());
 	}
 
 	@Test
 	public void test05() {
 		assertTrue(this.validatorCreateMap.isValidMap());
+	}
+
+	@Test
+	public void test06() {
+		this.map.getBox(new Point(3,3)).setLightStatus(null);;
+		this.validatorCreateMap = new ValidatorCreateMap(map, mapProperties);
+		assertFalse(this.validatorCreateMap.isAValidLights());
+	}
+
+	@Test
+	public void test07() {
+		this.map.getBoard().addBox(new Point(2,2), TypeOfBox.NO_WALK);
+		this.validatorCreateMap = new ValidatorCreateMap(map, mapProperties);
+		assertFalse(this.validatorCreateMap.isAValidRoad());
 	}
 }
