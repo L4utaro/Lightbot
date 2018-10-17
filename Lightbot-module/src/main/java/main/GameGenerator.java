@@ -17,8 +17,6 @@ public class GameGenerator {
 	private GameController gameController;
 	private List<InvokerCommand> invokerCommands;
 
-	// aca meti en invoker command
-
 	public GameGenerator() {
 		this.invokerCommands = new ArrayList<InvokerCommand>();
 	}
@@ -27,7 +25,6 @@ public class GameGenerator {
 		CreateMap create = new CreateMap(mapRoute);
 		this.map = create.getMap();
 		this.map.getBoard().printBoard();
-
 	}
 
 	public void createActionsByJson(String jsonRoute) {

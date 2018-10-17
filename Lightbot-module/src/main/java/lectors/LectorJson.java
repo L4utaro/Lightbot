@@ -1,6 +1,5 @@
 package lectors;
 
-import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.List;
@@ -37,11 +36,7 @@ public class LectorJson implements ILector{
 			JSONObject jsonObject = (JSONObject) obj;
 			JSONArray leng = (JSONArray) jsonObject.get(keyValue);
 			return leng;
-		} catch (FileNotFoundException e) {
-			e.printStackTrace();
-		} catch (IOException e) {
-			e.printStackTrace();
-		} catch (ParseException e) {
+		} catch (IOException | ParseException e) {
 			e.printStackTrace();
 		}
 		return null;
