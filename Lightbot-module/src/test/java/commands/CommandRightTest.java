@@ -13,6 +13,7 @@ import org.junit.Test;
 import board.Builder;
 import enums.Orientation;
 import model.Map;
+import model.Size;
 
 public class CommandRightTest {
 	private CommandRight commandRight;
@@ -26,7 +27,7 @@ public class CommandRightTest {
 	public void test01() {
 		List<Point> posOfPathPossible = new ArrayList<Point>();
 		posOfPathPossible.add(new Point(1,1));
-		this.commandRight.executeCommand(new Map(new Builder(new Point(2,2)).whitRoadPossible(posOfPathPossible).whitAvatar(new Point(1,1))));
+		this.commandRight.executeCommand(new Map(new Builder(new Size(2,2)).whitRoadPossible(posOfPathPossible).whitAvatar(new Point(1,1))));
 		assertNotNull(this.commandRight.getNewOrientation(Orientation.RIGHT));
 	}
 
@@ -34,7 +35,7 @@ public class CommandRightTest {
 	public void test02() {
 		List<Point> posOfPathPossible = new ArrayList<Point>();
 		posOfPathPossible.add(new Point(1,1));
-		this.commandRight.executeCommand(new Map(new Builder(new Point(2,2)).whitRoadPossible(posOfPathPossible).whitAvatar(new Point(1,1))));
+		this.commandRight.executeCommand(new Map(new Builder(new Size(2,2)).whitRoadPossible(posOfPathPossible).whitAvatar(new Point(1,1))));
 		assertNotNull(this.commandRight.getNewOrientation(Orientation.UP));
 	}
 
@@ -42,7 +43,7 @@ public class CommandRightTest {
 	public void test03() {
 		List<Point> posOfPathPossible = new ArrayList<Point>();
 		posOfPathPossible.add(new Point(1,1));
-		this.commandRight.executeCommand(new Map(new Builder(new Point(2,2)).whitRoadPossible(posOfPathPossible).whitAvatar(new Point(1,1))));
+		this.commandRight.executeCommand(new Map(new Builder(new Size(2,2)).whitRoadPossible(posOfPathPossible).whitAvatar(new Point(1,1))));
 		assertNotNull(this.commandRight.getNewOrientation(Orientation.LEFT));
 	}
 
@@ -50,7 +51,7 @@ public class CommandRightTest {
 	public void test04() {
 		List<Point> posOfPathPossible = new ArrayList<Point>();
 		posOfPathPossible.add(new Point(1,1));
-		this.commandRight.executeCommand(new Map(new Builder(new Point(2,2)).whitRoadPossible(posOfPathPossible).whitAvatar(new Point(1,1))));
+		this.commandRight.executeCommand(new Map(new Builder(new Size(2,2)).whitRoadPossible(posOfPathPossible).whitAvatar(new Point(1,1))));
 		assertNotNull(this.commandRight.getNewOrientation(Orientation.DOWN));
 	}
 
@@ -58,7 +59,7 @@ public class CommandRightTest {
 	public void test05() {
 		List<Point> posOfPathPossible = new ArrayList<Point>();
 		posOfPathPossible.add(new Point(1,1));
-		this.commandRight.executeCommand(new Map(new Builder(new Point(2,2)).whitRoadPossible(posOfPathPossible).whitAvatar(new Point(1,1))));
+		this.commandRight.executeCommand(new Map(new Builder(new Size(2,2)).whitRoadPossible(posOfPathPossible).whitAvatar(new Point(1,1))));
 		assertNull(this.commandRight.getNewOrientation(null));
 	}
 }

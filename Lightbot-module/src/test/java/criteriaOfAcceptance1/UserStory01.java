@@ -8,9 +8,9 @@ import java.io.IOException;
 import org.junit.Test;
 
 import board.CreateMap;
+import configuration.ConstantsTest;
 import enums.LightStatus;
 import enums.TypeOfBox;
-import main.ConstantsTest;
 import model.Avatar;
 import model.Map;
 

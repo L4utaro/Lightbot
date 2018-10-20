@@ -16,6 +16,7 @@ import classProperties.MapProperties;
 import configuration.Constants;
 import enums.TypeOfBox;
 import model.Map;
+import model.Size;
 
 public class ValidatorCreateMapTest {
 	private ValidatorCreateMap validatorCreateMap;
@@ -32,7 +33,7 @@ public class ValidatorCreateMapTest {
 		posOfPathPossible.add(new Point(3, 3));
 		List<Point> posOfLights = new ArrayList<Point>();
 		posOfLights.add(new Point(3, 3));
-		this.map = new Map(new Builder(new Point(3, 3)).whitRoadPossible(posOfPathPossible).whitAvatar(new Point(1, 1))
+		this.map = new Map(new Builder(new Size(3, 3)).whitRoadPossible(posOfPathPossible).whitAvatar(new Point(1, 1))
 				.whitLights(posOfLights));
 		try {
 			this.mapProperties = new MapProperties(Constants.ROUTE_MAP_PROPERTIES);

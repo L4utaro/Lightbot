@@ -12,6 +12,7 @@ import org.junit.Test;
 import board.Builder;
 import model.Avatar;
 import model.Map;
+import model.Size;
 
 public class CommandMoveTest {
 	private CommandMove commandMove;
@@ -24,7 +25,7 @@ public class CommandMoveTest {
 		posOfPathPossible.add(new Point(1, 1));
 		posOfPathPossible.add(new Point(2, 1));
 		this.map = new Map(
-				new Builder(new Point(2, 2)).whitRoadPossible(posOfPathPossible).whitAvatar(new Point(1, 1)));
+				new Builder(new Size(2, 2)).whitRoadPossible(posOfPathPossible).whitAvatar(new Point(1, 1)));
 	}
 
 	@Test

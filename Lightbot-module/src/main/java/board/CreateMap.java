@@ -25,10 +25,10 @@ public class CreateMap {
 	}
 
 	public void createMap() {
-		map = new Builder(mapProperties.getElectionMap().getMapSize())
-				.whitRoadPossible(mapProperties.getElectionMap().getPosOfPathPossible())
-				.whitLights(mapProperties.getElectionMap().getPosLight())
-				.whitAvatar(mapProperties.getElectionMap().getPosAvatar())
+		map = new Builder(mapProperties.getMapConfiguration().getMapSize())
+				.whitRoadPossible(mapProperties.getMapConfiguration().getPosOfPathPossible())
+				.whitLights(mapProperties.getMapConfiguration().getPosLight())
+				.whitAvatar(mapProperties.getMapConfiguration().getPosAvatar())
 				.build();
 	}
 

@@ -18,7 +18,7 @@ public class BoardTest {
 	
 	@Before
 	public void init() {
-		this.board = new Board(new Point(2,2));
+		this.board = new Board(new Size(2,2));
 	}
 	
 	@Test
@@ -62,7 +62,8 @@ public class BoardTest {
 	
 	@Test
 	public void test08() {
-		assertEquals(this.board.getLimitsBoard(), new Point(2,2));
+		assertEquals(this.board.getLimitsBoard().getWidht(), 2);
+		assertEquals(this.board.getLimitsBoard().getHigh(), 2);
 	}
 	
 	@Test

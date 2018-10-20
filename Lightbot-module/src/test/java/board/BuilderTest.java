@@ -10,6 +10,7 @@ import java.util.List;
 import org.junit.Test;
 
 import enums.TypeOfBox;
+import model.Size;
 
 public class BuilderTest {
 	private Builder builder;
@@ -21,12 +22,12 @@ public class BuilderTest {
 
 	@Test(expected = IllegalArgumentException.class)
 	public void sizeMapInvalidTest02() {
-		this.builder = new Builder(new Point(-1, 0));
+		this.builder = new Builder(new Size(-1, 0));
 	}
 
 	@Test
 	public void sizeMapValidTest03() {
-		this.builder = new Builder(new Point(2, 2));
+		this.builder = new Builder(new Size(2, 2));
 		assertNotNull(this.builder.getBoard());
 	}
 
@@ -34,7 +35,7 @@ public class BuilderTest {
 	public void whitRoadPossibleTest04() {
 		List<Point> posOfPathPossible = new ArrayList<>();
 		posOfPathPossible.add(new Point(1, 1));
-		this.builder = new Builder(new Point(2, 2));
+		this.builder = new Builder(new Size(2, 2));
 		this.builder.whitRoadPossible(posOfPathPossible);
 		assertEquals(this.builder.getBoard().getBox(new Point(1, 1)).getTypeOfBox(), TypeOfBox.WALK);
 	}
@@ -43,7 +44,7 @@ public class BuilderTest {
 	public void whitAvatarTest05() {
 		List<Point> posOfPathPossible = new ArrayList<>();
 		posOfPathPossible.add(new Point(1, 1));
-		this.builder = new Builder(new Point(2, 2));
+		this.builder = new Builder(new Size(2, 2));
 		this.builder.whitRoadPossible(posOfPathPossible);
 		this.builder.whitAvatar(new Point(1, 1));
 		assertNotNull(this.builder.getBoard().getBox(new Point(1, 1)).getObjectGraphic());
@@ -53,7 +54,7 @@ public class BuilderTest {
 	public void whitLightsTest06() {
 		List<Point> posOfPathPossible = new ArrayList<>();
 		posOfPathPossible.add(new Point(1, 1));
-		this.builder = new Builder(new Point(2, 2));
+		this.builder = new Builder(new Size(2, 2));
 		this.builder.whitRoadPossible(posOfPathPossible);
 		List<Point> posOfLights = new ArrayList<>();
 		posOfLights.add(new Point(1, 1));
@@ -65,7 +66,7 @@ public class BuilderTest {
 	public void addLightsToMapTest07() {
 		List<Point> posOfPathPossible = new ArrayList<>();
 		posOfPathPossible.add(new Point(1, 1));
-		this.builder = new Builder(new Point(2, 2));
+		this.builder = new Builder(new Size(2, 2));
 		this.builder.whitRoadPossible(posOfPathPossible);
 		List<Point> posOfLights = new ArrayList<>();
 		posOfLights.add(new Point(1, 1));
@@ -75,7 +76,7 @@ public class BuilderTest {
 
 	@Test
 	public void builderTest08() {
-		this.builder = new Builder(new Point(2, 2));
+		this.builder = new Builder(new Size(2, 2));
 		this.builder.build();
 		assertNotNull(this.builder.getBoard());
 	}

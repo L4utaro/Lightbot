@@ -11,6 +11,7 @@ import org.junit.Test;
 
 import board.Builder;
 import model.Map;
+import model.Size;
 
 public class ValidatorPathOfObjectGraphicTest {
 	private ValidatorPathOfObjectGraphic validatorPathOfObjectGraphic;
@@ -26,7 +27,7 @@ public class ValidatorPathOfObjectGraphicTest {
 		posOfPathPossible.add(new Point(3, 3));
 		List<Point> posOfLights = new ArrayList<Point>();
 		posOfLights.add(new Point(3, 3));
-		this.map = new Map(new Builder(new Point(3, 3)).whitRoadPossible(posOfPathPossible).whitAvatar(new Point(1, 1))
+		this.map = new Map(new Builder(new Size(3, 3)).whitRoadPossible(posOfPathPossible).whitAvatar(new Point(1, 1))
 				.whitLights(posOfLights));
 		this.validatorPathOfObjectGraphic = new ValidatorPathOfObjectGraphic(this.map);
 	}

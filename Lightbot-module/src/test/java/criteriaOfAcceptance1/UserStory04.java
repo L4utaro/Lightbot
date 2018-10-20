@@ -7,7 +7,7 @@ import java.io.IOException;
 import org.junit.Before;
 import org.junit.Test;
 
-import main.ConstantsTest;
+import configuration.ConstantsTest;
 import main.GameGenerator;
 
 public class UserStory04 {

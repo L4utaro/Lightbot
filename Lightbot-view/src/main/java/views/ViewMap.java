@@ -5,16 +5,17 @@ import java.util.Observer;
 
 import javax.swing.JFrame;
 
+import model.Map;
+
 public class ViewMap extends JFrame implements Observer{
-	//private Map map;
+	private Map map;
 	
 	public ViewMap() {
 		
 	}
 
 	@Override
-	public void update(Observable arg0, Object arg1) {
-		// TODO Auto-generated method stub
+	public void update(Observable observable, Object object) {
 		
 	}
 }

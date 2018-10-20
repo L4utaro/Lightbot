@@ -5,14 +5,14 @@ import static org.junit.Assert.assertEquals;
 import org.junit.Before;
 import org.junit.Test;
 
-import configuration.Constants;
+import configuration.ConstantsTest;
 
 public class TxtImplementationTest {
 	private TxtImplementation txtImplementation;
 
 	@Before
 	public void init() {
-		this.txtImplementation = new TxtImplementation(Constants.ROUTE_TXT_ACTIONS_3);
+		this.txtImplementation = new TxtImplementation(ConstantsTest.ROUTE_TXT_ACTIONS_3);
 	}
 
 	@Test
@@ -41,7 +41,7 @@ public class TxtImplementationTest {
 
 	@Test
 	public void test05() {
-		this.txtImplementation = new TxtImplementation(Constants.ROUTE_TXT_ACTIONS_3);
+		this.txtImplementation = new TxtImplementation(ConstantsTest.ROUTE_TXT_ACTIONS_3);
 		assertEquals(this.txtImplementation.getActionsJson().size(), 9);
 	}
 
@@ -58,7 +58,7 @@ public class TxtImplementationTest {
 
 	@Test(expected = IllegalArgumentException.class)
 	public void test08() {
-		this.txtImplementation = new TxtImplementation(Constants.ROUTE_TXT_ACTIONS_INVALID_3);
+		this.txtImplementation = new TxtImplementation(ConstantsTest.ROUTE_TXT_ACTIONS_INVALID_3);
 		this.txtImplementation.createColecctionOfActions();
 		assertEquals(this.txtImplementation.getActionsJson().size(), 9);
 	}

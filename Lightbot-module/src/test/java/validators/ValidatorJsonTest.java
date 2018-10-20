@@ -6,7 +6,7 @@ import static org.junit.Assert.assertTrue;
 import org.junit.Before;
 import org.junit.Test;
 
-import configuration.Constants;
+import configuration.ConstantsTest;
 import lectors.implementation.JsonImplementation;
 
 public class ValidatorJsonTest {
@@ -16,12 +16,12 @@ public class ValidatorJsonTest {
 	@Before
 	public void init() {
 		this.validatorJson = new ValidatorJson();
-		this.jsonImplementacion = new JsonImplementation(Constants.ROUTE_JSON_ACTIONS_1);
+		this.jsonImplementacion = new JsonImplementation(ConstantsTest.ROUTE_JSON_ACTIONS_1);
 	}
 
 	@Test
 	public void test01() {
-		assertFalse(this.validatorJson.checkInstruction(Constants.ROUTE_JSON_ACTIONS_1));
+		assertFalse(this.validatorJson.checkInstruction(ConstantsTest.ROUTE_JSON_ACTIONS_1));
 	}
 
 	@Test
@@ -31,7 +31,7 @@ public class ValidatorJsonTest {
 
 	@Test
 	public void test03() {
-		this.jsonImplementacion = new JsonImplementation(Constants.ROUTE_JSON_ACTIONS_INVALID_1);
+		this.jsonImplementacion = new JsonImplementation(ConstantsTest.ROUTE_JSON_ACTIONS_INVALID_1);
 		assertFalse(this.validatorJson.validateInstructionsOfJsonArray(this.jsonImplementacion.getActionsJson()));
 	}
 }

@@ -19,7 +19,7 @@ public class MapTest {
 	
 	@Before
 	public void init() {
-		this.map = new Map(new Builder(new Point(2,2)));
+		this.map = new Map(new Builder(new Size(2,2)));
 	}
 
 	@Test
@@ -66,7 +66,8 @@ public class MapTest {
 	
 	@Test
 	public void test08() {
-		assertEquals(this.map.getLimitsBoard(), new Point(2,2));
+		assertEquals(this.map.getLimitsBoard().getWidht(), 2);
+		assertEquals(this.map.getLimitsBoard().getHigh(), 2);
 	}
 
 	@Test

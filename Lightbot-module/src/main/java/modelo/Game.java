@@ -37,6 +37,8 @@ public class Game extends Observable{
 			if(this.validatorGame.isAvatarIsOutOfPathPossible()) {
 				System.out.println("Game Over: The avatar is't out of paht possible");
 				throw new IllegalArgumentException("Game Over: The avatar is't out of paht possible");
+			}else if (!this.validatorGame.allLightsAreTurnedOn(this.map)) {
+				System.out.println("You win");
 			}
 		}
 		if (!this.validatorGame.allLightsAreTurnedOn(this.map)) {

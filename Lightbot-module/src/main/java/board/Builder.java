@@ -7,15 +7,16 @@ import enums.LightStatus;
 import model.Avatar;
 import model.Board;
 import model.Map;
+import model.Size;
 
 public class Builder {
 	private Board board;
 	private AddBox addBox;
 
-	public Builder(Point sizeBoard) {
+	public Builder(Size sizeBoard) {
 		if (sizeBoard == null) {
 			throw new IllegalArgumentException("el tamanio no puede ser null");
-		} else if (sizeBoard.x <= 1 || sizeBoard.y <= 1) {
+		} else if (sizeBoard.getWidht() <= 1 || sizeBoard.getHigh() <= 1) {
 			throw new IllegalArgumentException("el tamanio no puede ser menor a 1");
 		}
 		this.board = new Board(sizeBoard);

@@ -4,9 +4,9 @@ import static org.junit.Assert.assertEquals;
 
 import org.junit.Test;
 
+import configuration.ConstantsTest;
 import lectors.LectorJson;
 import lectors.implementation.JsonImplementation;
-import main.ConstantsTest;
 
 public class UserStory02 {
 	private JsonImplementation jsonImplementation;

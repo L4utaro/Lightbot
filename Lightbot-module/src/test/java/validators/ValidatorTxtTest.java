@@ -6,7 +6,7 @@ import static org.junit.Assert.assertTrue;
 import org.junit.Before;
 import org.junit.Test;
 
-import configuration.Constants;
+import configuration.ConstantsTest;
 import lectors.implementation.TxtImplementation;
 
 public class ValidatorTxtTest {
@@ -16,12 +16,12 @@ public class ValidatorTxtTest {
 	@Before
 	public void init() {
 		this.validatorTxt = new ValidatorTxt();
-		this.txtImplementacion = new TxtImplementation(Constants.ROUTE_TXT_ACTIONS_3);
+		this.txtImplementacion = new TxtImplementation(ConstantsTest.ROUTE_TXT_ACTIONS_3);
 	}
 
 	@Test
 	public void test01() {
-		assertFalse(this.validatorTxt.checkInstruction(Constants.ROUTE_TXT_ACTIONS_3));
+		assertFalse(this.validatorTxt.checkInstruction(ConstantsTest.ROUTE_TXT_ACTIONS_3));
 	}
 
 	@Test
@@ -31,7 +31,7 @@ public class ValidatorTxtTest {
 
 	@Test
 	public void test03() {
-		this.txtImplementacion = new TxtImplementation(Constants.ROUTE_TXT_ACTIONS_INVALID_3);
+		this.txtImplementacion = new TxtImplementation(ConstantsTest.ROUTE_TXT_ACTIONS_INVALID_3);
 		assertFalse(this.validatorTxt.validateInstructionsOfJsonArray(this.txtImplementacion.getActionsJson()));
 	}
 }

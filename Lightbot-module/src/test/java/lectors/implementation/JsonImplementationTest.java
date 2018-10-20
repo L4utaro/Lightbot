@@ -5,14 +5,14 @@ import static org.junit.Assert.assertEquals;
 import org.junit.Before;
 import org.junit.Test;
 
-import configuration.Constants;
+import configuration.ConstantsTest;
 
 public class JsonImplementationTest {
 	private JsonImplementation jsonImplementation;
 
 	@Before
 	public void init() {
-		this.jsonImplementation = new JsonImplementation(Constants.ROUTE_JSON_ACTIONS_1);
+		this.jsonImplementation = new JsonImplementation(ConstantsTest.ROUTE_JSON_ACTIONS_1);
 	}
 
 	@Test
@@ -41,7 +41,7 @@ public class JsonImplementationTest {
 
 	@Test
 	public void test05() {
-		this.jsonImplementation = new JsonImplementation(Constants.ROUTE_JSON_ACTIONS_1);
+		this.jsonImplementation = new JsonImplementation(ConstantsTest.ROUTE_JSON_ACTIONS_1);
 		assertEquals(this.jsonImplementation.getActionsJson().size(), 9);
 	}
 
@@ -58,7 +58,7 @@ public class JsonImplementationTest {
 
 	@Test(expected = IllegalArgumentException.class)
 	public void test08() {
-		this.jsonImplementation = new JsonImplementation(Constants.ROUTE_JSON_ACTIONS_INVALID_1);
+		this.jsonImplementation = new JsonImplementation(ConstantsTest.ROUTE_JSON_ACTIONS_INVALID_1);
 		this.jsonImplementation.createColecctionOfActions();
 		assertEquals(this.jsonImplementation.getActionsJson().size(), 9);
 	}

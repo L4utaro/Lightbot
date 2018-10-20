@@ -13,6 +13,7 @@ import board.Builder;
 import commands.CommandLeft;
 import commands.CommandRight;
 import model.Map;
+import model.Size;
 
 public class InvokerCommandTest {
 	private InvokerCommand invokerCommand;
@@ -24,7 +25,7 @@ public class InvokerCommandTest {
 		List<Point> posOfPathPossible = new ArrayList<Point>();
 		posOfPathPossible.add(new Point(1, 1));
 		this.map = new Map(
-				new Builder(new Point(2, 2)).whitRoadPossible(posOfPathPossible).whitAvatar(new Point(1, 1)));
+				new Builder(new Size(2, 2)).whitRoadPossible(posOfPathPossible).whitAvatar(new Point(1, 1)));
 	}
 
 	@Test

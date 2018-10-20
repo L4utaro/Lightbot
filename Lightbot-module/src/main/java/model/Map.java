@@ -38,7 +38,7 @@ public class Map {
 		this.board.printBoard();
 	}
 
-	public Point getLimitsBoard() {
+	public Size getLimitsBoard() {
 		return board.getLimitsBoard();
 	}
 

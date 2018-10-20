@@ -15,6 +15,7 @@ import enums.LightStatus;
 import enums.TypeOfBox;
 import model.Avatar;
 import model.Board;
+import model.Size;
 
 public class AddBoxTest {
 	private AddBox addBox;
@@ -22,7 +23,7 @@ public class AddBoxTest {
 	
 	@Before()
 	public void init() {
-		this.board = new Board(new Point(3,3));
+		this.board = new Board(new Size(3,3));
 		this.addBox = new AddBox(board);
 	}
 

@@ -11,6 +11,7 @@ import org.junit.Test;
 
 import board.Builder;
 import model.Map;
+import model.Size;
 
 public class CommandLightTest {
 	private CommandLight commandLight;
@@ -26,7 +27,7 @@ public class CommandLightTest {
 		posOfPathPossible.add(new Point(1, 1));
 		List<Point> posOfLights = new ArrayList<Point>();
 		posOfLights.add(new Point(1, 1));
-		this.commandLight.executeCommand(new Map(new Builder(new Point(2, 2)).whitRoadPossible(posOfPathPossible)
+		this.commandLight.executeCommand(new Map(new Builder(new Size(2, 2)).whitRoadPossible(posOfPathPossible)
 				.whitLights(posOfLights).whitAvatar(new Point(1, 1))));
 		assertNotNull(this.commandLight.getClass());
 	}

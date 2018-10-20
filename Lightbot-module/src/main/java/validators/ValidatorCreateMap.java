@@ -21,7 +21,7 @@ public class ValidatorCreateMap implements IValidator {
 	}
 
 	public boolean isAValidRoad() {
-		for(Point pos: this.mapProperties.getElectionMap().getPosOfPathPossible()) {
+		for(Point pos: this.mapProperties.getMapConfiguration().getPosOfPathPossible()) {
 			if(this.map.getBox(pos).getTypeOfBox().equals(TypeOfBox.NO_WALK)) {
 				return false;
 			}
@@ -30,7 +30,7 @@ public class ValidatorCreateMap implements IValidator {
 	}
 
 	public boolean isAValidLights() {
-		for(Point pos: this.mapProperties.getElectionMap().getPosLight()) {
+		for(Point pos: this.mapProperties.getMapConfiguration().getPosLight()) {
 			if(this.map.getBox(pos).getLightStatus() == null) {
 				return false;
 			}
@@ -39,11 +39,11 @@ public class ValidatorCreateMap implements IValidator {
 	}
 
 	public boolean isAValidAvatarPosition() {
-		return this.map.getAvatarPos().equals(this.mapProperties.getElectionMap().getPosAvatar());
+		return this.map.getAvatarPos().equals(this.mapProperties.getMapConfiguration().getPosAvatar());
 	}
 
 	public boolean isAValidSizeBoard() {
-		return this.map.getLimitsBoard().x == this.mapProperties.getElectionMap().getMapSize().x
-				&& this.map.getLimitsBoard().y == this.mapProperties.getElectionMap().getMapSize().y;
+		return this.map.getLimitsBoard().getWidht() == this.mapProperties.getMapConfiguration().getMapSize().getWidht()
+				&& this.map.getLimitsBoard().getHigh() == this.mapProperties.getMapConfiguration().getMapSize().getHigh();
 	}
 }

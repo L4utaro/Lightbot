@@ -13,8 +13,8 @@ public class Board {
 	private Point avatarPos;
 	private List<Point> listOfLightPos;
 	
-	public Board(Point sizeBoard) {
-		this.boxes = new Box[sizeBoard.x][sizeBoard.y];
+	public Board(Size sizeBoard) {
+		this.boxes = new Box[sizeBoard.getWidht()][sizeBoard.getHigh()];
 		this.listOfLightPos = new ArrayList<Point>();
 	}
 
@@ -73,8 +73,8 @@ public class Board {
 		}
 	}
 	
-	public Point getLimitsBoard() {
-		return new Point(boxes.length, boxes[0].length);
+	public Size getLimitsBoard() {
+		return new Size(boxes.length, boxes[0].length);
 	}
 
 	public Point getAvatarPos() {

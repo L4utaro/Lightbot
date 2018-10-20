@@ -7,7 +7,7 @@ import java.io.IOException;
 import org.junit.Before;
 import org.junit.Test;
 
-import configuration.Constants;
+import configuration.ConstantsTest;
 
 public class CreateMapTest {
 	private CreateMap createMap;
@@ -15,7 +15,7 @@ public class CreateMapTest {
 	@Before
 	public void init() {
 		try {
-			this.createMap = new CreateMap(Constants.ROUTE_MAP_PROPERTIES);
+			this.createMap = new CreateMap(ConstantsTest.ROUTE_MAP_PROPERTIES);
 		} catch (IOException e) {
 		}
 	}
@@ -23,7 +23,7 @@ public class CreateMapTest {
 	@Test(expected = IllegalArgumentException.class)
 	public void test01() {
 		try {
-			this.createMap = new CreateMap(Constants.ROUTE_MAP_INVALID_1_PROPERTIES);
+			this.createMap = new CreateMap(ConstantsTest.ROUTE_MAP_INVALID_1_PROPERTIES);
 		} catch (IOException e) {
 		}
 		this.createMap.validateMapAndProperties();

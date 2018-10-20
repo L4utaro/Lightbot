@@ -4,9 +4,9 @@ import static org.junit.Assert.assertEquals;
 
 import org.junit.Test;
 
+import configuration.ConstantsTest;
 import lectors.LectorTxt;
 import lectors.implementation.TxtImplementation;
-import main.ConstantsTest;
 
 public class UserStory03 {
 	private TxtImplementation txtImplementation;

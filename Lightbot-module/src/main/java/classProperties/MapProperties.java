@@ -8,11 +8,12 @@ import java.util.List;
 import java.util.Properties;
 
 import configuration.Constants;
+import model.Size;
 import validators.ValidatorProperties;
 
 public class MapProperties {
 	private Properties properties;
-	private ElectionMap electionMap;
+	private MapConfiguration mapConfiguration;
 	private ValidatorProperties validatorProperties;
 
 	public MapProperties(String route_properties) throws IOException {
@@ -30,11 +31,11 @@ public class MapProperties {
 	}
 
 	public void loadDataProperties() {
-		Point mapSize = getPointOfProperties(Constants.NAME_SIZEMAP_PROPERTIES);
+		Size mapSize = geySizeOfProperties(Constants.NAME_SIZEMAP_PROPERTIES);
 		Point posAvatar = getPointOfProperties(Constants.NAME_POSAVATAR_PROPERTIES);
 		List<Point> posLight = loadPositionsOfPoint(Constants.NAME_POSLIGHT_PROPERTIES);
 		List<Point> posOfPathPossible = loadPositionsOfPoint(Constants.NAME_PATHPOSSIBLE_PROPERTIES);
-		this.electionMap = new ElectionMap(mapSize, posAvatar, posLight, posOfPathPossible);
+		this.mapConfiguration = new MapConfiguration(mapSize, posAvatar, posLight, posOfPathPossible);
 	}
 	
 	public List<Point> loadPositionsOfPoint(String parameter) {
@@ -52,6 +53,11 @@ public class MapProperties {
 				properties.getProperty(parameter).charAt(3) - '0');
 	}
 
+	public Size geySizeOfProperties(String parameter) {
+		return new Size(properties.getProperty(parameter).charAt(1) - '0',
+				properties.getProperty(parameter).charAt(3) - '0');
+	}
+	
 	public void loadProperties(String route_properties) throws IOException {
 		try {
 			this.properties.load(new FileReader(route_properties));
@@ -60,7 +66,7 @@ public class MapProperties {
 		}
 	}
 
-	public ElectionMap getElectionMap() {
-		return electionMap;
+	public MapConfiguration getMapConfiguration() {
+		return mapConfiguration;
 	}
 }
