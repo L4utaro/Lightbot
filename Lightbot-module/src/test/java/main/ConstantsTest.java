@@ -1,6 +1,6 @@
 package main;
 
-public class Constants {
+public class ConstantsTest {
 	public static final String ROUTE_MAP_PROPERTIES = "src/main/resources/configurationProperties/board.properties";
 	public static final String ROUTE_MAP_PROPERTIES2 = "src/main/resources/configurationProperties/board2.properties";
 	public static final String ROUTE_MAP_INVALID_1_PROPERTIES = "src/main/resources/configurationProperties/boardInvalid1.properties";

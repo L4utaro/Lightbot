@@ -2,17 +2,22 @@ package classProperties;
 
 import static org.junit.Assert.assertNotNull;
 
+import java.io.IOException;
+
 import org.junit.Before;
 import org.junit.Test;
 
-import main.Constants;
+import configuration.Constants;
 
 public class MapPropertiesTest {
 	private MapProperties mapProperties;
 	
 	@Before
 	public void init() {
-		this.mapProperties = new MapProperties(Constants.ROUTE_MAP_PROPERTIES);
+		try {
+			this.mapProperties = new MapProperties(Constants.ROUTE_MAP_PROPERTIES);
+		} catch (IOException e) {
+		}
 	}
 	
 	@Test
@@ -23,22 +28,31 @@ public class MapPropertiesTest {
 
 	@Test
 	public void test02() {
-		this.mapProperties = new MapProperties(Constants.ROUTE_MAP_PROPERTIES);
-		this.mapProperties.loadProperties(Constants.ROUTE_MAP_PROPERTIES);
+		try {
+			this.mapProperties = new MapProperties(Constants.ROUTE_MAP_PROPERTIES);
+			this.mapProperties.loadProperties(Constants.ROUTE_MAP_PROPERTIES);
+		} catch (IOException e) {
+		}
 		assertNotNull(this.mapProperties.getElectionMap());
 	}
 
 	@Test(expected = NullPointerException.class)
 	public void test03() {
-		this.mapProperties = new MapProperties(Constants.ROUTE_MAP_PROPERTIES);
-		this.mapProperties.loadProperties(null);
+		try {
+			this.mapProperties = new MapProperties(Constants.ROUTE_MAP_PROPERTIES);
+			this.mapProperties.loadProperties(null);
+		} catch (IOException e) {
+		}
 		assertNotNull(this.mapProperties.getElectionMap());
 	}
 	
 	@Test
 	public void test04() {
-		this.mapProperties = new MapProperties(Constants.ROUTE_MAP_PROPERTIES);
-		this.mapProperties.loadProperties("src/main/resources/properties");
+		try {
+			this.mapProperties = new MapProperties(Constants.ROUTE_MAP_PROPERTIES);
+			this.mapProperties.loadProperties("src/main/resources/properties");
+		} catch (IOException e) {
+		}
 		assertNotNull(this.mapProperties.getElectionMap());
 	}
 
@@ -54,7 +68,10 @@ public class MapPropertiesTest {
 
 	@Test(expected = IllegalArgumentException.class)
 	public void test07() {
-		this.mapProperties = new MapProperties(Constants.ROUTE_MAP_INVALID_2_PROPERTIES);
+		try {
+			this.mapProperties = new MapProperties(Constants.ROUTE_MAP_INVALID_2_PROPERTIES);
+		} catch (IOException e) {
+		}
 		this.mapProperties.validateProperties();
 	}
 }

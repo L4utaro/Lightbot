@@ -1,5 +1,7 @@
 package board;
 
+import java.io.IOException;
+
 import classProperties.MapProperties;
 import model.Map;
 import validators.ValidatorCreateMap;
@@ -9,7 +11,7 @@ public class CreateMap {
 	private MapProperties mapProperties;
 	private ValidatorCreateMap validatorCreateMap;
 	
-	public CreateMap (String route_properties) {
+	public CreateMap (String route_properties) throws IOException {
 		mapProperties = new MapProperties(route_properties);
 		createMap();
 		this.validatorCreateMap = new ValidatorCreateMap(this.map, this.mapProperties);

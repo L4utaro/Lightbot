@@ -5,7 +5,7 @@ import static org.junit.Assert.assertEquals;
 import org.junit.Before;
 import org.junit.Test;
 
-import main.Constants;
+import configuration.Constants;
 
 public class JsonImplementationTest {
 	private JsonImplementation jsonImplementation;

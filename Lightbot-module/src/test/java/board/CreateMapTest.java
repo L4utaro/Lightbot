@@ -2,22 +2,30 @@ package board;
 
 import static org.junit.Assert.assertNotNull;
 
+import java.io.IOException;
+
 import org.junit.Before;
 import org.junit.Test;
 
-import main.Constants;
+import configuration.Constants;
 
 public class CreateMapTest {
 	private CreateMap createMap;
 	
 	@Before
 	public void init() {
-		this.createMap = new CreateMap(Constants.ROUTE_MAP_PROPERTIES);
+		try {
+			this.createMap = new CreateMap(Constants.ROUTE_MAP_PROPERTIES);
+		} catch (IOException e) {
+		}
 	}
 	
 	@Test(expected = IllegalArgumentException.class)
 	public void test01() {
-		this.createMap = new CreateMap(Constants.ROUTE_MAP_INVALID_1_PROPERTIES);
+		try {
+			this.createMap = new CreateMap(Constants.ROUTE_MAP_INVALID_1_PROPERTIES);
+		} catch (IOException e) {
+		}
 		this.createMap.validateMapAndProperties();
 	}
 	

@@ -5,7 +5,7 @@ import static org.junit.Assert.assertNotNull;
 import org.junit.Before;
 import org.junit.Test;
 
-import main.Constants;
+import configuration.Constants;
 public class LectorJsonTest {
 	private LectorJson lectorJson;
 	

@@ -1,14 +1,13 @@
 package classProperties;
 
 import java.awt.Point;
-import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Properties;
 
-import main.Constants;
+import configuration.Constants;
 import validators.ValidatorProperties;
 
 public class MapProperties {
@@ -16,7 +15,7 @@ public class MapProperties {
 	private ElectionMap electionMap;
 	private ValidatorProperties validatorProperties;
 
-	public MapProperties(String route_properties) {
+	public MapProperties(String route_properties) throws IOException {
 		this.properties = new Properties();
 		loadProperties(route_properties);
 		this.validatorProperties = new ValidatorProperties(this.properties);
@@ -53,13 +52,11 @@ public class MapProperties {
 				properties.getProperty(parameter).charAt(3) - '0');
 	}
 
-	public void loadProperties(String route_properties) {
+	public void loadProperties(String route_properties) throws IOException {
 		try {
 			this.properties.load(new FileReader(route_properties));
-		} catch (FileNotFoundException e) {
-			e.printStackTrace();
 		} catch (IOException e) {
-			e.printStackTrace();
+			throw new IOException("no se encontro el archivo" + route_properties, e);
 		}
 	}
 

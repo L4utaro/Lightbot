@@ -6,8 +6,8 @@ import static org.junit.Assert.assertTrue;
 import org.junit.Before;
 import org.junit.Test;
 
+import configuration.Constants;
 import lectors.implementation.JsonImplementation;
-import main.Constants;
 
 public class ValidatorJsonTest {
 	private ValidatorJson validatorJson;

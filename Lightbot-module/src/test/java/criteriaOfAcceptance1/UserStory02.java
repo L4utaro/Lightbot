@@ -6,7 +6,7 @@ import org.junit.Test;
 
 import lectors.LectorJson;
 import lectors.implementation.JsonImplementation;
-import main.Constants;
+import main.ConstantsTest;
 
 public class UserStory02 {
 	private JsonImplementation jsonImplementation;
@@ -18,7 +18,7 @@ public class UserStory02 {
 	@Test(expected = IllegalArgumentException.class)
 	public void test01() {
 		@SuppressWarnings("unused")
-		LectorJson lectorJson = new LectorJson("C:\\\\ProgramData\\\\actionsNot.json");
+		LectorJson lectorJson = new LectorJson("C:\\ProgramData\\actionsNot.json");
 	}
 
 	/**
@@ -28,7 +28,7 @@ public class UserStory02 {
 	 */
 	@Test(expected = IllegalArgumentException.class)
 	public void test02() {
-		this.jsonImplementation = new JsonImplementation(Constants.ROUTE_JSON_ACTIONS_INVALID_1);
+		this.jsonImplementation = new JsonImplementation(ConstantsTest.ROUTE_JSON_ACTIONS_INVALID_1);
 		this.jsonImplementation.createColecctionOfActions();
 	}
 
@@ -41,7 +41,7 @@ public class UserStory02 {
 	 */
 	@Test
 	public void test03() {
-		this.jsonImplementation = new JsonImplementation(Constants.ROUTE_JSON_ACTIONS_2);
+		this.jsonImplementation = new JsonImplementation(ConstantsTest.ROUTE_JSON_ACTIONS_2);
 		this.jsonImplementation.createColecctionOfActions();
 		assertEquals(this.jsonImplementation.getInvokerCommands().size(), 8);
 	}

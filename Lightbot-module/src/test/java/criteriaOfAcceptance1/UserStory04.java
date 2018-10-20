@@ -2,10 +2,12 @@ package criteriaOfAcceptance1;
 
 import static org.junit.Assert.assertNotEquals;
 
+import java.io.IOException;
+
 import org.junit.Before;
 import org.junit.Test;
 
-import main.Constants;
+import main.ConstantsTest;
 import main.GameGenerator;
 
 public class UserStory04 {
@@ -14,7 +16,10 @@ public class UserStory04 {
 	@Before
 	public void init() {
 		this.creator = new GameGenerator();
-		this.creator.createMap(Constants.ROUTE_MAP_PROPERTIES);
+		try {
+			this.creator.createMap(ConstantsTest.ROUTE_MAP_PROPERTIES);
+		} catch (IOException e) {
+		}
 	}
 	/**
 	 * Leer la colección de acciones [commandRight, commandMove, commandLeft,
@@ -24,7 +29,7 @@ public class UserStory04 {
 	 */
 	@Test
 	public void checkActionsTest01() {
-		this.creator.createActionsByJson(Constants.ROUTE_JSON_ACTIONS_2);
+		this.creator.createActionsByJson(ConstantsTest.ROUTE_JSON_ACTIONS_2);
 		assertNotEquals(this.creator.getInvokerCommands().size(), 0);
 	}
 	/**
@@ -36,8 +41,8 @@ public class UserStory04 {
 	 */
 	@Test(expected = IllegalArgumentException.class)
 	public void checkActionsTest02() {
-		this.creator.createActionsByJson(Constants.ROUTE_JSON_ACTIONS_INVALID_2);
-		this.creator.runActions();
+		this.creator.createActionsByJson(ConstantsTest.ROUTE_JSON_ACTIONS_INVALID_2);
+		//this.creator.runActions();
 	}
 	/**
 	 * Leer la colección de acciones [commandRight, commandMove, commandLeft,
@@ -50,7 +55,7 @@ public class UserStory04 {
 	 */
 	@Test(expected = IllegalArgumentException.class)
 	public void checkActionsTest03() {
-		this.creator.createActionsByJson(Constants.ROUTE_JSON_ACTIONS_2);
-		this.creator.runActions();
+		this.creator.createActionsByJson(ConstantsTest.ROUTE_JSON_ACTIONS_2);
+		//this.creator.runActions();
 	}
 }

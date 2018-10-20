@@ -4,7 +4,7 @@ import java.util.Properties;
 
 import org.w3c.dom.events.EventException;
 
-import main.Constants;
+import configuration.Constants;
 import validators.interfaces.IValidator;
 
 public class ValidatorProperties implements IValidator {

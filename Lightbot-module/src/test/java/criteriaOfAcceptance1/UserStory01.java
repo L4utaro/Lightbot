@@ -3,13 +3,14 @@ package criteriaOfAcceptance1;
 import static org.junit.Assert.assertEquals;
 
 import java.awt.Point;
+import java.io.IOException;
 
 import org.junit.Test;
 
 import board.CreateMap;
 import enums.LightStatus;
 import enums.TypeOfBox;
-import main.Constants;
+import main.ConstantsTest;
 import model.Avatar;
 import model.Map;
 
@@ -24,8 +25,12 @@ public class UserStory01 {
 	 */
 	@Test(expected = IllegalArgumentException.class)
 	public void test01() {
-		CreateMap create = new CreateMap(Constants.ROUTE_MAP_INVALID_1_PROPERTIES);
-		this.map = create.getMap();
+		CreateMap create;
+		try {
+			create = new CreateMap(ConstantsTest.ROUTE_MAP_INVALID_1_PROPERTIES);
+			this.map = create.getMap();
+		} catch (IOException e) {
+		}
 	}
 
 	/**
@@ -35,8 +40,12 @@ public class UserStory01 {
 	 */
 	@Test(expected = IllegalArgumentException.class)
 	public void test02() {
-		CreateMap create = new CreateMap(Constants.ROUTE_MAP_INVALID_2_PROPERTIES);
-		this.map = create.getMap();
+		CreateMap create;
+		try {
+			create = new CreateMap(ConstantsTest.ROUTE_MAP_INVALID_2_PROPERTIES);
+			this.map = create.getMap();
+		} catch (IOException e) {
+		}
 	}
 
 	/**
@@ -46,8 +55,12 @@ public class UserStory01 {
 	 */
 	@Test(expected = IllegalArgumentException.class)
 	public void test03() {
-		CreateMap create = new CreateMap(Constants.ROUTE_MAP_INVALID_3_PROPERTIES);
-		this.map = create.getMap();
+		CreateMap create;
+		try {
+			create = new CreateMap(ConstantsTest.ROUTE_MAP_INVALID_3_PROPERTIES);
+			this.map = create.getMap();
+		} catch (IOException e) {
+		}
 	}
 
 	/**
@@ -58,8 +71,12 @@ public class UserStory01 {
 	 */
 	@Test(expected = IllegalArgumentException.class)
 	public void test04() {
-		CreateMap create = new CreateMap(Constants.ROUTE_MAP_INVALID_4_PROPERTIES);
-		this.map = create.getMap();
+		CreateMap create;
+		try {
+			create = new CreateMap(ConstantsTest.ROUTE_MAP_INVALID_4_PROPERTIES);
+			this.map = create.getMap();
+		} catch (IOException e) {
+		}
 	}
 
 	/**
@@ -70,8 +87,12 @@ public class UserStory01 {
 	 */
 	@Test
 	public void test05() {
-		CreateMap create = new CreateMap(Constants.ROUTE_MAP_PROPERTIES);
-		this.map = create.getMap();
+		CreateMap create;
+		try {
+			create = new CreateMap(ConstantsTest.ROUTE_MAP_PROPERTIES);
+			this.map = create.getMap();
+		} catch (IOException e) {
+		}
 		assertEquals(this.map.getBoard().getBox(new Point(1, 1)).getObjectGraphic().getClass().getName(),
 				new Avatar().getClass().getName());
 		assertEquals(this.map.getBoard().getBox(new Point(3, 3)).getLightStatus(),

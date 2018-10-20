@@ -4,6 +4,7 @@ import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 
 import java.awt.Point;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -12,8 +13,8 @@ import org.junit.Test;
 
 import board.Builder;
 import classProperties.MapProperties;
+import configuration.Constants;
 import enums.TypeOfBox;
-import main.Constants;
 import model.Map;
 
 public class ValidatorCreateMapTest {
@@ -33,7 +34,10 @@ public class ValidatorCreateMapTest {
 		posOfLights.add(new Point(3, 3));
 		this.map = new Map(new Builder(new Point(3, 3)).whitRoadPossible(posOfPathPossible).whitAvatar(new Point(1, 1))
 				.whitLights(posOfLights));
-		this.mapProperties = new MapProperties(Constants.ROUTE_MAP_PROPERTIES);
+		try {
+			this.mapProperties = new MapProperties(Constants.ROUTE_MAP_PROPERTIES);
+		} catch (IOException e) {
+		}
 		this.validatorCreateMap = new ValidatorCreateMap(map, mapProperties);
 	}
 

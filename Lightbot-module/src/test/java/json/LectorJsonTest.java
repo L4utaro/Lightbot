@@ -6,8 +6,8 @@ import static org.junit.Assert.assertNull;
 import org.junit.Before;
 import org.junit.Test;
 
+import configuration.Constants;
 import lectors.LectorJson;
-import main.Constants;
 
 public class LectorJsonTest {
 	private LectorJson lectorJson;
