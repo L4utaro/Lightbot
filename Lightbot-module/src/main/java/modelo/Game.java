@@ -5,8 +5,7 @@ import java.util.List;
 import java.util.Observable;
 
 import commands.invoker.InvokerCommand;
-import configuration.Constants;
-import main.GameGenerator;
+import generators.GameGenerator;
 import model.Map;
 import validators.ValidatorGame;
 
@@ -14,22 +13,47 @@ public class Game extends Observable{
 	private Map map;
 	private ValidatorGame validatorGame;
 	private String message;
+	private	GameGenerator creator;
+	private List<InvokerCommand> invokersCommands;
 	
+	/**default*/
 	public Game(){
-		GameGenerator creator = new GameGenerator();
 		try {
-			creator.createMap(Constants.ROUTE_MAP_PROPERTIES);
+			 creator = new GameGenerator();
 		} catch (IOException e) {
 			message = e.getMessage();
 		}
-		creator.createActionsByJson(Constants.ROUTE_JSON_ACTIONS_1);
-		this.map = creator.getMap();
-		this.validatorGame = new ValidatorGame(map);
-		run(creator.getInvokerCommands());
+		init();
 	}
 	
-	public void run(List<InvokerCommand> invokersCommands) {
-		for (InvokerCommand invokerCommand : invokersCommands) {
+	/**whit map*/
+	public Game(String mapRoute){
+		try {
+			 creator = new GameGenerator(mapRoute);
+		} catch (IOException e) {
+			message = e.getMessage();
+		}
+		init();
+	}
+
+	/**whit all options*/
+	public Game(String mapRoute, String jsonRoute){
+		try {
+			 creator = new GameGenerator(mapRoute, jsonRoute);
+		} catch (IOException e) {
+			message = e.getMessage();
+		}
+		init();
+	}
+	
+	public void init() {
+		this.map = creator.getMap();
+		this.validatorGame = new ValidatorGame(map);
+		this.invokersCommands = creator.getInvokerCommands();
+	}
+	
+	public void run() {
+		for (InvokerCommand invokerCommand : this.invokersCommands) {
 			invokerCommand.executeCommand(this.map);
 			modelChange();
 			System.out.println("\n-----\n");
@@ -37,15 +61,13 @@ public class Game extends Observable{
 			if(this.validatorGame.isAvatarIsOutOfPathPossible()) {
 				System.out.println("Game Over: The avatar is't out of paht possible");
 				throw new IllegalArgumentException("Game Over: The avatar is't out of paht possible");
-			}else if (!this.validatorGame.allLightsAreTurnedOn(this.map)) {
+			}else if (this.validatorGame.allLightsAreTurnedOn(this.map)) {
 				System.out.println("You win");
 			}
 		}
 		if (!this.validatorGame.allLightsAreTurnedOn(this.map)) {
 			System.out.println("Game Over: The avatar don't turned on all the lights");
 			throw new IllegalArgumentException("Game Over: The avatar don't turned on all the lights");
-		} else {
-			System.out.println("You win");
 		}
 	}
 

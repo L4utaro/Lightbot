@@ -11,9 +11,10 @@ import commands.CommandMove;
 import commands.CommandRight;
 import commands.invoker.InvokerCommand;
 import lectors.LectorJson;
+import lectors.interfaces.IImplementation;
 import validators.ValidatorJson;
 
-public class JsonImplementation {
+public class JsonImplementation implements IImplementation{
 	private LectorJson lectorJson;
 	private JSONArray actionsJson;
 	private ValidatorJson validatorJson;

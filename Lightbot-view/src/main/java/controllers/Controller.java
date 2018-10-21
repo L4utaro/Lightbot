@@ -17,6 +17,7 @@ public class Controller {
 		this.gameModelo = new Game();
 		this.viewMap = new ViewMap();
 		this.gameModelo.addObserver(this.viewMap);
+		this.gameModelo.run();
 	}
 	
 	public void handleEvent(Event e) {

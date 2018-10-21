@@ -11,9 +11,10 @@ import commands.CommandMove;
 import commands.CommandRight;
 import commands.invoker.InvokerCommand;
 import lectors.LectorTxt;
+import lectors.interfaces.IImplementation;
 import validators.ValidatorTxt;
 
-public class TxtImplementation {
+public class TxtImplementation implements IImplementation{
 	private LectorTxt lectorTxt;
 	private JSONArray actionsJson;
 	private ValidatorTxt validatorTxt;
