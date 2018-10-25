@@ -1,6 +1,7 @@
 package model;
 
 import java.awt.Point;
+import java.util.List;
 
 import board.Builder;
 import enums.LightStatus;
@@ -50,6 +51,10 @@ public class Map {
 		return this.board.getAvatarPos();
 	}
 
+	public List<Point> getListOfLightPos() {
+		return this.board.getListOfLightPos();
+	}
+	
 	public void setAvatarPos(Point avatarPos) {
 		this.board.setAvatarPos(avatarPos);
 	}
