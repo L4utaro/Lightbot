@@ -1,0 +1,17 @@
+{
+  "actions": [
+    "right",
+    "move",
+    "left",
+    "move",
+    "right",
+    "move",
+    "left",
+    "move",
+    "fun1"
+  ],
+  "fun1": [
+    "move",
+    "right"
+  ]
+}

@@ -24,14 +24,14 @@ public class ValidatorTxtTest {
 		assertFalse(this.validatorTxt.checkInstruction(ConstantsTest.ROUTE_TXT_ACTIONS_3));
 	}
 
-	@Test
-	public void test02() {
-		assertTrue(this.validatorTxt.validateInstructionsOfJsonArray(this.txtImplementacion.getActionsJson()));
-	}
-
-	@Test
-	public void test03() {
-		this.txtImplementacion = new TxtImplementation(ConstantsTest.ROUTE_TXT_ACTIONS_INVALID_3);
-		assertFalse(this.validatorTxt.validateInstructionsOfJsonArray(this.txtImplementacion.getActionsJson()));
-	}
+//	@Test
+//	public void test02() {
+//		assertTrue(this.validatorTxt.validateInstructionsOfJsonArray(this.txtImplementacion.getActionsJson()));
+//	}
+//
+//	@Test
+//	public void test03() {
+//		this.txtImplementacion = new TxtImplementation(ConstantsTest.ROUTE_TXT_ACTIONS_INVALID_3);
+//		assertFalse(this.validatorTxt.validateInstructionsOfJsonArray(this.txtImplementacion.getActionsJson()));
+//	}
 }

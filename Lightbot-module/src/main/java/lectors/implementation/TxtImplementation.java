@@ -5,6 +5,7 @@ import java.util.List;
 
 import org.json.simple.JSONArray;
 
+import commands.CommandFunction;
 import commands.CommandLeft;
 import commands.CommandLight;
 import commands.CommandMove;
@@ -19,6 +20,7 @@ public class TxtImplementation implements IImplementation{
 	private JSONArray actionsJson;
 	private ValidatorTxt validatorTxt;
 	private List<InvokerCommand> invokerCommands;
+	private List<String> namesOfFunctions;
 
 	public TxtImplementation(String routeTxt) {
 		this.lectorTxt = new LectorTxt(routeTxt);
@@ -26,27 +28,42 @@ public class TxtImplementation implements IImplementation{
 		this.actionsJson = (JSONArray) this.lectorTxt.getListOfJson("actions");
 		this.validatorTxt = new ValidatorTxt();
 		this.invokerCommands = new ArrayList<InvokerCommand>();
+		this.namesOfFunctions = new ArrayList<String>();
 	}
 
-	public void createColecctionOfActions() {
-		if (this.validatorTxt.validateInstructionsOfJsonArray(this.actionsJson)) {
+	public void createMapFunction() {
+		this.invokerCommands = this.createColecctionOfActions("actions");
+	}
+	
+	public List<InvokerCommand> createColecctionOfActions(String nameFunction) {
+		this.actionsJson = (JSONArray) this.lectorTxt.getListOfJson(nameFunction);
+		List<InvokerCommand> invokerCommands = new ArrayList<>();
+		this.namesOfFunctions = getNamesOfFunctions();
+		if (this.validatorTxt.validateInstructionsOfJsonArray(this.actionsJson, this.namesOfFunctions)) {
 			for (int i = 0; i < this.actionsJson.size(); i++) {
-				addAction(actionsJson.get(i).toString());
+				addAction(actionsJson.get(i).toString(), invokerCommands);
 			}
+			return invokerCommands;
 		} else {
 			throw new IllegalArgumentException("The actions.txt contains wrong parameters");
 		}
 	}
 
-	public void addAction(String action) {
+	public List<String> getNamesOfFunctions() {
+		return this.lectorTxt.getNamesOfArrays();
+	}
+	
+	public void addAction(String action, List<InvokerCommand> invokerCommands) {
 		if (action.equals("move")) {
-			this.invokerCommands.add(new InvokerCommand(new CommandMove()));
+			invokerCommands.add(new InvokerCommand(new CommandMove()));
 		} else if (action.equals("left")) {
-			this.invokerCommands.add(new InvokerCommand(new CommandLeft()));
+			invokerCommands.add(new InvokerCommand(new CommandLeft()));
 		} else if (action.equals("right")) {
-			this.invokerCommands.add(new InvokerCommand(new CommandRight()));
+			invokerCommands.add(new InvokerCommand(new CommandRight()));
 		} else if (action.equals("light")) {
-			this.invokerCommands.add(new InvokerCommand(new CommandLight()));
+			invokerCommands.add(new InvokerCommand(new CommandLight()));
+		} else {
+			invokerCommands.add(new InvokerCommand(new CommandFunction(action, createColecctionOfActions(action))));
 		}
 	}
 

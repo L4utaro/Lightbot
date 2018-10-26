@@ -51,7 +51,7 @@ public class GameGenerator {
 	}
 
 	public void createActions() {
-		this.implementation.createColecctionOfActions();
+		this.implementation.createMapFunction();
 		this.invokerCommands = this.implementation.getInvokerCommands();
 	}
 

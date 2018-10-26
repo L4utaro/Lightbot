@@ -18,7 +18,8 @@ public class ValidatorTxt implements IValidator{
 		this.instrucctionsValids.add("light");
 	}
 	
-	public boolean validateInstructionsOfJsonArray(JSONArray actionsJson) {
+	public boolean validateInstructionsOfJsonArray(JSONArray actionsJson, List<String> namesOfFunctions) {
+		this.instrucctionsValids.addAll(namesOfFunctions);
 		for (int i = 0; i < actionsJson.size(); i++) {
 			if (!checkInstruction(actionsJson.get(i).toString())) {
 				return false;

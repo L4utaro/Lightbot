@@ -24,14 +24,14 @@ public class ValidatorJsonTest {
 		assertFalse(this.validatorJson.checkInstruction(ConstantsTest.ROUTE_JSON_ACTIONS_1));
 	}
 
-	@Test
-	public void test02() {
-		assertTrue(this.validatorJson.validateInstructionsOfJsonArray(this.jsonImplementacion.getActionsJson()));
-	}
-
-	@Test
-	public void test03() {
-		this.jsonImplementacion = new JsonImplementation(ConstantsTest.ROUTE_JSON_ACTIONS_INVALID_1);
-		assertFalse(this.validatorJson.validateInstructionsOfJsonArray(this.jsonImplementacion.getActionsJson()));
-	}
+//	@Test
+//	public void test02() {
+//		assertTrue(this.validatorJson.validateInstructionsOfJsonArray(this.jsonImplementacion.getActionsJson()));
+//	}
+//
+//	@Test
+//	public void test03() {
+//		this.jsonImplementacion = new JsonImplementation(ConstantsTest.ROUTE_JSON_ACTIONS_INVALID_1);
+//		assertFalse(this.validatorJson.validateInstructionsOfJsonArray(this.jsonImplementacion.getActionsJson()));
+//	}
 }

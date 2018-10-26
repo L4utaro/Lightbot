@@ -2,6 +2,7 @@ package lectors;
 
 import java.io.FileReader;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
@@ -32,10 +33,29 @@ public class LectorJson implements ILector{
 		JSONParser parser = new JSONParser();
 		Object obj;
 		try {
-			obj = parser.parse(new FileReader(routeCodeJSON));
+			obj = parser.parse(new FileReader(this.routeCodeJSON));
 			JSONObject jsonObject = (JSONObject) obj;
 			JSONArray leng = (JSONArray) jsonObject.get(keyValue);
 			return leng;
+		} catch (IOException | ParseException e) {
+			e.printStackTrace();
+		}
+		return null;
+	}
+
+	@SuppressWarnings("unchecked")
+	public List<String> getNamesOfArrays() {
+		List<String> nameOfFunctions = new ArrayList<>();
+		JSONParser parser = new JSONParser();
+		Object obj;
+		try {
+			obj = parser.parse(new FileReader(this.routeCodeJSON));
+			JSONObject jsonObject = (JSONObject) obj;
+			nameOfFunctions.addAll(jsonObject.keySet());
+			if(!this.validatorLectorJson.thereAreValidNamesOfFunctions(nameOfFunctions)) {
+				throw new IllegalArgumentException("There are name of functions repited");
+			}
+			return nameOfFunctions;
 		} catch (IOException | ParseException e) {
 			e.printStackTrace();
 		}

@@ -8,11 +8,13 @@ import commands.invoker.InvokerCommand;
 
 public interface IImplementation {
 
-	public void createColecctionOfActions();
+	public List<InvokerCommand> createColecctionOfActions(String nameFunction);
 
-	public void addAction(String action);
+	public void addAction(String action, List<InvokerCommand> invokerCommands);
 
 	public List<InvokerCommand> getInvokerCommands();
 
 	public JSONArray getActionsJson();
+	
+	public void createMapFunction();
 }
