@@ -3,6 +3,7 @@ package views;
 import java.awt.Color;
 import java.awt.GridLayout;
 import java.awt.Point;
+import java.awt.Rectangle;
 import java.util.Observable;
 import java.util.Observer;
 
@@ -31,7 +32,7 @@ public class ViewMap extends JFrame implements Observer {
 	    frame.setSize(colCnt*40, rowCnt*40);//check this
 	    
 	    
-	    panel.setLayout(new GridLayout(colCnt,rowCnt));//cantColum, cantFila
+	    //panel.setLayout(new GridLayout(colCnt,rowCnt));//cantColum, cantFila
 
 	    Point actualPoint;
 	    for (int y = 0; y < rowCnt; y++) {
@@ -48,15 +49,6 @@ public class ViewMap extends JFrame implements Observer {
 				} else {
 					drawBox(actualPoint, Color.gray);
 				}
-//				if(this.map.getAvatarPos().equals(actualPoint)) {
-//					drawAvatar(actualPoint);
-//				} else if(this.map.getListOfLightPos().contains(actualPoint)) {
-//					drawBox(actualPoint, Color.yellow);
-//				} else if(this.map.getBoard().getBoxes()[x][y].getTypeOfBox().equals(TypeOfBox.WALK)) {
-//					drawBox(actualPoint, Color.cyan);
-//				} else {
-//					drawBox(actualPoint, Color.gray);
-//				}
 			}
 	    }
 	    
@@ -66,11 +58,19 @@ public class ViewMap extends JFrame implements Observer {
 	}
 
 	public void drawBox(Point actualPoint, Color color) {
-        panel.add(new JLabel("")).setBackground(color);
+		JLabel label = new JLabel("");
+		label.setBounds(actualPoint.x*40, actualPoint.y*40,40,40);
+		label.setBackground(color);
+        panel.add(label).setBackground(color);
 	}
 
 	public void drawAvatar(Point actualPoint) {
-        panel.add(new JLabel("A")).setBackground(Color.cyan);
+		JLabel label = new JLabel("");
+		label.setBounds(actualPoint.x*40, actualPoint.y*40,40,40);
+		label.setBackground(Color.cyan);
+//        panel.add(label).setBackground(Color.cyan);
+//        panel.add(new JLabel("A")).setBackground(Color.cyan);
+//        panel.getComponent(actualPoint.x + actualPoint.y).setBackground(Color.cyan);
 	}
 
 	@Override
