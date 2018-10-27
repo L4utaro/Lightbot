@@ -79,4 +79,8 @@ public class Game extends Observable{
 	public String getMessage() {
 		return message;
 	}
+
+	public Map getMap() {
+		return map;
+	}
 }

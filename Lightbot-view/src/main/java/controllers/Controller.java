@@ -15,7 +15,7 @@ public class Controller {
 	}
 	
 	public void initialize() throws IOException {
-		this.gameModelo = new Game(Constants.ROUTE_MAP_PROPERTIES, Constants.ROUTE_JSON_ACTIONS_3);
+		this.gameModelo = new Game(Constants.ROUTE_MAP_PROPERTIES, Constants.ROUTE_JSON_ACTIONS_1);
 		this.viewMap = new ViewMap();
 		this.gameModelo.addObserver(this.viewMap);
 		this.gameModelo.run();
