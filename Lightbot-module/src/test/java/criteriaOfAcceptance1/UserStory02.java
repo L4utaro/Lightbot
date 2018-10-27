@@ -6,10 +6,10 @@ import org.junit.Test;
 
 import configuration.ConstantsTest;
 import lectors.LectorJson;
-import lectors.implementation.JsonImplementation;
+import lectors.implementation.Implementation;
 
 public class UserStory02 {
-	private JsonImplementation jsonImplementation;
+	private Implementation implementation;
 	/**
 	 * En caso de no encontrar el archivo .json en la ruta
 	 * “C:\ProgramData\actions.json”, se deberá lanzar una excepción notificando que
@@ -28,8 +28,8 @@ public class UserStory02 {
 	 */
 	@Test(expected = IllegalArgumentException.class)
 	public void test02() {
-		this.jsonImplementation = new JsonImplementation(ConstantsTest.ROUTE_JSON_ACTIONS_INVALID_1);
-		this.jsonImplementation.createColecctionOfActions();
+		this.implementation = new Implementation(ConstantsTest.ROUTE_JSON_ACTIONS_INVALID_1);
+		this.implementation.createColecctionOfActions();
 	}
 
 	/**
@@ -41,8 +41,8 @@ public class UserStory02 {
 	 */
 	@Test
 	public void test03() {
-		this.jsonImplementation = new JsonImplementation(ConstantsTest.ROUTE_JSON_ACTIONS_2);
-		this.jsonImplementation.createColecctionOfActions();
-		assertEquals(this.jsonImplementation.getInvokerCommands().size(), 8);
+		this.implementation = new Implementation(ConstantsTest.ROUTE_JSON_ACTIONS_2);
+		this.implementation.createColecctionOfActions();
+		assertEquals(this.implementation.getInvokerCommands().size(), 8);
 	}
 }
