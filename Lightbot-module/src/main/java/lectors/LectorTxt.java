@@ -23,6 +23,7 @@ public class LectorTxt implements ILector{
 		this.routeTxt = routeTxt;
 		this.validatorLectorTxt = new ValidatorLectorTxt();
 		isAValidRoute();
+		readFile();
 	}
 	
 	public void isAValidRoute() {
