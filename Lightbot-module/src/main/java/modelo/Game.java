@@ -56,18 +56,19 @@ public class Game extends Observable{
 	public void run() {
 		for (InvokerCommand invokerCommand : this.invokersCommands) {
 			invokerCommand.executeCommand(this.map);
-			modelChange();
-			System.out.println("\n-----\n");
-			//this.map.printMap();
 			if(this.validatorGame.isAvatarIsOutOfPathPossible()) {
+				message = "Game Over: The avatar is't out of paht possible";
 				throw new IllegalArgumentException("Game Over: The avatar is't out of paht possible");
 			}else if (this.validatorGame.allLightsAreTurnedOn(this.map)) {
-				System.out.println("You win");
+				message = "You win";
 			}
+			modelChange();
 		}
 		if (!this.validatorGame.allLightsAreTurnedOn(this.map)) {
+			message = "Game Over: The avatar don't turned on all the lights";
 			throw new IllegalArgumentException("Game Over: The avatar don't turned on all the lights");
 		}
+		modelChange();
 	}
 
 	public void modelChange() {

@@ -1,9 +1,7 @@
 package views;
 
 import java.awt.Color;
-import java.awt.GridLayout;
 import java.awt.Point;
-import java.awt.Rectangle;
 import java.util.Observable;
 import java.util.Observer;
 
@@ -11,28 +9,29 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
+import enums.LightStatus;
 import enums.TypeOfBox;
 import model.Map;
 import modelo.Game;
 
-public class ViewMap extends JFrame implements Observer {
-	private static final long serialVersionUID = 1L;
+public class ViewMap implements Observer {
 	private Map map;
 	private JFrame frame;
 	private JPanel panel;
 	private Integer rowCnt;
 	private Integer colCnt;
 	
-	//public ViewMap() {
-	public void draw() {
+	public ViewMap() {
 		frame = new JFrame("Lightbot");
+	    frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+	    frame.setLocationRelativeTo(null);
+	}
+	
+	public void draw() {
 	    panel = new JPanel();
 		rowCnt = this.map.getLimitsBoard().getWidht();
 		colCnt = this.map.getLimitsBoard().getHigh();
 	    frame.setSize(colCnt*40, rowCnt*40);//check this
-	    
-	    
-	    //panel.setLayout(new GridLayout(colCnt,rowCnt));//cantColum, cantFila
 
 	    Point actualPoint;
 	    for (int y = 0; y < rowCnt; y++) {
@@ -40,10 +39,16 @@ public class ViewMap extends JFrame implements Observer {
 				actualPoint = new Point(x,y);
 				if (this.map.getBoard().getBoxes()[x][y] != null) {
 					if (this.map.getBoard().getBoxes()[x][y].getTypeOfBox().equals(TypeOfBox.NO_WALK)) {
-						drawBox(actualPoint, Color.yellow);
+						drawBox(actualPoint, Color.GRAY);
 					} else if (!(this.map.getBoard().getBoxes()[x][y].getObjectGraphic() == null)) {
 						drawAvatar(actualPoint);
-					} else {
+					} else if (!(this.map.getBoard().getBoxes()[x][y].getLightStatus() == null)) {
+						if(this.map.getBoard().getBoxes()[x][y].getLightStatus().equals(LightStatus.OFF)) {
+							drawBox(actualPoint, Color.yellow);
+						} else {
+							drawBox(actualPoint, Color.orange);
+						}
+					}else {
 						drawBox(actualPoint, Color.cyan);
 					}
 				} else {
@@ -53,45 +58,49 @@ public class ViewMap extends JFrame implements Observer {
 	    }
 	    
 	     frame.setContentPane(panel);
-	     frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 	     frame.setVisible(true);
 	}
 
 	public void drawBox(Point actualPoint, Color color) {
-		JLabel label = new JLabel("");
+		JLabel label = new JLabel("         ");
 		label.setBounds(actualPoint.x*40, actualPoint.y*40,40,40);
 		label.setBackground(color);
-        panel.add(label).setBackground(color);
+		label.setOpaque(true);
+        panel.add(label);
 	}
 
 	public void drawAvatar(Point actualPoint) {
-		JLabel label = new JLabel("");
+		JLabel label = new JLabel("   A    ");
 		label.setBounds(actualPoint.x*40, actualPoint.y*40,40,40);
 		label.setBackground(Color.cyan);
-//        panel.add(label).setBackground(Color.cyan);
-//        panel.add(new JLabel("A")).setBackground(Color.cyan);
-//        panel.getComponent(actualPoint.x + actualPoint.y).setBackground(Color.cyan);
+		if (!(this.map.getBoard().getBoxes()[actualPoint.x][actualPoint.y].getLightStatus() == null)) {
+			if(this.map.getBoard().getBoxes()[actualPoint.x][actualPoint.y].getLightStatus().equals(LightStatus.OFF)) {
+				label.setBackground(Color.yellow);
+			} else {
+				label.setBackground(Color.orange);
+			}
+		}
+		label.setOpaque(true);
+        panel.add(label);
 	}
 
+	public void drawMessage(String message) {
+		panel.removeAll();
+		JLabel label = new JLabel(message);
+		label.setBounds( 40, 40, 40, 40);
+		label.setOpaque(true);
+		panel.add(label);
+		frame.setContentPane(panel);
+		frame.setVisible(true);
+	}
+	
 	@Override
 	public void update(Observable observable, Object object) {
 		this.map = ((Game) observable).getMap();
-		this.map.printMap();
-		draw();
+		if(((Game) observable).getMessage() == null || ((Game) observable).getMessage().isEmpty()) {
+			draw();
+		} else {
+			drawMessage(((Game) observable).getMessage());
+		}
 	}
 }
-//public void drawEmptyBox(Point actualPoint) {
-//panel.add(new JTextField(""));
-//panel.getComponentAt(actualPoint).setBackground(Color.gray);
-//}
-//
-//public void drawBoxWalk(Point actualPoint) {
-//panel.add(new JTextField(""));
-//panel.getComponentAt(actualPoint).setBackground(Color.cyan);
-//}
-//
-//public void drawLigth(Point actualPoint) {
-//panel.add(new JTextField(""));
-//panel.getComponentAt(actualPoint).setBackground(Color.yellow);
-//
-//}

@@ -35,10 +35,6 @@ public class Map {
 		board.deleteBox(pointBox);
 	}
 
-	public void printMap() {
-		this.board.printBoard();
-	}
-
 	public Size getLimitsBoard() {
 		return board.getLimitsBoard();
 	}
