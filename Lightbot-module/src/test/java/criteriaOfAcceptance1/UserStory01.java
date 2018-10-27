@@ -100,4 +100,10 @@ public class UserStory01 {
 		assertEquals(this.map.getBoard().getBox(new Point(1, 1)).getTypeOfBox(), TypeOfBox.WALK);
 		assertEquals(this.map.getBoard().getBox(new Point(3, 3)).getTypeOfBox(), TypeOfBox.WALK);
 	}
+	/* Forma del mapa:
+	 	[  AVATAR   ][  NO_WALK  ][  NO_WALK  ]
+		[   WALK    ][   WALK    ][  NO_WALK  ]
+		[  NO_WALK  ][   WALK    ][ LIGHT_OFF ]  
+	 */
+	 
 }

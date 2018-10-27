@@ -54,8 +54,8 @@ public class ViewMapConsole implements Observer {
 					file = file + "[  null  ]";
 				}
 			}
+			System.out.println(file);
 			mapString.add(file);
-			//drawFile(y, file);
 			file = "";
 		}
 		drawMap(mapString);

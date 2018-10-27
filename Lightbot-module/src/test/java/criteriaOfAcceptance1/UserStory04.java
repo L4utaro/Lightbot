@@ -48,6 +48,15 @@ public class UserStory04 {
 		this.game = new Game(ConstantsTest.ROUTE_MAP_PROPERTIES, ConstantsTest.ROUTE_JSON_ACTIONS_INVALID_2);
 		this.game.run();
 	}
+	/* Forma del mapa:
+ 	[  AVATAR   ][  NO_WALK  ][  NO_WALK  ]
+	[   WALK    ][   WALK    ][  NO_WALK  ]
+	[  NO_WALK  ][   WALK    ][ LIGHT_OFF ] 
+	Despues de ejecutar las acciones:
+ 	[   WALK    ][  NO_WALK  ][  NO_WALK  ]
+	[   WALK    ][   WALK    ][  AVATAR   ]
+	[  NO_WALK  ][   WALK    ][ LIGHT_OFF ] 
+	 */
 
 	/**
 	 * Leer la colección de acciones [commandRight, commandMove, commandLeft,
@@ -63,4 +72,13 @@ public class UserStory04 {
 		this.game = new Game(ConstantsTest.ROUTE_MAP_PROPERTIES, ConstantsTest.ROUTE_JSON_ACTIONS_2);
 		this.game.run();
 	}
+	/* Forma del mapa:
+ 	[  AVATAR   ][  NO_WALK  ][  NO_WALK  ]
+	[   WALK    ][   WALK    ][  NO_WALK  ]
+	[  NO_WALK  ][   WALK    ][ LIGHT_OFF ] 
+	Despues de ejecutar las acciones:
+ 	[   WALK    ][  NO_WALK  ][  NO_WALK  ]
+	[   WALK    ][   WALK    ][  AVATAR   ]
+	[  NO_WALK  ][   WALK    ][  AVATAR   ] 
+	 */
 }
