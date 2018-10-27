@@ -55,13 +55,13 @@ public class Implementation{
 	}
 
 	public void addAction(String action) {
-		if (action.equals("avanzar")) {
+		if (action.equals("avanzar") || action.equals("move")) {
 			this.invokerCommands.add(new InvokerCommand(new CommandMove()));
-		} else if (action.equals("izquierda")) {
+		} else if (action.equals("izquierda") || action.equals("left")) {
 			this.invokerCommands.add(new InvokerCommand(new CommandLeft()));
-		} else if (action.equals("derecha")) {
+		} else if (action.equals("derecha") || action.equals("right")) {
 			this.invokerCommands.add(new InvokerCommand(new CommandRight()));
-		} else if (action.equals("luz")) {
+		} else if (action.equals("luz") || action.equals("light")) {
 			this.invokerCommands.add(new InvokerCommand(new CommandLight()));
 		}
 	}
