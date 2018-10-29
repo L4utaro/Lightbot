@@ -10,7 +10,9 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 
 import enums.LightStatus;
+import enums.Orientation;
 import enums.TypeOfBox;
+import model.Avatar;
 import model.Map;
 import modelo.Game;
 
@@ -70,7 +72,7 @@ public class ViewMap implements Observer {
 	}
 
 	public void drawAvatar(Point actualPoint) {
-		JLabel label = new JLabel("   A    ");
+		JLabel label = createStringByOrientation();
 		label.setBounds(actualPoint.x*40, actualPoint.y*40,40,40);
 		label.setBackground(Color.cyan);
 		if (!(this.map.getBoard().getBoxes()[actualPoint.x][actualPoint.y].getLightStatus() == null)) {
@@ -82,6 +84,17 @@ public class ViewMap implements Observer {
 		}
 		label.setOpaque(true);
         panel.add(label);
+	}
+
+	public JLabel createStringByOrientation() {
+		if(((Avatar)this.map.getBoard().getBox(this.map.getAvatarPos()).getObjectGraphic()).getOrientation().equals(Orientation.RIGHT)) {
+			return new JLabel("   →    ");
+		} else if(((Avatar)this.map.getBoard().getBox(this.map.getAvatarPos()).getObjectGraphic()).getOrientation().equals(Orientation.UP)) {
+			return new JLabel("   ↑    ");
+		} else if(((Avatar)this.map.getBoard().getBox(this.map.getAvatarPos()).getObjectGraphic()).getOrientation().equals(Orientation.LEFT)) {
+			return new JLabel("   ←    ");
+		}
+		return new JLabel("   ↓    ");
 	}
 
 	public void drawMessage(String message) {
