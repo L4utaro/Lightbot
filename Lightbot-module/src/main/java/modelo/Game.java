@@ -50,25 +50,25 @@ public class Game extends Observable{
 		this.map = creator.getMap();
 		this.validatorGame = new ValidatorGame(map);
 		this.invokersCommands = creator.getInvokerCommands();
+		modelChange();
 	}
 	
 	public void run() {
 		for (InvokerCommand invokerCommand : this.invokersCommands) {
 			invokerCommand.executeCommand(this.map);
-			modelChange();
-			System.out.println("\n-----\n");
-			this.map.printMap();
 			if(this.validatorGame.isAvatarIsOutOfPathPossible()) {
-				System.out.println("Game Over: The avatar is't out of paht possible");
+				message = "Game Over: The avatar is't out of paht possible";
 				throw new IllegalArgumentException("Game Over: The avatar is't out of paht possible");
 			}else if (this.validatorGame.allLightsAreTurnedOn(this.map)) {
-				System.out.println("You win");
+				message = "You win";
 			}
+			modelChange();
 		}
 		if (!this.validatorGame.allLightsAreTurnedOn(this.map)) {
-			System.out.println("Game Over: The avatar don't turned on all the lights");
+			message = "Game Over: The avatar don't turned on all the lights";
 			throw new IllegalArgumentException("Game Over: The avatar don't turned on all the lights");
 		}
+		modelChange();
 	}
 
 	public void modelChange() {
@@ -76,11 +76,11 @@ public class Game extends Observable{
 		notifyObservers();
 	}
 
+	public Map getMap() {
+		return this.map;
+	}
+	
 	public String getMessage() {
 		return message;
-	}
-
-	public Map getMap() {
-		return map;
 	}
 }

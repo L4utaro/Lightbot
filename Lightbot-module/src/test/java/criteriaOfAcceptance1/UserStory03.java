@@ -2,14 +2,15 @@ package criteriaOfAcceptance1;
 
 import static org.junit.Assert.assertEquals;
 
+
 import org.junit.Test;
 
 import configuration.ConstantsTest;
 import lectors.LectorTxt;
-import lectors.implementation.TxtImplementation;
+import lectors.implementation.Implementation;
 
 public class UserStory03 {
-	private TxtImplementation txtImplementation;
+	private Implementation implementation;
 	
 	/**
 	 * En caso de no encontrar el archivo .txt, se deberá lanzar una
@@ -33,8 +34,8 @@ public class UserStory03 {
 
 	@Test(expected = IllegalArgumentException.class)
 	public void argumentsInvalidTest02() {
-		this.txtImplementation = new TxtImplementation(ConstantsTest.ROUTE_TXT_ACTIONS_INVALID_3);
-		this.txtImplementation.createColecctionOfActions();
+		this.implementation = new Implementation(ConstantsTest.ROUTE_TXT_ACTIONS_INVALID_3);
+		this.implementation.createColecctionOfActions();
 	}
 	
 	/**
@@ -46,8 +47,8 @@ public class UserStory03 {
 	 */
 	@Test
 	public void test03() {
-		this.txtImplementation = new TxtImplementation(ConstantsTest.ROUTE_TXT_ACTIONS_3);
-		this.txtImplementation.createColecctionOfActions();
-		assertEquals(this.txtImplementation.getInvokerCommands().size(), 9);
+		this.implementation = new Implementation(ConstantsTest.ROUTE_TXT_ACTIONS_3);
+		this.implementation.createColecctionOfActions();
+		assertEquals(this.implementation.getInvokerCommands().size(), 9);
 	}
 }

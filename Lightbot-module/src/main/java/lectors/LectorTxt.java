@@ -3,7 +3,6 @@ package lectors;
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.List;
 
 import org.json.simple.JSONArray;
@@ -24,6 +23,7 @@ public class LectorTxt implements ILector{
 		this.routeTxt = routeTxt;
 		this.validatorLectorTxt = new ValidatorLectorTxt();
 		isAValidRoute();
+		readFile();
 	}
 	
 	public void isAValidRoute() {
@@ -59,22 +59,6 @@ public class LectorTxt implements ILector{
 			JSONArray leng = (JSONArray) jsonObject.get(keyValue);
 			return leng;
 		} catch (ParseException e) {
-			e.printStackTrace();
-		}
-		return null;
-	}
-
-	@SuppressWarnings("unchecked")
-	public List<String> getNamesOfArrays() {
-		List<String> nameOfFunctions = new ArrayList<>();
-		JSONParser parser = new JSONParser();
-		Object obj;
-		try {
-			obj = parser.parse(new FileReader(this.json));
-			JSONObject jsonObject = (JSONObject) obj;
-			nameOfFunctions.addAll(jsonObject.keySet());
-			return nameOfFunctions;
-		} catch (IOException | ParseException e) {
 			e.printStackTrace();
 		}
 		return null;

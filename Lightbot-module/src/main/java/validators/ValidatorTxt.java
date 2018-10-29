@@ -5,9 +5,9 @@ import java.util.List;
 
 import org.json.simple.JSONArray;
 
-import validators.interfaces.IValidator;
+import validators.interfaces.IValidatorInstructions;
 
-public class ValidatorTxt implements IValidator{
+public class ValidatorTxt implements IValidatorInstructions{
 	private List<String> instrucctionsValids;
 
 	public ValidatorTxt() {
@@ -18,8 +18,7 @@ public class ValidatorTxt implements IValidator{
 		this.instrucctionsValids.add("light");
 	}
 	
-	public boolean validateInstructionsOfJsonArray(JSONArray actionsJson, List<String> namesOfFunctions) {
-		this.instrucctionsValids.addAll(namesOfFunctions);
+	public boolean validateInstructionsOfJsonArray(JSONArray actionsJson) {
 		for (int i = 0; i < actionsJson.size(); i++) {
 			if (!checkInstruction(actionsJson.get(i).toString())) {
 				return false;
