@@ -26,12 +26,12 @@ public class ValidatorJsonTest {
 
 	@Test
 	public void test02() {
-		assertTrue(this.validatorJson.validateInstructionsOfJsonArray(this.implementacion.getActionsJson()));
+		assertTrue(this.validatorJson.validateInstructionsOfJsonArray(this.implementacion.getActionsJson(), null));
 	}
 
 	@Test
 	public void test03() {
 		this.implementacion = new Implementation(ConstantsTest.ROUTE_JSON_ACTIONS_INVALID_1);
-		assertFalse(this.validatorJson.validateInstructionsOfJsonArray(this.implementacion.getActionsJson()));
+		assertFalse(this.validatorJson.validateInstructionsOfJsonArray(this.implementacion.getActionsJson(), null));
 	}
 }

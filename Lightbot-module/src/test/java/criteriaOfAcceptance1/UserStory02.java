@@ -42,7 +42,6 @@ public class UserStory02 {
 	@Test
 	public void test03() {
 		this.implementation = new Implementation(ConstantsTest.ROUTE_JSON_ACTIONS_2);
-		this.implementation.createColecctionOfActions();
-		assertEquals(this.implementation.getInvokerCommands().size(), 8);
+		assertEquals(this.implementation.createColecctionOfActions().size(), 8);
 	}
 }

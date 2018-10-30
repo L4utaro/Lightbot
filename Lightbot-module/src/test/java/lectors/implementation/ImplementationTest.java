@@ -2,41 +2,46 @@ package lectors.implementation;
 
 import static org.junit.Assert.assertEquals;
 
+import java.util.List;
+
 import org.junit.Before;
 import org.junit.Test;
 
+import commands.invoker.InvokerCommand;
 import configuration.ConstantsTest;
 
 public class ImplementationTest {
 	private Implementation implementation;
+	private List<InvokerCommand> invokerCommands;
 
 	@Before
 	public void init() {
 		this.implementation = new Implementation(ConstantsTest.ROUTE_JSON_ACTIONS_1);
+		this.invokerCommands = this.implementation.createColecctionOfActions();
 	}
 
 	@Test
 	public void test01() {
-		this.implementation.addAction("avanzar");
-		assertEquals(this.implementation.getInvokerCommands().size(), 1);
+		this.implementation.addAction("avanzar", this.invokerCommands);
+		assertEquals(this.invokerCommands.size(), 10);
 	}
 
 	@Test
 	public void test02() {
-		this.implementation.addAction("derecha");
-		assertEquals(this.implementation.getInvokerCommands().size(), 1);
+		this.implementation.addAction("derecha", this.invokerCommands);
+		assertEquals(this.invokerCommands.size(), 10);
 	}
 
 	@Test
 	public void test03() {
-		this.implementation.addAction("izquierda");
-		assertEquals(this.implementation.getInvokerCommands().size(), 1);
+		this.implementation.addAction("izquierda", this.invokerCommands);
+		assertEquals(this.invokerCommands.size(), 10);
 	}
 
 	@Test
 	public void test04() {
-		this.implementation.addAction("luz");
-		assertEquals(this.implementation.getInvokerCommands().size(), 1);
+		this.implementation.addAction("luz", this.invokerCommands);
+		assertEquals(this.invokerCommands.size(), 10);
 	}
 
 	@Test
@@ -66,7 +71,7 @@ public class ImplementationTest {
 	@Test
 	public void test09() {
 		this.implementation = new Implementation(ConstantsTest.ROUTE_TXT_ACTIONS_3);
-		this.implementation.addAction("move");
-		assertEquals(this.implementation.getInvokerCommands().size(), 1);
+		this.implementation.addAction("move", this.invokerCommands);
+		assertEquals(this.invokerCommands.size(), 10);
 	}
 }

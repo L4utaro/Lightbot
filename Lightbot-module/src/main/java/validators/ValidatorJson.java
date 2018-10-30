@@ -18,7 +18,12 @@ public class ValidatorJson implements IValidatorInstructions {
 		this.instrucctionsValids.add("luz");
 	}
 
-	public boolean validateInstructionsOfJsonArray(JSONArray actionsJson) {
+	public boolean validateInstructionsOfJsonArray(JSONArray actionsJson, List<String> namesOfFunctions) {
+		if(namesOfFunctions!=null) {
+			this.instrucctionsValids.addAll(namesOfFunctions);
+		} if(actionsJson==null) {
+			return false;
+		}
 		for (int i = 0; i < actionsJson.size(); i++) {
 			if (!checkInstruction(actionsJson.get(i).toString())) {
 				return false;

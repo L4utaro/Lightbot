@@ -3,6 +3,7 @@ package lectors;
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 
 import org.json.simple.JSONArray;
@@ -47,7 +48,7 @@ public class LectorTxt implements ILector{
 		    this.json = sb.toString();
 			reader.close();
 		} catch (IOException e) {
-			e.printStackTrace();
+			throw new IllegalArgumentException("Impossible to read");
 		}
 	}
 	
@@ -59,11 +60,25 @@ public class LectorTxt implements ILector{
 			JSONArray leng = (JSONArray) jsonObject.get(keyValue);
 			return leng;
 		} catch (ParseException e) {
-			e.printStackTrace();
+			throw new IllegalArgumentException("The actions doesn't exits");
 		}
-		return null;
 	}
 
+	@SuppressWarnings("unchecked")
+	public List<String> getNamesOfArrays() {
+		List<String> nameOfFunctions = new ArrayList<>();
+		JSONParser parser = new JSONParser();
+		Object obj;
+		try {
+			obj = parser.parse(new FileReader(this.routeTxt));
+			JSONObject jsonObject = (JSONObject) obj;
+			nameOfFunctions.addAll(jsonObject.keySet());
+			return nameOfFunctions;
+		} catch (IOException | ParseException e) {
+			throw new IllegalArgumentException("The actions doesn't exits");
+		}
+	}
+	
 	public String getJson() {
 		return json;
 	}

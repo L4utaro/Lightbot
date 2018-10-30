@@ -11,7 +11,7 @@ public class CommandFunction implements ICommand{
 	private String nameFunction;
 	private List<InvokerCommand> invokersCommands;
 
-	public CommandFunction(String nameFunction, List<InvokerCommand> invokersCommands) {
+	public CommandFunction(String nameFunction) {//, List<InvokerCommand> invokersCommands
 		this.nameFunction = nameFunction;
 		this.invokersCommands = invokersCommands;
 	}

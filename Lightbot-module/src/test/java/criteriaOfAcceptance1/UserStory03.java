@@ -21,7 +21,7 @@ public class UserStory03 {
 	@Test(expected = IllegalArgumentException.class)
 	public void fileNotFoundTest01() {
 		@SuppressWarnings("unused")
-		LectorTxt lectorTxt = new LectorTxt("C:\\\\ProgramData\\\\actionsNot.txt");
+		LectorTxt lectorTxt = new LectorTxt("C:\\ProgramData\\actionsNot.txt");
 	}
 	
 	/**
@@ -48,7 +48,6 @@ public class UserStory03 {
 	@Test
 	public void test03() {
 		this.implementation = new Implementation(ConstantsTest.ROUTE_TXT_ACTIONS_3);
-		this.implementation.createColecctionOfActions();
-		assertEquals(this.implementation.getInvokerCommands().size(), 9);
+		assertEquals(this.implementation.createColecctionOfActions().size(), 9);
 	}
 }

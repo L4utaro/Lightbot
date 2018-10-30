@@ -1,10 +1,13 @@
 package lectors.implementation;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.json.simple.JSONArray;
 
+import commands.CommandFunction;
 import commands.CommandLeft;
 import commands.CommandLight;
 import commands.CommandMove;
@@ -21,15 +24,16 @@ public class Implementation{
 	private ILector lector;
 	private IValidatorInstructions validatorLector;
 	private JSONArray actionsJson;
-	private List<InvokerCommand> invokerCommands;
+	private List<String> namesOfFunctions;
 	
 	public Implementation(String route) {
-		this.invokerCommands = new ArrayList<InvokerCommand>();
 		if(route.charAt(route.length()-1) == 'n') {
 			implementationJson(route);
 		} else {
 			implementationTxt(route);
 		}
+		this.namesOfFunctions = new ArrayList<String>();
+		this.namesOfFunctions = getNamesOfFunctions();
 	}
 	
 	public void implementationJson(String route) {
@@ -43,33 +47,48 @@ public class Implementation{
 		this.actionsJson = (JSONArray) this.lector.getListOfJson("actions");
 		this.validatorLector = new ValidatorTxt();
 	}
-
-	public void createColecctionOfActions() {
-		if (this.validatorLector.validateInstructionsOfJsonArray(this.actionsJson)) {
+	
+	public List<String> getNamesOfFunctions() {
+		return this.lector.getNamesOfArrays();
+	}
+	
+	public Map<String, List<InvokerCommand>> getAllFunctions() {
+		Map<String, List<InvokerCommand>> functions = new HashMap<String, List<InvokerCommand>>();
+		for(String nameFunction: this.namesOfFunctions) {
+			if(!nameFunction.equals("actions")) {
+				this.actionsJson = (JSONArray) this.lector.getListOfJson(nameFunction);
+				functions.put(nameFunction, createColecctionOfActions());
+			}
+		}
+		return functions;
+	}
+	
+	public List<InvokerCommand> createColecctionOfActions() {
+		List<InvokerCommand> invokerCommands = new ArrayList<InvokerCommand>();
+		if (this.validatorLector.validateInstructionsOfJsonArray(this.actionsJson, this.namesOfFunctions)) {
 			for (int i = 0; i < this.actionsJson.size(); i++) {
-				addAction(actionsJson.get(i).toString());
+				addAction(actionsJson.get(i).toString(), invokerCommands);
 			}
 		} else {
-			throw new IllegalArgumentException("The actions.txt contains wrong parameters");
+			throw new IllegalArgumentException("The actions contains wrong parameters");
 		}
-	}
-
-	public void addAction(String action) {
-		if (action.equals("avanzar") || action.equals("move")) {
-			this.invokerCommands.add(new InvokerCommand(new CommandMove()));
-		} else if (action.equals("izquierda") || action.equals("left")) {
-			this.invokerCommands.add(new InvokerCommand(new CommandLeft()));
-		} else if (action.equals("derecha") || action.equals("right")) {
-			this.invokerCommands.add(new InvokerCommand(new CommandRight()));
-		} else if (action.equals("luz") || action.equals("light")) {
-			this.invokerCommands.add(new InvokerCommand(new CommandLight()));
-		}
-	}
-
-	public List<InvokerCommand> getInvokerCommands() {
 		return invokerCommands;
 	}
 
+	public void addAction(String action, List<InvokerCommand> invokerCommands) {
+		if (action.equals("avanzar") || action.equals("move")) {
+			invokerCommands.add(new InvokerCommand(new CommandMove()));
+		} else if (action.equals("izquierda") || action.equals("left")) {
+			invokerCommands.add(new InvokerCommand(new CommandLeft()));
+		} else if (action.equals("derecha") || action.equals("right")) {
+			invokerCommands.add(new InvokerCommand(new CommandRight()));
+		} else if (action.equals("luz") || action.equals("light")) {
+			invokerCommands.add(new InvokerCommand(new CommandLight()));
+		} else {
+			invokerCommands.add(new InvokerCommand(new CommandFunction(action)));
+		}
+	}
+	
 	public JSONArray getActionsJson() {
 		return actionsJson;
 	}

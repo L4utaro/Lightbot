@@ -3,18 +3,20 @@ package generators;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 import board.CreateMap;
 import commands.invoker.InvokerCommand;
 import configuration.Constants;
 import lectors.implementation.Implementation;
-import model.Map;
+
 
 public class GameGenerator {
-	private Map map;
+	private model.Map map;
 	private Implementation implementation;
 	private List<InvokerCommand> invokerCommands;
-
+	private Map<String, List<InvokerCommand>> functions;
+	
 	/**default*/
 	public GameGenerator() throws IOException {
 		this.invokerCommands = new ArrayList<InvokerCommand>();
@@ -45,15 +47,19 @@ public class GameGenerator {
 	}
 
 	public void createActions() {
-		this.implementation.createColecctionOfActions();
-		this.invokerCommands = this.implementation.getInvokerCommands();
+		this.invokerCommands = this.implementation.createColecctionOfActions();
+		this.functions = this.implementation.getAllFunctions();
 	}
 
-	public Map getMap() {
-		return map;
+	public model.Map getMap() {
+		return this.map;
 	}
 
 	public List<InvokerCommand> getInvokerCommands() {
 		return invokerCommands;
+	}
+
+	public Map<String, List<InvokerCommand>> getFunctions() {
+		return functions;
 	}
 }
