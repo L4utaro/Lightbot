@@ -17,7 +17,7 @@ public class ImplementationTest {
 	@Before
 	public void init() {
 		this.implementation = new Implementation(ConstantsTest.ROUTE_JSON_ACTIONS_1);
-		this.invokerCommands = this.implementation.createColecctionOfActions();
+		this.invokerCommands = this.implementation.createColecctionOfActions(null);
 	}
 
 	@Test
@@ -57,14 +57,14 @@ public class ImplementationTest {
 
 	@Test
 	public void test07() {
-		this.implementation.createColecctionOfActions();
+		this.implementation.createColecctionOfActions(null);
 		assertEquals(this.implementation.getActionsJson().size(), 9);
 	}
 
 	@Test(expected = IllegalArgumentException.class)
 	public void test08() {
 		this.implementation = new Implementation(ConstantsTest.ROUTE_JSON_ACTIONS_INVALID_1);
-		this.implementation.createColecctionOfActions();
+		this.implementation.createColecctionOfActions(null);
 		assertEquals(this.implementation.getActionsJson().size(), 9);
 	}
 

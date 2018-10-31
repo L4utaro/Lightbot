@@ -20,14 +20,14 @@ import validators.ValidatorJson;
 import validators.ValidatorTxt;
 import validators.interfaces.IValidatorInstructions;
 
-public class Implementation{
+public class Implementation {
 	private ILector lector;
 	private IValidatorInstructions validatorLector;
 	private JSONArray actionsJson;
 	private List<String> namesOfFunctions;
-	
+
 	public Implementation(String route) {
-		if(route.charAt(route.length()-1) == 'n') {
+		if (route.charAt(route.length() - 1) == 'n') {
 			implementationJson(route);
 		} else {
 			implementationTxt(route);
@@ -35,7 +35,7 @@ public class Implementation{
 		this.namesOfFunctions = new ArrayList<String>();
 		this.namesOfFunctions = getNamesOfFunctions();
 	}
-	
+
 	public void implementationJson(String route) {
 		this.lector = new LectorJson(route);
 		this.actionsJson = (JSONArray) this.lector.getListOfJson("actions");
@@ -47,25 +47,25 @@ public class Implementation{
 		this.actionsJson = (JSONArray) this.lector.getListOfJson("actions");
 		this.validatorLector = new ValidatorTxt();
 	}
-	
+
 	public List<String> getNamesOfFunctions() {
 		return this.lector.getNamesOfArrays();
 	}
-	
+
 	public Map<String, List<InvokerCommand>> getAllFunctions() {
 		Map<String, List<InvokerCommand>> functions = new HashMap<String, List<InvokerCommand>>();
-		for(String nameFunction: this.namesOfFunctions) {
-			if(!nameFunction.equals("actions")) {
+		for (String nameFunction : this.namesOfFunctions) {
+			if (!nameFunction.equals("actions")) {
 				this.actionsJson = (JSONArray) this.lector.getListOfJson(nameFunction);
-				functions.put(nameFunction, createColecctionOfActions());
+				functions.put(nameFunction, createColecctionOfActions(null));
 			}
 		}
 		return functions;
 	}
-	
-	public List<InvokerCommand> createColecctionOfActions() {
+
+	public List<InvokerCommand> createColecctionOfActions(List<String> namesOfFunctions) {
 		List<InvokerCommand> invokerCommands = new ArrayList<InvokerCommand>();
-		if (this.validatorLector.validateInstructionsOfJsonArray(this.actionsJson, this.namesOfFunctions)) {
+		if (this.validatorLector.validateInstructionsOfJsonArray(this.actionsJson, namesOfFunctions)) {
 			for (int i = 0; i < this.actionsJson.size(); i++) {
 				addAction(actionsJson.get(i).toString(), invokerCommands);
 			}
@@ -88,7 +88,7 @@ public class Implementation{
 			invokerCommands.add(new InvokerCommand(new CommandFunction(action)));
 		}
 	}
-	
+
 	public JSONArray getActionsJson() {
 		return actionsJson;
 	}

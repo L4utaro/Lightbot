@@ -10,15 +10,10 @@ import validators.interfaces.IValidatorInstructions;
 public class ValidatorJson implements IValidatorInstructions {
 	private List<String> instrucctionsValids;
 
-	public ValidatorJson() {
-		this.instrucctionsValids = new ArrayList<String>();
-		this.instrucctionsValids.add("avanzar");
-		this.instrucctionsValids.add("derecha");
-		this.instrucctionsValids.add("izquierda");
-		this.instrucctionsValids.add("luz");
-	}
+	public ValidatorJson() {}
 
 	public boolean validateInstructionsOfJsonArray(JSONArray actionsJson, List<String> namesOfFunctions) {
+		refreshInstructionsValids();
 		if(namesOfFunctions!=null) {
 			this.instrucctionsValids.addAll(namesOfFunctions);
 		} if(actionsJson==null) {
@@ -34,5 +29,13 @@ public class ValidatorJson implements IValidatorInstructions {
 
 	public boolean checkInstruction(String instruction) {
 		return this.instrucctionsValids.contains(instruction);
+	}
+	
+	public void refreshInstructionsValids() {
+		this.instrucctionsValids = new ArrayList<String>();
+		this.instrucctionsValids.add("avanzar");
+		this.instrucctionsValids.add("derecha");
+		this.instrucctionsValids.add("izquierda");
+		this.instrucctionsValids.add("luz");
 	}
 }

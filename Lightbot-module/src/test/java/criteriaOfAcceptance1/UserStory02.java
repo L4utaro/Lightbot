@@ -29,7 +29,7 @@ public class UserStory02 {
 	@Test(expected = IllegalArgumentException.class)
 	public void test02() {
 		this.implementation = new Implementation(ConstantsTest.ROUTE_JSON_ACTIONS_INVALID_1);
-		this.implementation.createColecctionOfActions();
+		this.implementation.createColecctionOfActions(null);
 	}
 
 	/**
@@ -42,6 +42,6 @@ public class UserStory02 {
 	@Test
 	public void test03() {
 		this.implementation = new Implementation(ConstantsTest.ROUTE_JSON_ACTIONS_2);
-		assertEquals(this.implementation.createColecctionOfActions().size(), 8);
+		assertEquals(this.implementation.createColecctionOfActions(null).size(), 8);
 	}
 }
