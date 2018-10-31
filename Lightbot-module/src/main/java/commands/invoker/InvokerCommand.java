@@ -14,6 +14,10 @@ public class InvokerCommand {
 		this.command = command;
 	}
 
+	public ICommand getCommand() {
+		return command;
+	}
+
 	public void executeCommand(Map map) {
 		try {
 			this.command.executeCommand(map);

@@ -8,17 +8,16 @@
     "avanzar",
     "izquierda",
     "avanzar",
-    "fun1"
+    "fun1",
+    "fun2"
   ],
   "fun1": [
     "derecha",
     "derecha"
-,
-    "fun2"  ],
+  ],
   "fun2": [
     "avanzar",
-    "izquierda"
-,
+    "izquierda",
     "izquierda",
     "avanzar",
     "luz"  ]

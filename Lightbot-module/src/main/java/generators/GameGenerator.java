@@ -6,6 +6,7 @@ import java.util.List;
 import java.util.Map;
 
 import board.CreateMap;
+import commands.CommandFunction;
 import commands.invoker.InvokerCommand;
 import configuration.Constants;
 import lectors.implementation.Implementation;
@@ -49,6 +50,22 @@ public class GameGenerator {
 	public void createActions() {
 		this.invokerCommands = this.implementation.createColecctionOfActions();
 		this.functions = this.implementation.getAllFunctions();
+		this.invokerCommands = addActionsFromFunctions(invokerCommands, functions);
+	}
+	
+	public List<InvokerCommand> addActionsFromFunctions(List<InvokerCommand> invokerCommands, Map<String, List<InvokerCommand>> functions) {
+		List<InvokerCommand> newInvokerCommands = new ArrayList<>();
+		System.out.println(invokerCommands.size());
+		for(InvokerCommand invokerCommand: invokerCommands) {
+			if(invokerCommand.getCommand().getClass().equals(CommandFunction.class)) {
+				newInvokerCommands.addAll(functions.get(((CommandFunction) invokerCommand.getCommand()).getNameFunction()));
+				System.out.println("ed");
+			} else {
+				newInvokerCommands.add(invokerCommand);
+			}
+		}
+		System.out.println(newInvokerCommands.size());
+		return newInvokerCommands;
 	}
 
 	public model.Map getMap() {
