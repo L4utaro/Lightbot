@@ -80,6 +80,10 @@ public class Game extends Observable{
 		notifyObservers();
 	}
 
+	public List<InvokerCommand> getInvokersCommands() {
+		return invokersCommands;
+	}
+
 	public Map getMap() {
 		return this.map;
 	}

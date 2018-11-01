@@ -5,23 +5,23 @@ import java.io.IOException;
 
 import configuration.Constants;
 import modelo.Game;
-import views.ViewMap;
-import views.ViewMapConsole;
+import views.ViewPlayer;
 
 public class Controller {
 	private Game gameModelo;
-	private ViewMap viewMap;
-	private ViewMapConsole viewMapConsole;
+	private ViewPlayer viewPlayer;
 	
 	public Controller() {
 	}
-	
+	//primero chequeo cuantos juegos hay, es decir cantidad de archivos en la carpeta ...
 	public void initialize() throws IOException {
 		this.gameModelo = new Game(Constants.ROUTE_MAP_PROPERTIES, Constants.ROUTE_JSON_ACTIONS_5);
-		this.viewMap = new ViewMap();
-		this.viewMapConsole = new ViewMapConsole();
-		this.gameModelo.addObserver(this.viewMap);
-		this.gameModelo.addObserver(this.viewMapConsole);
+		this.viewPlayer = new ViewPlayer();
+		this.gameModelo.addObserver(this.viewPlayer);
+		this.gameModelo.addObserver(this.viewPlayer.getViewMap());
+		this.gameModelo.addObserver(this.viewPlayer.getViewMapConsole());
+		this.gameModelo.init();
+		this.viewPlayer.draw();
 		this.gameModelo.run();
 	}
 	
