@@ -25,5 +25,4 @@ public class CommandRight implements ICommand {
 		}
 		return orientation;
 	}
-
 }

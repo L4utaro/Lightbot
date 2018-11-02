@@ -52,27 +52,6 @@ public class Board {
 		this.boxes[pointBox.x - 1][pointBox.y - 1] = new Box(typeOfBox);
 	}
 
-	public void printBoard() {
-		String file = "";
-		for (int y = 0; y < boxes[0].length; y++) {
-			for (int x = 0; x < boxes.length; x++) {
-				if (boxes[x][y] != null) {
-					if (boxes[x][y].getTypeOfBox().equals(TypeOfBox.NO_WALK)) {
-						file = file + "[ NO_WALK]";
-					} else if (!(boxes[x][y].getObjectGraphic() == null)) {
-						file = file + "[" +boxes[x][y].getObjectGraphic().getClass().getName() + "]";
-					} else {
-						file = file + "[ WALK]";
-					}
-				} else {
-					file = file + "[ null]";
-				}
-			}
-			System.out.println(file);
-			file = "";
-		}
-	}
-	
 	public Size getLimitsBoard() {
 		return new Size(boxes.length, boxes[0].length);
 	}

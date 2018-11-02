@@ -13,13 +13,13 @@ public class LectorFolder {
 
 	public List<String> getRoutesOfActions() {
 		List<String> routesActions = new ArrayList<>();
-		for (final File fileEntry : this.folder.listFiles()) {
-			routesActions.add(fileEntry.getAbsolutePath());
+		try {
+			for (final File fileEntry : this.folder.listFiles()) {
+				routesActions.add(fileEntry.getAbsolutePath());
+			}
+		} catch (NullPointerException e) {
+			throw new IllegalArgumentException("The folder don't exists");
 		}
 		return routesActions;
-	}
-
-	public Integer getCantOfPlayers() {
-		return 2;
 	}
 }
