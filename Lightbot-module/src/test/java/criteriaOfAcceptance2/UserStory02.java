@@ -12,6 +12,7 @@ import generators.GameGenerator;
 import modelo.Game;
 
 public class UserStory02 {
+	@SuppressWarnings("unused")
 	private GameGenerator gameGenerator;
 	/*
 	 * Crear una lista de acciones que contenga las instrucciones del

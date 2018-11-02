@@ -12,8 +12,8 @@ public class ControllerGames {
 	private ValidatorRoutesActions validatorRoutesActions;
 	private List<ControllerPlayer> controllerPlayers;
 	
-	public ControllerGames() {
-		this.lector = new LectorFolder(Constants.ROUTE_ACTIONS);
+	public ControllerGames(String routeFolder) {
+		this.lector = new LectorFolder(routeFolder);
 		this.validatorRoutesActions = new ValidatorRoutesActions();
 	}
 	
