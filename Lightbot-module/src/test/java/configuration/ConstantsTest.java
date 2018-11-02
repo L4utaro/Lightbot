@@ -17,8 +17,10 @@ public class ConstantsTest {
 	public static final String ROUTE_JSON_ACTIONS_3 = "src/main/resources/configurationActions/actions3.json";
 	public static final String ROUTE_TXT_ACTIONS_3 = "src/main/resources/configurationActions/actions3.txt";
 	public static final String ROUTE_JSON_ACTIONS_6 = "src/main/resources/configurationActions/actions6.json";
+	public static final String ROUTE_JSON_ACTIONS_7 = "src/main/resources/user03test01/actionsInvalid7.json";
 	public static final String ROUTE_JSON_ACTIONS_8 = "src/main/resources/user03test01/actionsValid8.json";
 	public static final String ROUTE_TXT_ACTIONS_9 = "src/main/resources/user03test01/actionsValid9.txt";
+	public static final String ROUTE_JSON_ACTIONS_10 = "src/main/resources/user03test01/actionsValid10.json";
 	public static final String ROUTE_JSON_ACTIONS_INVALID_1 = "src/main/resources/configurationActions/actionsInvalid1.json";
 	public static final String ROUTE_JSON_ACTIONS_INVALID_2 = "src/main/resources/configurationActions/actionsInvalid2.json";
 	public static final String ROUTE_TXT_ACTIONS_INVALID_3 = "src/main/resources/configurationActions/actionsInvalid3.txt";
