@@ -12,7 +12,7 @@ public class UserStory04 {
 	 * "C:\ProgramData\. Debera de cargar y mostrar todas las partidas de los
 	 * players y mostrar el resultado final de cada partida. En el primer juego
 	 * debera de mostrar el mensaje (You Win). Y el segundo juego (Game Over: The
-	 * avatar don't turned all the lights)
+	 * avatar don't turned all the lights).
 	 */
 	@Test
 	public void test01() {
