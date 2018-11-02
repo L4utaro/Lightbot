@@ -21,7 +21,8 @@ public class ValidatorTxtTest {
 
 	@Test
 	public void test01() {
-		assertFalse(this.validatorTxt.checkInstruction(ConstantsTest.ROUTE_TXT_ACTIONS_3));
+		this.validatorTxt.refreshInstructionsValids();
+		assertFalse(this.validatorTxt.checkInstruction("asd"));
 	}
 
 	@Test

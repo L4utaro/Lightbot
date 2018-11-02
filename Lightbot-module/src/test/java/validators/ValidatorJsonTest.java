@@ -21,7 +21,8 @@ public class ValidatorJsonTest {
 
 	@Test
 	public void test01() {
-		assertFalse(this.validatorJson.checkInstruction(ConstantsTest.ROUTE_JSON_ACTIONS_1));
+		this.validatorJson.refreshInstructionsValids();
+		assertFalse(this.validatorJson.checkInstruction("asd"));
 	}
 
 	@Test
