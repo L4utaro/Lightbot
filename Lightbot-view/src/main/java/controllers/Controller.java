@@ -18,8 +18,9 @@ public class Controller {
 		this.gameModelo = new Game(Constants.ROUTE_MAP_PROPERTIES, Constants.ROUTE_JSON_ACTIONS_5);
 		this.viewPlayer = new ViewPlayer();
 		this.gameModelo.addObserver(this.viewPlayer);
-		this.gameModelo.addObserver(this.viewPlayer.getViewMap());
-		this.gameModelo.addObserver(this.viewPlayer.getViewMapConsole());
+		this.gameModelo.addObserver(this.viewPlayer.getPanelMap());
+		this.gameModelo.addObserver(this.viewPlayer.getPanelMapConsole());
+		this.gameModelo.addObserver(this.viewPlayer.getPanelInstructions());
 		this.gameModelo.init();
 		this.viewPlayer.draw();
 		this.gameModelo.run();

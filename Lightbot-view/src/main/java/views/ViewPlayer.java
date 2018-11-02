@@ -22,11 +22,12 @@ public class ViewPlayer implements Observer {
 	public ViewPlayer() {
 		this.panelMap = new PanelMap();
 		this.panelMapConsole = new PanelMapConsole();
+		this.panelInstructions = new PanelInstructions();
 		this.frame = new JFrame("Lightbot");
 		this.frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		this.frame.setLocationRelativeTo(null);
-		this.size = new Size(600, 300);
-		this.frame.setSize(600, 300);
+		this.size = new Size(800, 300);
+		this.frame.setSize(800, 300);
 
 		this.panel = new JPanel();
 		this.panel.setLayout(null);
@@ -38,6 +39,8 @@ public class ViewPlayer implements Observer {
 		panel.removeAll();
 		panel.add(this.panelMap.getPanel());
 		panel.add(this.panelMapConsole.getPanel());
+		panel.add(this.panelInstructions.getPanel());
+		frame.setLocationRelativeTo(null);
 		frame.add(panel);
 		frame.setVisible(true);
 	}
@@ -47,19 +50,19 @@ public class ViewPlayer implements Observer {
 		draw();
 	}
 
-	public PanelMap getViewMap() {
+	public PanelMap getPanelMap() {
 		return panelMap;
 	}
 
-	public void setViewMap(PanelMap panelMap) {
+	public void setPanelMap(PanelMap panelMap) {
 		this.panelMap = panelMap;
 	}
 
-	public PanelMapConsole getViewMapConsole() {
+	public PanelMapConsole getPanelMapConsole() {
 		return panelMapConsole;
 	}
 
-	public void setViewMapConsole(PanelMapConsole panelMapConsole) {
+	public void setPanelMapConsole(PanelMapConsole panelMapConsole) {
 		this.panelMapConsole = panelMapConsole;
 	}
 
