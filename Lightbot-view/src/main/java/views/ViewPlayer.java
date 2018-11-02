@@ -4,6 +4,7 @@ import java.util.Observable;
 import java.util.Observer;
 
 import javax.swing.JFrame;
+import javax.swing.JLabel;
 import javax.swing.JPanel;
 
 import model.Size;
@@ -18,7 +19,8 @@ public class ViewPlayer implements Observer {
 	private PanelMapConsole panelMapConsole;
 	private PanelInstructions panelInstructions;
 	private Size size;
-
+	private String message;
+	
 	public ViewPlayer() {
 		this.panelMap = new PanelMap();
 		this.panelMapConsole = new PanelMapConsole();
@@ -41,6 +43,14 @@ public class ViewPlayer implements Observer {
 		panel.add(this.panelMapConsole.getPanel());
 		panel.add(this.panelInstructions.getPanel());
 		frame.setLocationRelativeTo(null);
+		if(this.message != null) {
+			panel.removeAll();
+			panel.add(this.panelInstructions.getPanel());
+			JLabel label = new JLabel(this.message);
+			label.setBounds(0, 0, 500, 50);
+			label.setOpaque(true);
+			panel.add(label);
+		}
 		frame.add(panel);
 		frame.setVisible(true);
 	}
@@ -72,5 +82,9 @@ public class ViewPlayer implements Observer {
 
 	public Size getSize() {
 		return size;
+	}
+
+	public void setMessage(String message) {
+		this.message = message;
 	}
 }

@@ -14,7 +14,7 @@ public class UserStory01 {
 	/*
 	 * Crear un archivo actionsInvalid4.json, que contenga (“function”:{”move”}),
 	 * pero que lance un IllegalArgumentException, debido a que no contiene el
-	 * main del juego, cuyo nombre es referenciado con "actions"
+	 * main del juego, cuyo nombre es referenciado con "actions".
 	 */
 	@Test(expected = IllegalArgumentException.class)
 	public void test01() throws IOException {
@@ -36,6 +36,11 @@ public class UserStory01 {
 		assertEquals(2,this.gameGenerator.getFunctions().get("fun1").size());
 		assertEquals(2,this.gameGenerator.getFunctions().get("fun2").size());		
 	}
+	/* Commands:
+	 *  "actions": ["derecha","avanzar","izquierda","avanzar","derecha","avanzar","izquierda","avanzar","fun1","fun2"],
+  		"fun1": ["avanzar","derecha"],
+  		"fun2": ["avanzar","izquierda"]
+	 */
 	
 	/*
 	 * Crear un archivo actionsWhitFunctions.txt que tenga las siguientes
@@ -49,4 +54,7 @@ public class UserStory01 {
 		this.gameGenerator = new GameGenerator(ConstantsTest.ROUTE_MAP_PROPERTIES, ConstantsTest.ROUTE_TXT_ACTIONS_WHIT_FUNCTIONS);
 		assertEquals(5, this.gameGenerator.getInvokerCommands().size());	
 	}
+	/*
+	 *   "actions": ["right","move","left","move","left"]
+	 */
 }

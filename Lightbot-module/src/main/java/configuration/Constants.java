@@ -15,5 +15,4 @@ public class Constants {
 	public static final String ROUTE_JSON_ACTIONS_5 = "C:\\ProgramData\\actions5.json";
 	
 	public static final String ROUTE_ACTIONS = "C:\\ProgramData\\Actions";
-
 }

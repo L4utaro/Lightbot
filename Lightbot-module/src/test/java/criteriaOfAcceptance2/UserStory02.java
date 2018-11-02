@@ -2,6 +2,7 @@ package criteriaOfAcceptance2;
 
 import static org.junit.Assert.assertEquals;
 
+import java.awt.Point;
 import java.io.IOException;
 
 import org.junit.Test;
@@ -16,13 +17,29 @@ public class UserStory02 {
 	 * Crear una lista de acciones que contenga las instrucciones del
 	 * actionsValid6.json: “actions”:{“derecha”, “fun”, “derecha”, ”fun”, ”luz”},
 	 * “fun”: {“avanzar”, “izquierda”, “avanzar”}. Entonces la lista de acciones
-	 * deberá de tener un tamaño de 9 acciones.
+	 * deberá de tener un tamaño de 9 acciones. Y al ser ejecutada, dejara al avatar 
+	 * en la posición (3,3), con la luz encendida, por lo tanto habra ganado el juego.
 	 */
 	@Test
 	public void test01() throws IOException {
 		this.gameGenerator = new GameGenerator(ConstantsTest.ROUTE_MAP_PROPERTIES, ConstantsTest.ROUTE_JSON_ACTIONS_6);
-		assertEquals(9, this.gameGenerator.getInvokerCommands().size());
+		Game game = new Game(ConstantsTest.ROUTE_MAP_PROPERTIES, ConstantsTest.ROUTE_JSON_ACTIONS_6);
+		assertEquals(9, game.getInvokersCommands().size());
+		game.run();
+		assertEquals(new Point(3,3), game.getMap().getAvatarPos());
 	}
+	/* Forma del mapa:
+ 	[  AVATAR   ][  NO_WALK  ][  NO_WALK  ]
+	[   WALK    ][   WALK    ][  NO_WALK  ]
+	[  NO_WALK  ][   WALK    ][ LIGHT_OFF ] 
+	Despues de ejecutar las acciones:
+ 	[   WALK    ][  NO_WALK  ][  NO_WALK  ]
+	[   WALK    ][   WALK    ][  NO_WALK  ]
+	[  NO_WALK  ][   WALK    ][  AVATAR   ] 
+	Y por ultimo aparecera el mensaje de:
+	- You Win
+	 */
+	
 	/*
 	 * Ejecutar la lista de acción actionsInvalid5.json: “actions”:{“derecha”, “fun”,
 	 * “fun”}, “fun”:{“avanzar”}, como el avatar está en la posición (1,1) y se
@@ -36,6 +53,16 @@ public class UserStory02 {
 		Game game = new Game(ConstantsTest.ROUTE_MAP_PROPERTIES, ConstantsTest.ROUTE_JSON_ACTIONS_INVALID_5);
 		game.run();
 	}
+	/* Forma del mapa:
+ 	[  AVATAR   ][  NO_WALK  ][  NO_WALK  ]
+	[   WALK    ][   WALK    ][  NO_WALK  ]
+	[  NO_WALK  ][   WALK    ][ LIGHT_OFF ] 
+	Despues de ejecutar las acciones:
+ 	[   WALK    ][  NO_WALK  ][  NO_WALK  ]
+	[   WALK    ][   WALK    ][  NO_WALK  ]
+	[  AVATAR   ][   WALK    ][ LIGHT_OFF ] 
+	 */
+	
 	/*
 	 * Ejecutar la lista de acción actionsInvalid6.json: “actions”:{“derecha”, “fun”,
 	 * “fun”}, “fun”:{“fun2”}, “fun2”:{“avanzar”}. Como dentro de la funcion se

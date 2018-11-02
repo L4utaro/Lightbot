@@ -25,7 +25,7 @@ public class GameGeneratorTest {
 	@Test
 	public void test01() {
 		this.gameGenerator.createActions();
-		assertEquals(18, this.gameGenerator.getInvokerCommands().size());
+		assertEquals(9, this.gameGenerator.getInvokerCommands().size());
 	}
 
 	@Test
