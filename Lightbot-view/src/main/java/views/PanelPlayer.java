@@ -12,7 +12,7 @@ import panels.PanelInstructions;
 import panels.PanelMap;
 import panels.PanelMapConsole;
 
-public class ViewPlayer implements Observer {
+public class PanelPlayer implements Observer {
 	private JFrame frame;
 	private JPanel panel;
 	private PanelMap panelMap;
@@ -21,7 +21,7 @@ public class ViewPlayer implements Observer {
 	private Size size;
 	private String message;
 	
-	public ViewPlayer() {
+	public PanelPlayer() {
 		this.panelMap = new PanelMap();
 		this.panelMapConsole = new PanelMapConsole();
 		this.panelInstructions = new PanelInstructions();
@@ -82,6 +82,10 @@ public class ViewPlayer implements Observer {
 
 	public Size getSize() {
 		return size;
+	}
+
+	public JPanel getPanel() {
+		return panel;
 	}
 
 	public void setMessage(String message) {
