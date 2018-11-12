@@ -33,7 +33,7 @@ public class PanelMap implements Observer {
 		colCnt = this.map.getLimitsBoard().getHigh();
 		this.size = new Size(colCnt*40, rowCnt*40);
 		panel.setSize(this.size.getHigh(), this.size.getWidht());
-		panel.setLocation(new Point(350,0));
+		panel.setLocation(new Point(350,20));
 	    Point actualPoint;
 	    for (int y = 0; y < rowCnt; y++) {
 			for (int x = 0; x < colCnt; x++) {

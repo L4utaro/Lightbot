@@ -1,5 +1,6 @@
 package panels;
 
+import java.awt.Point;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Observable;
@@ -30,6 +31,7 @@ public class PanelMapConsole implements Observer {
 		colCnt = this.map.getLimitsBoard().getHigh();
 		this.size = new Size(colCnt*120, rowCnt*120);
 		contentPane.setSize(this.size.getHigh(), this.size.getWidht());
+		contentPane.setLocation(new Point(0,20));
 		
 		String file = "";
 		List<String> mapString = new ArrayList<>();

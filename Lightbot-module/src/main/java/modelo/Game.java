@@ -5,6 +5,7 @@ import java.util.List;
 import java.util.Observable;
 
 import commands.invoker.InvokerCommand;
+import enums.StateGame;
 import generators.GameGenerator;
 import model.Map;
 import validators.ValidatorGame;
@@ -15,6 +16,7 @@ public class Game extends Observable{
 	private String message;
 	private	GameGenerator creator;
 	private List<InvokerCommand> invokersCommands;
+	private StateGame stateGame;
 	
 	/**default*/
 	public Game(){
@@ -50,14 +52,29 @@ public class Game extends Observable{
 		this.map = creator.getMap();
 		this.validatorGame = new ValidatorGame(map);
 		this.invokersCommands = creator.getInvokerCommands();
+		this.stateGame = StateGame.PLAY;
 		modelChange();
 	}
 	
 	public void run() {
-		for (InvokerCommand invokerCommand : this.invokersCommands) {
-			invokerCommand.executeCommand(this.map);
-			checkStatusGame();
-			modelChange();
+		//for (InvokerCommand invokerCommand : this.invokersCommands) {
+		int i = 0;
+		while (!this.stateGame.equals(StateGame.FINISH)) {
+			while(this.stateGame.equals(StateGame.PLAY)) {
+				this.invokersCommands.get(i).executeCommand(this.map);
+				checkStatusGame();
+				modelChange();
+				i++;
+				if(i == this.invokersCommands.size()) {
+					setStateGame(StateGame.FINISH);
+				}
+			}
+			while(this.stateGame.equals(StateGame.STOP)) {
+				try {
+					Thread.sleep(1000000000);
+				} catch (InterruptedException e) {
+				}
+			}
 		}
 		if (!this.validatorGame.allLightsAreTurnedOn(this.map)) {
 			message = "Game Over: The avatar don't turned on all the lights";
@@ -90,5 +107,9 @@ public class Game extends Observable{
 	
 	public String getMessage() {
 		return message;
+	}
+
+	public void setStateGame(StateGame stateGame) {
+		this.stateGame = stateGame;
 	}
 }

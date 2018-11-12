@@ -22,7 +22,7 @@ public class PanelInstructions implements Observer {
 		this.panel = new JPanel();
 		this.size = new Size(250, 300);
 		panel.setSize(this.size.getWidht(), this.size.getHigh());
-		panel.setLocation(new Point(500, 0));
+		panel.setLocation(new Point(500, 20));
 	}
 
 	public void draw() {

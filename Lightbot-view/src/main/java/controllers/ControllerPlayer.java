@@ -1,36 +1,38 @@
 package controllers;
 
+import enums.StateGame;
 import model.Player;
-import views.PanelPlayer;
+import views.ViewPlayer;
 
 public class ControllerPlayer {
 	private Player player;
-	private PanelPlayer viewPlayer;
+	private ControllerPanelPlayer controllerPlanelPlayer;
 	
 	public ControllerPlayer(String routeMap, String routeActions) {
 		this.player = new Player(routeMap, routeActions);
+		this.controllerPlanelPlayer = new ControllerPanelPlayer();
 	}
 	
 	public void createGame() {
-		this.viewPlayer = new PanelPlayer();
-		this.player.getGame().addObserver(this.viewPlayer);
-		this.player.getGame().addObserver(this.viewPlayer.getPanelMap());
-		this.player.getGame().addObserver(this.viewPlayer.getPanelMapConsole());
-		this.player.getGame().addObserver(this.viewPlayer.getPanelInstructions());
+		this.player.getGame().addObserver(this.controllerPlanelPlayer.getPanelPlayer());
+		this.player.getGame().addObserver(this.controllerPlanelPlayer.getPanelPlayer().getPanelMap());
+		this.player.getGame().addObserver(this.controllerPlanelPlayer.getPanelPlayer().getPanelMapConsole());
+		this.player.getGame().addObserver(this.controllerPlanelPlayer.getPanelPlayer().getPanelInstructions());
 		this.player.getGame().init();
-		this.viewPlayer.draw();
+		this.controllerPlanelPlayer.getPanelPlayer().draw();
 	}
 	
 	public void runGame() {
 		try {
 			this.player.getGame().run();
+			System.out.println(this.controllerPlanelPlayer.getStateGame());
 		} catch (IllegalArgumentException e) {
-			this.viewPlayer.setMessage(e.getMessage());
-			this.viewPlayer.draw();
+			this.controllerPlanelPlayer.getPanelPlayer().setMessage(e.getMessage());
+			this.controllerPlanelPlayer.getPanelPlayer().draw();
 		}
 	}
 
-	public PanelPlayer getViewPlayer() {
-		return viewPlayer;
+	public ViewPlayer getViewPlayer() {
+		return controllerPlanelPlayer.getPanelPlayer();
 	}
 }
