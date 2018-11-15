@@ -7,17 +7,18 @@ import enums.StateGame;
 import model.Player;
 import views.ViewPlayer;
 
-public class ControllerPlayer implements ActionListener {
-	private Player player;
+public class ControllerGame implements ActionListener{
 	private ViewPlayer panelPlayer;
-
-	public ControllerPlayer(String routeMap, String routeActions) {
-		this.player = new Player(routeMap, routeActions);
+	private Player player;
+	
+	public ControllerGame(String routeMap, String routeActions) {
 		this.panelPlayer = new ViewPlayer();
 		this.panelPlayer.getBtnPlay().addActionListener(this);
 		this.panelPlayer.getBtnStop().addActionListener(this);
+		this.player = new Player(routeMap, routeActions);
+		//this.panelPlayer.getSlider().addChangeListener(this);
 	}
-
+	
 	public void createGame() {
 		this.player.getGame().addObserver(this.panelPlayer);
 		this.player.getGame().addObserver(this.panelPlayer.getPanelMap());
@@ -26,19 +27,18 @@ public class ControllerPlayer implements ActionListener {
 		this.player.getGame().init();
 		this.panelPlayer.draw();
 	}
-
+	
 	@Override
 	public void actionPerformed(ActionEvent e) {
-		if (e.getSource() == this.panelPlayer.getBtnPlay()) {
+		if(e.getSource() == this.panelPlayer.getBtnPlay()) {
 			System.out.println("Apreto Play");
 			this.player.getGame().setStateGame(StateGame.PLAY);
 		} else if (e.getSource() == this.panelPlayer.getBtnStop()) {
 			this.player.getGame().setStateGame(StateGame.STOP);
 			System.out.println("Apreto Stop");
 		}
-		this.player.getGame().setTimeForInstruction(this.panelPlayer.getSlider().getValue());
 	}
-
+	
 	public void runGame() {
 		try {
 			this.player.getGame().run();
@@ -47,8 +47,8 @@ public class ControllerPlayer implements ActionListener {
 			this.panelPlayer.draw();
 		}
 	}
-
-	public ViewPlayer getViewPlayer() {
+	
+	public ViewPlayer getPanelPlayer() {
 		return panelPlayer;
 	}
 }

@@ -17,6 +17,7 @@ public class Game extends Observable{
 	private	GameGenerator creator;
 	private List<InvokerCommand> invokersCommands;
 	private StateGame stateGame;
+	//private Thread thread;
 	
 	/**default*/
 	public Game(){
@@ -71,7 +72,7 @@ public class Game extends Observable{
 			}
 			while(this.stateGame.equals(StateGame.STOP)) {
 				try {
-					Thread.sleep(1000000000);
+					Thread.sleep(10);
 				} catch (InterruptedException e) {
 				}
 			}
@@ -111,5 +112,10 @@ public class Game extends Observable{
 
 	public void setStateGame(StateGame stateGame) {
 		this.stateGame = stateGame;
+	}
+
+	public void setTimeForInstruction(int value) {
+		//aca tengo que pasar el tiempo a las instrucciones.
+		//con esto ya tengo todo la parte de codigo.
 	}
 }
