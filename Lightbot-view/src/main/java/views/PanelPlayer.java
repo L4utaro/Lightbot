@@ -3,9 +3,11 @@ package views;
 import java.util.Observable;
 import java.util.Observer;
 
+import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.JSlider;
 
 import model.Size;
 import panels.PanelInstructions;
@@ -20,7 +22,10 @@ public class PanelPlayer implements Observer {
 	private PanelInstructions panelInstructions;
 	private Size size;
 	private String message;
-	
+	private JButton btnPlay;
+	private JButton btnStop;
+	private JSlider slider;
+
 	public PanelPlayer() {
 		this.panelMap = new PanelMap();
 		this.panelMapConsole = new PanelMapConsole();
@@ -33,26 +38,37 @@ public class PanelPlayer implements Observer {
 
 		this.panel = new JPanel();
 		this.panel.setLayout(null);
-		// frame.setSize(this.viewMap.getSize().getHigh(),
-		// this.viewMap.getSize().getWidht());
+		drawbtns();
+		drawJslider();
 	}
 
 	public void draw() {
-		panel.removeAll();
 		panel.add(this.panelMap.getPanel());
 		panel.add(this.panelMapConsole.getPanel());
 		panel.add(this.panelInstructions.getPanel());
-		frame.setLocationRelativeTo(null);
-		if(this.message != null) {
-			panel.removeAll();
-			panel.add(this.panelInstructions.getPanel());
+		if (this.message != null) {
 			JLabel label = new JLabel(this.message);
-			label.setBounds(0, 0, 500, 50);
+			label.setBounds(5, 0, 500, 25);
 			label.setOpaque(true);
 			panel.add(label);
 		}
 		frame.add(panel);
 		frame.setVisible(true);
+	}
+
+	public void drawJslider() {
+		slider = new JSlider(0, 3, 1);
+		slider.setBounds(630, 0, 120, 20);
+		panel.add(slider);
+	}
+
+	public void drawbtns() {
+		btnPlay = new JButton("Play");
+		btnPlay.setBounds(500, 0, 60, 20);
+		btnStop = new JButton("Stop");
+		btnStop.setBounds(565, 0, 60, 20);
+		panel.add(btnPlay);
+		panel.add(btnStop);
 	}
 
 	@Override
@@ -83,7 +99,18 @@ public class PanelPlayer implements Observer {
 	public Size getSize() {
 		return size;
 	}
+	
+	public JButton getBtnPlay() {
+		return btnPlay;
+	}
 
+	public JButton getBtnStop() {
+		return btnStop;
+	}
+
+	public JSlider getSlider() {
+		return slider;
+	}
 	public JPanel getPanel() {
 		return panel;
 	}
