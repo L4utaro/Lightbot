@@ -1,6 +1,5 @@
 package views;
 
-import java.awt.Point;
 import java.util.List;
 import java.util.Observable;
 import java.util.Observer;
@@ -16,23 +15,23 @@ public class PlayersView implements Observer {
 	private List<PanelPlayer> panelsPlayers;
 	private Size size;
 
-	public PlayersView(List<PanelPlayer> panelsPlayers) {
-		this.panelsPlayers = panelsPlayers;
+	public PlayersView() {
 		this.frame = new JFrame("Lightbot");
 		this.frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		this.frame.setLocationRelativeTo(null);
-		this.size = new Size(this.panelsPlayers.get(0).getSize().getWidht() * this.panelsPlayers.size(),
-				this.panelsPlayers.get(0).getSize().getHigh() * this.panelsPlayers.size());
+		this.size = new Size(800, 900);
 		this.frame.setSize(this.size.getWidht(), this.size.getHigh());
 		this.panel = new JPanel();
 		this.panel.setLayout(null);
 	}
 
+	public void addPanelsPlayers(List<PanelPlayer> panelsPlayers) {
+		this.panelsPlayers = panelsPlayers;
+	}
+	
 	public void draw() {
 		this.panel.removeAll();
 		for (int i = 0; i < this.panelsPlayers.size(); i++) {
-			this.panelsPlayers.get(i).getPanel()
-					.setLocation(new Point(0, (int) (this.panelsPlayers.get(i).getPanel().getSize().getHeight() * i)));
 			this.panel.add(this.panelsPlayers.get(i).getPanel());
 		}
 		this.frame.add(this.panel);

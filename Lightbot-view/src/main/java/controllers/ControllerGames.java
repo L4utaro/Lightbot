@@ -10,7 +10,7 @@ import validators.ValidatorRoutesActions;
 public class ControllerGames {
 	private LectorFolder lector;
 	private ValidatorRoutesActions validatorRoutesActions;
-	private List<ControllerPlayer> controllerPlayers;
+	private List<Player> controllerPlayers;
 	
 	public ControllerGames(String routeFolder) {
 		this.lector = new LectorFolder(routeFolder);
@@ -21,8 +21,9 @@ public class ControllerGames {
 		List<String> routesActions = this.lector.getRoutesOfActions();
 		if (this.validatorRoutesActions.areAValidsRoutes(routesActions)) {
 			this.controllerPlayers = createPlayers(routesActions);
-			for(ControllerPlayer controllerPlayer: this.controllerPlayers) {
+			for(Player controllerPlayer: this.controllerPlayers) {
 				controllerPlayer.createGame();
+				controllerPlayer.getViewPlayer();
 				controllerPlayer.runGame();
 			}
 		} else {
@@ -30,10 +31,10 @@ public class ControllerGames {
 		}
 	}
 	
-	public List<ControllerPlayer> createPlayers(List<String> routesActions) {
-		List<ControllerPlayer> players = new ArrayList<>();
+	public List<Player> createPlayers(List<String> routesActions) {
+		List<Player> players = new ArrayList<>();
 		for (String routeAction : routesActions) {
-			players.add(new ControllerPlayer(Constants.ROUTE_MAP_PROPERTIES, routeAction));
+			players.add(new Player(Constants.ROUTE_MAP_PROPERTIES, routeAction));
 		}
 		return players;
 	}
