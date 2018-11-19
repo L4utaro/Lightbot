@@ -1,5 +1,6 @@
 package views;
 
+import java.awt.Point;
 import java.util.List;
 import java.util.Observable;
 import java.util.Observer;
@@ -32,7 +33,9 @@ public class PlayersView implements Observer {
 	public void draw() {
 		this.panel.removeAll();
 		for (int i = 0; i < this.panelsPlayers.size(); i++) {
-			this.panel.add(this.panelsPlayers.get(i).getPanel());
+			PanelPlayer panelPlayer = this.panelsPlayers.get(i);
+			panelPlayer.getPanel().setLocation(new Point(800 ,300 * 0));
+			this.panel.add(panelPlayer.getPanel());
 		}
 		this.frame.add(this.panel);
 		this.frame.setVisible(true);
@@ -41,5 +44,29 @@ public class PlayersView implements Observer {
 	@Override
 	public void update(Observable observable, Object object) {
 		draw();
+	}
+
+	public JFrame getFrame() {
+		return frame;
+	}
+
+	public void setFrame(JFrame frame) {
+		this.frame = frame;
+	}
+
+	public JPanel getPanel() {
+		return panel;
+	}
+
+	public void setPanel(JPanel panel) {
+		this.panel = panel;
+	}
+
+	public List<PanelPlayer> getPanelsPlayers() {
+		return panelsPlayers;
+	}
+
+	public void setPanelsPlayers(List<PanelPlayer> panelsPlayers) {
+		this.panelsPlayers = panelsPlayers;
 	}
 }

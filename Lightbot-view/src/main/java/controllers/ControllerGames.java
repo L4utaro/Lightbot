@@ -11,10 +11,12 @@ public class ControllerGames {
 	private LectorFolder lector;
 	private ValidatorRoutesActions validatorRoutesActions;
 	private List<Player> controllerPlayers;
+	private ControllerPlayersView controllerPlayersView;
 	
 	public ControllerGames(String routeFolder) {
 		this.lector = new LectorFolder(routeFolder);
 		this.validatorRoutesActions = new ValidatorRoutesActions();
+		this.controllerPlayersView = new ControllerPlayersView();
 	}
 	
 	public void initGames() {
