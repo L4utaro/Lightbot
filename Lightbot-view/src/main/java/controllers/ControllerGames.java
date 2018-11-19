@@ -25,7 +25,7 @@ public class ControllerGames {
 			this.controllerPlayers = createPlayers(routesActions);
 			for(Player controllerPlayer: this.controllerPlayers) {
 				controllerPlayer.createGame();
-				controllerPlayer.getViewPlayer();
+				controllerPlayer.getPanelPlayer();
 				controllerPlayer.runGame();
 			}
 		} else {

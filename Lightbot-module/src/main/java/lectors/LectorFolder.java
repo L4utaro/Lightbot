@@ -20,6 +20,9 @@ public class LectorFolder {
 		} catch (NullPointerException e) {
 			throw new IllegalArgumentException("The folder don't exists");
 		}
+		if(routesActions.size() >= 3) {
+			throw new IllegalArgumentException("There can't be more than 3 players");
+		}
 		return routesActions;
 	}
 }

@@ -5,15 +5,15 @@ import java.awt.event.ActionListener;
 
 import enums.StateGame;
 import modelo.Game;
-import views.ViewPlayer;
+import views.PanelPlayer;
 
 public class Player implements ActionListener {
 	private Game game;
-	private ViewPlayer panelPlayer;
+	private PanelPlayer panelPlayer;
 
 	public Player(String routeMap, String routeActions) {
 		this.game = new Game(routeMap, routeActions);
-		this.panelPlayer = new ViewPlayer();
+		this.panelPlayer = new PanelPlayer();
 		this.panelPlayer.getBtnPlay().addActionListener(this);
 		this.panelPlayer.getBtnStop().addActionListener(this);
 	}
@@ -48,7 +48,7 @@ public class Player implements ActionListener {
 		}
 	}
 
-	public ViewPlayer getViewPlayer() {
+	public PanelPlayer getPanelPlayer() {
 		return panelPlayer;
 	}
 }
