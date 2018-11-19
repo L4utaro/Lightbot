@@ -3,7 +3,6 @@ package controllers;
 
 import java.util.List;
 
-import views.PanelPlayer;
 import views.PlayersView;
 
 public class ControllerPlayersView {
@@ -13,7 +12,12 @@ public class ControllerPlayersView {
 		this.playersView = new PlayersView();
 	}
 	
-	public void init(List<PanelPlayer> panelsPlayers) {
-		this.playersView.addPanelsPlayers(panelsPlayers);
+	public void init(List<Player> players) {
+		this.playersView.addPanelsPlayers(players);
+		this.playersView.draw();
+	}
+
+	public PlayersView getPlayersView() {
+		return playersView;
 	}
 }

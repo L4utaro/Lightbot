@@ -16,6 +16,8 @@ public class Player implements ActionListener {
 		this.panelPlayer = new PanelPlayer();
 		this.panelPlayer.getBtnPlay().addActionListener(this);
 		this.panelPlayer.getBtnStop().addActionListener(this);
+		this.panelPlayer.getBtnTimeDown().addActionListener(this);
+		this.panelPlayer.getBtnTimeUp().addActionListener(this);
 	}
 
 	public void createGame() {
@@ -35,8 +37,14 @@ public class Player implements ActionListener {
 		} else if (e.getSource() == this.panelPlayer.getBtnStop()) {
 			this.game.setStateGame(StateGame.STOP);
 			System.out.println("Apreto Stop");
+		} else if (e.getSource() == this.panelPlayer.getBtnTimeDown()) {
+			this.panelPlayer.setTime(this.panelPlayer.getTime() - 0.2);
+			this.game.setTimeForInstruction(this.panelPlayer.getTime());
+		} else if (e.getSource() == this.panelPlayer.getBtnTimeUp()) {
+			this.panelPlayer.setTime(this.panelPlayer.getTime() + 0.2);
+			System.out.println(this.panelPlayer.getTime());
+			this.game.setTimeForInstruction(this.panelPlayer.getTime());
 		}
-		this.game.setTimeForInstruction(this.panelPlayer.getSlider().getValue());
 	}
 
 	public void runGame() {
@@ -50,5 +58,9 @@ public class Player implements ActionListener {
 
 	public PanelPlayer getPanelPlayer() {
 		return panelPlayer;
+	}
+
+	public Game getGame() {
+		return game;
 	}
 }

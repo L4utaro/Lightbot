@@ -8,33 +8,33 @@ import java.util.Observer;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 
+import controllers.Player;
 import model.Size;
 
 public class PlayersView implements Observer {
 	private JFrame frame;
 	private JPanel panel;
-	private List<PanelPlayer> panelsPlayers;
+	private List<Player> players;
 	private Size size;
 
 	public PlayersView() {
 		this.frame = new JFrame("Lightbot");
 		this.frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		this.frame.setLocationRelativeTo(null);
-		this.size = new Size(800, 900);
+		this.size = new Size(1000, 1000);
 		this.frame.setSize(this.size.getWidht(), this.size.getHigh());
 		this.panel = new JPanel();
 		this.panel.setLayout(null);
 	}
 
-	public void addPanelsPlayers(List<PanelPlayer> panelsPlayers) {
-		this.panelsPlayers = panelsPlayers;
+	public void addPanelsPlayers(List<Player> players) {
+		this.players = players;
 	}
 	
 	public void draw() {
-		this.panel.removeAll();
-		for (int i = 0; i < this.panelsPlayers.size(); i++) {
-			PanelPlayer panelPlayer = this.panelsPlayers.get(i);
-			panelPlayer.getPanel().setLocation(new Point(800 ,300 * 0));
+		for (int i = 0; i < this.players.size(); i++) {
+			PanelPlayer panelPlayer = this.players.get(i).getPanelPlayer();
+			panelPlayer.getPanel().setLocation(new Point(0 ,300 * i));
 			this.panel.add(panelPlayer.getPanel());
 		}
 		this.frame.add(this.panel);
@@ -62,11 +62,11 @@ public class PlayersView implements Observer {
 		this.panel = panel;
 	}
 
-	public List<PanelPlayer> getPanelsPlayers() {
-		return panelsPlayers;
+	public List<Player> getPanelsPlayers() {
+		return players;
 	}
 
-	public void setPanelsPlayers(List<PanelPlayer> panelsPlayers) {
-		this.panelsPlayers = panelsPlayers;
+	public void setPanelsPlayers(List<Player> players) {
+		this.players = players;
 	}
 }

@@ -7,7 +7,6 @@ import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
-import javax.swing.JSlider;
 
 import model.Size;
 import panels.PanelInstructions;
@@ -15,7 +14,7 @@ import panels.PanelMap;
 import panels.PanelMapConsole;
 
 public class PanelPlayer implements Observer {
-//	private JFrame frame;
+	private JFrame frame;
 	private JPanel panel;
 	private PanelMap panelMap;
 	private PanelMapConsole panelMapConsole;
@@ -24,22 +23,27 @@ public class PanelPlayer implements Observer {
 	private String message;
 	private JButton btnPlay;
 	private JButton btnStop;
-	private JSlider slider;
+	private JButton btnTimeDown;
+	private JButton btnTimeUp;
+	private JLabel timeOfInstruction;
+	private Double time;
 
 	public PanelPlayer() {
 		this.panelMap = new PanelMap();
 		this.panelMapConsole = new PanelMapConsole();
 		this.panelInstructions = new PanelInstructions();
-//		this.frame = new JFrame("Lightbot");
-//		this.frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-//		this.frame.setLocationRelativeTo(null);
+		this.frame = new JFrame("Lightbot");
+		this.frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		this.frame.setLocationRelativeTo(null);
 		this.size = new Size(800, 300);
-//		this.frame.setSize(800, 300);
+		this.frame.setSize(800, 300);
 
 		this.panel = new JPanel();
 		this.panel.setLayout(null);
+		this.time = 1.5;
+		drawTime();
 		drawbtns();
-		drawJslider();
+		drawBtnTime();
 	}
 
 	public void draw() {
@@ -52,14 +56,24 @@ public class PanelPlayer implements Observer {
 			label.setOpaque(true);
 			panel.add(label);
 		}
-//		frame.add(panel);
-//		frame.setVisible(true);
+		drawTime();
+		frame.add(panel);
+		frame.setVisible(true);
 	}
-
-	public void drawJslider() {
-		slider = new JSlider(0, 3, 1);
-		slider.setBounds(630, 0, 120, 20);
-		panel.add(slider);
+	
+	public void drawTime() {
+		this.timeOfInstruction = new JLabel(""+this.time);
+		this.timeOfInstruction.setBounds(690, 0, 40, 20);
+		panel.add(timeOfInstruction);
+	}
+	
+	public void drawBtnTime() {
+		btnTimeDown = new JButton("<");
+		btnTimeDown.setBounds(630, 0, 50, 20);
+		btnTimeUp = new JButton(">");
+		btnTimeUp.setBounds(730, 0, 50, 20);
+		panel.add(btnTimeDown);
+		panel.add(btnTimeUp);
 	}
 
 	public void drawbtns() {
@@ -108,14 +122,27 @@ public class PanelPlayer implements Observer {
 		return btnStop;
 	}
 
-	public JSlider getSlider() {
-		return slider;
-	}
 	public JPanel getPanel() {
 		return panel;
 	}
 
 	public void setMessage(String message) {
 		this.message = message;
+	}
+
+	public Double getTime() {
+		return time;
+	}
+
+	public void setTime(Double time) {
+		this.time = time;
+	}
+
+	public JButton getBtnTimeDown() {
+		return btnTimeDown;
+	}
+
+	public JButton getBtnTimeUp() {
+		return btnTimeUp;
 	}
 }

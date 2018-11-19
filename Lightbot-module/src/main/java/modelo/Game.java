@@ -114,8 +114,9 @@ public class Game extends Observable{
 		this.stateGame = stateGame;
 	}
 
-	public void setTimeForInstruction(int value) {
-		//aca tengo que pasar el tiempo a las instrucciones.
-		//con esto ya tengo todo la parte de codigo.
+	public void setTimeForInstruction(Double timeOfSleep) {
+		for (InvokerCommand invokerCommand: this.invokersCommands) {
+			invokerCommand.setTimeOfSleep(timeOfSleep);
+		}
 	}
 }
