@@ -29,6 +29,8 @@ public class PanelMap implements Observer {
 	
 	public void draw() {
 		panel.removeAll();
+		panel.revalidate();
+		panel.repaint();
 		rowCnt = this.map.getLimitsBoard().getWidht();
 		colCnt = this.map.getLimitsBoard().getHigh();
 		this.size = new Size(colCnt*40, rowCnt*40);

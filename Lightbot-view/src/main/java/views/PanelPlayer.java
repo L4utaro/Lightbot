@@ -1,10 +1,10 @@
 package views;
 
+import java.awt.Color;
 import java.util.Observable;
 import java.util.Observer;
 
 import javax.swing.JButton;
-//import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
@@ -14,7 +14,6 @@ import panels.PanelMap;
 import panels.PanelMapConsole;
 
 public class PanelPlayer implements Observer {
-//	private JFrame frame;
 	private JPanel panel;
 	private PanelMap panelMap;
 	private PanelMapConsole panelMapConsole;
@@ -36,10 +35,6 @@ public class PanelPlayer implements Observer {
 		this.panel = new JPanel();
 		this.panel.setLayout(null);
 		this.panel.setSize(800, 250);
-//		this.frame = new JFrame("Lightbot");
-//		this.frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-//		this.frame.setLocationRelativeTo(null);
-//		this.frame.setSize(800, 250);
 
 		this.time = 1.5;
 		drawTime();
@@ -48,6 +43,8 @@ public class PanelPlayer implements Observer {
 	}
 
 	public void draw() {
+		panel.revalidate();
+		panel.repaint();
 		panel.add(this.panelMap.getPanel());
 		panel.add(this.panelMapConsole.getPanel());
 		panel.add(this.panelInstructions.getPanel());
@@ -58,13 +55,12 @@ public class PanelPlayer implements Observer {
 			panel.add(label);
 		}
 		drawTime();
-//		frame.add(panel);
-//		frame.setVisible(true);
 	}
 	
 	public void drawTime() {
 		this.timeOfInstruction = new JLabel(""+this.time);
 		this.timeOfInstruction.setBounds(690, 0, 40, 20);
+		this.timeOfInstruction.setBackground(Color.gray);
 		panel.add(timeOfInstruction);
 	}
 	

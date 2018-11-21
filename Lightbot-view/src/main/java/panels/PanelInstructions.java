@@ -27,6 +27,8 @@ public class PanelInstructions implements Observer {
 
 	public void draw() {
 		panel.removeAll();
+		panel.revalidate();
+		panel.repaint();
 		drawInstructions(getStringOfCommands());
 	}
 

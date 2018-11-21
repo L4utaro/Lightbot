@@ -28,6 +28,8 @@ public class PanelMapConsole implements Observer {
 	
 	public void draw() {
 		this.contentPane.removeAll();
+		this.contentPane.revalidate();
+		this.contentPane.repaint();
 		rowCnt = this.map.getLimitsBoard().getWidht();
 		colCnt = this.map.getLimitsBoard().getHigh();
 		this.size = new Size(colCnt*120, rowCnt*120);
