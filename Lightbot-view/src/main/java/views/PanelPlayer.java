@@ -14,7 +14,7 @@ import panels.PanelMap;
 import panels.PanelMapConsole;
 
 public class PanelPlayer implements Observer {
-	private JFrame frame;
+//	private JFrame frame;
 	private JPanel panel;
 	private PanelMap panelMap;
 	private PanelMapConsole panelMapConsole;
@@ -32,14 +32,15 @@ public class PanelPlayer implements Observer {
 		this.panelMap = new PanelMap();
 		this.panelMapConsole = new PanelMapConsole();
 		this.panelInstructions = new PanelInstructions();
-		this.frame = new JFrame("Lightbot");
-		this.frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		this.frame.setLocationRelativeTo(null);
 		this.size = new Size(800, 300);
-		this.frame.setSize(800, 300);
-
 		this.panel = new JPanel();
 		this.panel.setLayout(null);
+		this.panel.setSize(800, 250);
+//		this.frame = new JFrame("Lightbot");
+//		this.frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+//		this.frame.setLocationRelativeTo(null);
+//		this.frame.setSize(800, 250);
+
 		this.time = 1.5;
 		drawTime();
 		drawbtns();
@@ -57,8 +58,8 @@ public class PanelPlayer implements Observer {
 			panel.add(label);
 		}
 		drawTime();
-		frame.add(panel);
-		frame.setVisible(true);
+//		frame.add(panel);
+//		frame.setVisible(true);
 	}
 	
 	public void drawTime() {

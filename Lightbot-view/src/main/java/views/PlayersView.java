@@ -21,7 +21,7 @@ public class PlayersView implements Observer {
 		this.frame = new JFrame("Lightbot");
 		this.frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		this.frame.setLocationRelativeTo(null);
-		this.size = new Size(1000, 1000);
+		this.size = new Size(900, 800);
 		this.frame.setSize(this.size.getWidht(), this.size.getHigh());
 		this.panel = new JPanel();
 		this.panel.setLayout(null);
@@ -34,7 +34,7 @@ public class PlayersView implements Observer {
 	public void draw() {
 		for (int i = 0; i < this.players.size(); i++) {
 			PanelPlayer panelPlayer = this.players.get(i).getPanelPlayer();
-			panelPlayer.getPanel().setLocation(new Point(0 ,300 * i));
+			panelPlayer.getPanel().setLocation(new Point(0 ,250 * i));
 			this.panel.add(panelPlayer.getPanel());
 		}
 		this.frame.add(this.panel);

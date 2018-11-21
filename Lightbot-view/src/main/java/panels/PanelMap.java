@@ -93,22 +93,11 @@ public class PanelMap implements Observer {
 		return new JLabel("   ↓    ");
 	}
 
-	public void drawMessage(String message) {
-		panel.removeAll();
-		JLabel label = new JLabel(message);
-		label.setBounds( 40, 40, 40, 40);
-		label.setOpaque(true);
-		panel.add(label);
-	}
 	
 	@Override
 	public void update(Observable observable, Object object) {
 		this.map = ((Game) observable).getMap();
-		if(((Game) observable).getMessage() == null || ((Game) observable).getMessage().isEmpty()) {
-			draw();
-		} else {
-			drawMessage(((Game) observable).getMessage());
-		}
+		draw();
 	}
 
 	public JPanel getPanel() {

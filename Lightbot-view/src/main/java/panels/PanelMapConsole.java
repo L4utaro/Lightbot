@@ -27,6 +27,7 @@ public class PanelMapConsole implements Observer {
 	}
 	
 	public void draw() {
+		this.contentPane.removeAll();
 		rowCnt = this.map.getLimitsBoard().getWidht();
 		colCnt = this.map.getLimitsBoard().getHigh();
 		this.size = new Size(colCnt*120, rowCnt*120);
@@ -82,11 +83,7 @@ public class PanelMapConsole implements Observer {
 	@Override
 	public void update(Observable observable, Object object) {
 		this.map = ((Game) observable).getMap();
-		if(((Game) observable).getMessage() == null || ((Game) observable).getMessage().isEmpty()) {
-			draw();
-		} else {
-			drawMessage(((Game) observable).getMessage());
-		}
+		draw();
 	}
 
 	public JPanel getPanel() {

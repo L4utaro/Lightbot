@@ -39,6 +39,7 @@ public class Player implements ActionListener {
 			System.out.println("Apreto Stop");
 		} else if (e.getSource() == this.panelPlayer.getBtnTimeDown()) {
 			this.panelPlayer.setTime(this.panelPlayer.getTime() - 0.2);
+			System.out.println(this.panelPlayer.getTime());
 			this.game.setTimeForInstruction(this.panelPlayer.getTime());
 		} else if (e.getSource() == this.panelPlayer.getBtnTimeUp()) {
 			this.panelPlayer.setTime(this.panelPlayer.getTime() + 0.2);
@@ -50,6 +51,8 @@ public class Player implements ActionListener {
 	public void runGame() {
 		try {
 			this.game.run();
+			this.panelPlayer.setMessage("You win");
+			this.panelPlayer.draw();
 		} catch (IllegalArgumentException e) {
 			this.panelPlayer.setMessage(e.getMessage());
 			this.panelPlayer.draw();
