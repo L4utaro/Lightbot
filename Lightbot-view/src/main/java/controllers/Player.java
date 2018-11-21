@@ -37,7 +37,8 @@ public class Player implements ActionListener {
 		} else if (e.getSource() == this.panelPlayer.getBtnStop()) {
 			this.game.setStateGame(StateGame.STOP);
 			System.out.println("Apreto Stop");
-		} else if (e.getSource() == this.panelPlayer.getBtnTimeDown()) {
+		} else if (e.getSource() == this.panelPlayer.getBtnTimeDown()
+				&& this.panelPlayer.getTime()>=0.2) {
 			this.panelPlayer.setTime(this.panelPlayer.getTime() - 0.2);
 			System.out.println(this.panelPlayer.getTime());
 			this.game.setTimeForInstruction(this.panelPlayer.getTime());

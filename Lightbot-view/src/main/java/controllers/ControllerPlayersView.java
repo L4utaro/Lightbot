@@ -20,4 +20,8 @@ public class ControllerPlayersView {
 	public PlayersView getPlayersView() {
 		return playersView;
 	}
+	
+	public void drawWinner(String message) {
+		this.playersView.drawWinner(message);
+	}
 }

@@ -50,5 +50,19 @@ public class ControllerGames {
 		for (Player controllerPlayer : this.players) {
 			controllerPlayer.runGame();
 		}
+		checkWinner();
+	}
+	
+	public void checkWinner() {
+		int minInstructions = this.players.get(0).getGame().getCantActions();
+		String messageWinner = "";
+		for(int i = 0; i < this.players.size(); i ++) {
+			if(minInstructions >= this.players.get(i).getGame().getCantActions()
+					&& this.players.get(i).getPanelPlayer().getMessage().equals("You win")) {
+				minInstructions = this.players.get(i).getGame().getCantActions();
+				messageWinner = "The winner is player: " + (i + 1);
+			}
+		}
+		this.controllerPlayersView.drawWinner(messageWinner);
 	}
 }

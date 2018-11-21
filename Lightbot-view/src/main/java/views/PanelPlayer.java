@@ -4,7 +4,7 @@ import java.util.Observable;
 import java.util.Observer;
 
 import javax.swing.JButton;
-import javax.swing.JFrame;
+//import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
@@ -129,6 +129,10 @@ public class PanelPlayer implements Observer {
 
 	public void setMessage(String message) {
 		this.message = message;
+	}
+
+	public String getMessage() {
+		return message;
 	}
 
 	public Double getTime() {

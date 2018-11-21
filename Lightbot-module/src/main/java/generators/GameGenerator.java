@@ -16,7 +16,7 @@ public class GameGenerator {
 	private Implementation implementation;
 	private List<InvokerCommand> invokerCommands;
 	private Map<String, List<InvokerCommand>> functions;
-
+	private int cantOfActions;
 	/** default */
 	public GameGenerator() throws IOException {
 		this.invokerCommands = new ArrayList<InvokerCommand>();
@@ -49,6 +49,7 @@ public class GameGenerator {
 	public void createActions() {
 		List<InvokerCommand> newInvokerCommands = this.implementation
 				.createColecctionOfActions(this.implementation.getNamesOfFunctions());
+		this.cantOfActions = newInvokerCommands.size();
 		this.functions = this.implementation.getAllFunctions();
 		this.invokerCommands = addActionsFromFunctions(newInvokerCommands, functions);
 	}
@@ -77,5 +78,9 @@ public class GameGenerator {
 
 	public Map<String, List<InvokerCommand>> getFunctions() {
 		return functions;
+	}
+
+	public int getCantOfActions() {
+		return cantOfActions;
 	}
 }

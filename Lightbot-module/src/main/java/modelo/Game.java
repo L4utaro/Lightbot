@@ -119,4 +119,8 @@ public class Game extends Observable{
 			invokerCommand.setTimeOfSleep(timeOfSleep);
 		}
 	}
+	
+	public int getCantActions() {
+		return this.creator.getCantOfActions();
+	}
 }

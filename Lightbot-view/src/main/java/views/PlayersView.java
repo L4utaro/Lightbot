@@ -6,6 +6,7 @@ import java.util.Observable;
 import java.util.Observer;
 
 import javax.swing.JFrame;
+import javax.swing.JLabel;
 import javax.swing.JPanel;
 
 import controllers.Player;
@@ -68,5 +69,11 @@ public class PlayersView implements Observer {
 
 	public void setPanelsPlayers(List<Player> players) {
 		this.players = players;
+	}
+
+	public void drawWinner(String message) {
+		JLabel jLabel = new JLabel(message);
+		jLabel.setBounds(340,770,150,20);
+		this.panel.add(jLabel);
 	}
 }
