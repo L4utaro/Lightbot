@@ -1,18 +1,16 @@
 package criteriaOfAcceptance1;
 
-import static org.junit.Assert.assertNotEquals;
+import static org.junit.Assert.assertTrue;
 
-import java.io.IOException;
+import java.sql.Timestamp;
 
 import org.junit.Before;
 import org.junit.Test;
 
 import configuration.ConstantsTest;
-import generators.GameGenerator;
 import modelo.Game;
 
 public class UserStory04 {
-	private GameGenerator creator;
 	private Game game;
 
 	@Before
@@ -21,26 +19,22 @@ public class UserStory04 {
 	}
 
 	/**
-	 * Leer la colección de acciones [commandRight, commandMove, commandLeft,
-	 * commandMove, commandRight, commandMove, commandLeft, commandMove], como todas
-	 * las instrucciones son válidas, el validador deberá devolver “true”, afirmando
-	 * que las instrucciones son válidas y por lo tanto, se creara la lista de
-	 * acciones.
+	 * Correr la colección de acciones actions.json, y verificar que tarde menos de
+	 * 10 segundos su ejecución.
 	 */
 	@Test
 	public void checkActionsTest01() {
-		try {
-			this.creator = new GameGenerator();
-		} catch (IOException e) {
-		}
-		assertNotEquals(this.creator.getInvokerCommands().size(), 0);
+		Timestamp timestamp = new Timestamp(System.currentTimeMillis());
+		this.game = new Game(ConstantsTest.ROUTE_MAP_PROPERTIES, ConstantsTest.ROUTE_JSON_ACTIONS_1);
+		this.game.run();
+		assertTrue((new Timestamp(System.currentTimeMillis())).getTime() - (timestamp.getTime()) < 10000);
 	}
 
 	/**
 	 * Leer la colección de acciones [commandRight, commandMove, commandLeft,
 	 * commandMove, commandMove], como todas las instrucciones son válidas, se
-	 * deberá corroborar que el avatar no salga del camino posible, pero como salió
-	 * del mismo, se deberá lanzar un IllegalArgumentException, indicando que el
+	 * deberán ejecutar las instrucciones. Pero como el avatar termina saliendo del
+	 * camino posible se deberá lanzar un IllegalArgumentException, indicando que el
 	 * avatar salió del camino posible.
 	 */
 	@Test(expected = IllegalArgumentException.class)
@@ -48,14 +42,15 @@ public class UserStory04 {
 		this.game = new Game(ConstantsTest.ROUTE_MAP_PROPERTIES, ConstantsTest.ROUTE_JSON_ACTIONS_INVALID_2);
 		this.game.run();
 	}
-	/* Forma del mapa:
- 	[  AVATAR   ][  NO_WALK  ][  NO_WALK  ]
-	[   WALK    ][   WALK    ][  NO_WALK  ]
-	[  NO_WALK  ][   WALK    ][ LIGHT_OFF ] 
-	Despues de ejecutar las acciones:
- 	[   WALK    ][  NO_WALK  ][  NO_WALK  ]
-	[   WALK    ][   WALK    ][  AVATAR   ]
-	[  NO_WALK  ][   WALK    ][ LIGHT_OFF ] 
+	/*
+	 * Forma del mapa: 
+	 * [ AVATAR  ][ NO_WALK ][ NO_WALK   ] 
+	 * [ WALK    ][ WALK    ][ NO_WALK   ]
+	 * [ NO_WALK ][ WALK    ][ LIGHT_OFF ] 
+	 * Despues de ejecutar las acciones: 
+	 * [ WALK    ][ NO_WALK ][ NO_WALK   ] 
+	 * [ WALK    ][ WALK    ][ AVATAR    ] 
+	 * [ NO_WALK ][ WALK    ][LIGHT_OFF  ]
 	 */
 
 	/**
@@ -72,13 +67,14 @@ public class UserStory04 {
 		this.game = new Game(ConstantsTest.ROUTE_MAP_PROPERTIES, ConstantsTest.ROUTE_JSON_ACTIONS_2);
 		this.game.run();
 	}
-	/* Forma del mapa:
- 	[  AVATAR   ][  NO_WALK  ][  NO_WALK  ]
-	[   WALK    ][   WALK    ][  NO_WALK  ]
-	[  NO_WALK  ][   WALK    ][ LIGHT_OFF ] 
-	Despues de ejecutar las acciones:
- 	[   WALK    ][  NO_WALK  ][  NO_WALK  ]
-	[   WALK    ][   WALK    ][  AVATAR   ]
-	[  NO_WALK  ][   WALK    ][  AVATAR   ] 
+	/*
+	 * Forma del mapa: 
+	 * [ AVATAR  ][ NO_WALK ][ NO_WALK   ] 
+	 * [ WALK    ][ WALK    ][ NO_WALK   ]
+	 * [ NO_WALK ][ WALK    ][ LIGHT_OFF ] 
+	 * Despues de ejecutar las acciones: 
+	 * [ WALK    ][ NO_WALK ][ NO_WALK   ] 
+	 * [ WALK    ][ WALK    ][ AVATAR    ] 
+	 * [ NO_WALK ][ WALK    ][ AVATAR    ]
 	 */
 }
