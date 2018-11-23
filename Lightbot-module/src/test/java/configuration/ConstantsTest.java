@@ -28,4 +28,5 @@ public class ConstantsTest {
 	public static final String ROUTE_JSON_ACTIONS_INVALID_5 = "src/main/resources/configurationActions/actionsInvalid5.json";
 	public static final String ROUTE_JSON_ACTIONS_INVALID_6 = "src/main/resources/configurationActions/actionsInvalid6.json";
 	public static final String ROUTE_TXT_ACTIONS_WHIT_FUNCTIONS = "src/main/resources/configurationActions/actionsWhitFunctions.txt";
+	public static final String ROUTE_TXT_ACTIONS_WHIT_FUNCTIONS2 = "src/main/resources/configurationActions/actionsWhitFunctions2.txt";
 }
