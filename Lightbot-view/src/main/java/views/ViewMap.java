@@ -27,12 +27,16 @@ public class ViewMap implements Observer {
 		frame = new JFrame("Lightbot");
 	    frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 	    frame.setLocationRelativeTo(null);
+	    panel = new JPanel();
 	}
 	
 	public void draw() {
-	    panel = new JPanel();
+		panel.removeAll();
+		panel.revalidate();
+		panel.repaint();
 		rowCnt = this.map.getLimitsBoard().getWidht();
 		colCnt = this.map.getLimitsBoard().getHigh();
+		panel.setSize(colCnt*40, rowCnt*40);
 	    frame.setSize(colCnt*40, rowCnt*40);//check this
 
 	    Point actualPoint;
@@ -59,7 +63,7 @@ public class ViewMap implements Observer {
 			}
 	    }
 	    
-	     frame.setContentPane(panel);
+	     frame.add(panel);
 	     frame.setVisible(true);
 	}
 
