@@ -15,6 +15,7 @@ import modelo.Game;
 
 public class PanelInstructions implements Observer {
 	private List<InvokerCommand> invokersCommands;
+	private java.util.Map<String, List<InvokerCommand>> functions;
 	private JPanel panel;
 	private Size size;
 
@@ -55,9 +56,14 @@ public class PanelInstructions implements Observer {
 		}
 	}
 
+	public void drawFunctions() {
+		
+	}
+	
 	@Override
 	public void update(Observable observable, Object object) {
 		this.invokersCommands = ((Game) observable).getInvokersCommands();
+		this.functions = ((Game) observable).getFunctions(); 
 		draw();
 	}
 

@@ -16,7 +16,7 @@ public class UserStory04 {
 	 */
 	@Test
 	public void test01() {
-		this.controller = new ControllerGames("C:\\ProgramData\\ActionsTest");
+		this.controller = new ControllerGames("src/main/resources/user04test01");
 		this.controller.initGames();
 	}
 

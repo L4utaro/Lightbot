@@ -11,6 +11,7 @@ import javax.swing.JPanel;
 
 import controllers.Player;
 import model.Size;
+import panels.PanelPlayer;
 
 public class PlayersView implements Observer {
 	private JFrame frame;

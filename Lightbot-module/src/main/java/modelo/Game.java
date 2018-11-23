@@ -101,7 +101,11 @@ public class Game extends Observable{
 	public List<InvokerCommand> getInvokersCommands() {
 		return invokersCommands;
 	}
-
+	
+	public java.util.Map<String, List<InvokerCommand>> getFunctions() {
+		return this.creator.getFunctions();
+	}
+	
 	public Map getMap() {
 		return this.map;
 	}

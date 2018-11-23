@@ -5,7 +5,7 @@ import java.awt.event.ActionListener;
 
 import enums.StateGame;
 import modelo.Game;
-import views.PanelPlayer;
+import panels.PanelPlayer;
 
 public class Player implements ActionListener {
 	private Game game;
