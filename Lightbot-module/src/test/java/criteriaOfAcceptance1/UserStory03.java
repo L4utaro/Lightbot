@@ -21,7 +21,7 @@ public class UserStory03 {
 	@Test(expected = IllegalArgumentException.class)
 	public void fileNotFoundTest01() {
 		@SuppressWarnings("unused")
-		LectorTxt lectorTxt = new LectorTxt("C:\\\\ProgramData\\\\actionsNot.txt");
+		LectorTxt lectorTxt = new LectorTxt("C:\\ProgramData\\actionsNot.txt");
 	}
 	
 	/**
