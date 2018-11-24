@@ -54,6 +54,7 @@ public class Implementation {
 
 	public Map<String, List<InvokerCommand>> getAllFunctions() {
 		Map<String, List<InvokerCommand>> functions = new HashMap<String, List<InvokerCommand>>();
+		functions.put("actions",createColecctionOfActions(this.namesOfFunctions));
 		for (String nameFunction : this.namesOfFunctions) {
 			if (!nameFunction.equals("actions")) {
 				this.actionsJson = (JSONArray) this.lector.getListOfJson(nameFunction);

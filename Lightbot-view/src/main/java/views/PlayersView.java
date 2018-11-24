@@ -23,8 +23,8 @@ public class PlayersView implements Observer {
 		this.frame = new JFrame("Lightbot");
 		this.frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		this.frame.setLocationRelativeTo(null);
-		this.size = new Size(900, 800);
-		this.frame.setSize(this.size.getWidht(), this.size.getHigh());
+		this.size = new Size(1200, 900);
+		this.frame.setSize(this.size.getHigh(), this.size.getWidht());
 		this.panel = new JPanel();
 		this.panel.setLayout(null);
 	}

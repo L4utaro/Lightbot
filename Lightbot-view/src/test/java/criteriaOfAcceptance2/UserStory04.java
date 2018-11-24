@@ -9,38 +9,32 @@ public class UserStory04 {
 
 	/*
 	 * Cargar las acciones de la carpeta ActionsTest en el directorio
-	 * "C:\ProgramData\. Debera de cargar y mostrar todas las partidas de los
-	 * players y mostrar el resultado final de cada partida. En el primer juego
-	 * debera de mostrar el mensaje (You Win). Y el segundo juego (Game Over: The
-	 * avatar don't turned all the lights).
+	 * "src/main/resources/user04test01". Deberá de cargar y mostrar la unica
+	 * partida que posee. Mostrando el mapa del formato consola, el mapa del formato
+	 * grilla de color y las instrucciones usadas por el player. Al finalizar las
+	 * instrucciones debera de mostrar que el player gano el juego.
 	 */
 	@Test
-	public void test01() {
+	public void test01() throws InterruptedException {
 		this.controller = new ControllerGames("src/main/resources/user04test01");
 		this.controller.initGames();
+		this.controller.runGames();
+		Thread.sleep(10000);
 	}
 
 	/*
-	 * Cargar las acciones de la carpeta ActionsTest02 en el directorio
-	 * "C:\ProgramData\. Debera de cargar y mostrar todas las partidas de los
-	 * players y mostrar el resultado final de cada partida. Pero esta carpeta
-	 * contiene un archivo Java. Por lo tanto debera terminar y lanzar un
-	 * IllegalArgumentException.
+	 * Cargar las acciones de la carpeta ActionsTest en el directorio
+	 * "src/main/resources/user04test02". Debera de cargar y mostrar todas las
+	 * partidas de los players y mostrar el resultado final de cada partida. En el
+	 * primer juego debera de mostrar el mensaje (You Win). Y el segundo juego (Game
+	 * Over: The avatar don't turned all the lights).
 	 */
-	@Test(expected = IllegalArgumentException.class)
-	public void test02() {
-		this.controller = new ControllerGames("C:\\ProgramData\\ActionsTest02");
-		this.controller.initGames();
-	}
 
-	/*
-	 * Cargar las acciones de la carpeta ActionsTest03 en el directorio
-	 * "C:\ProgramData\. Pero como esta carpeta no existe en la direccion, debera de
-	 * lanzar una IllegalArgumentException("The folder don't exists");.
-	 */
-	@Test(expected = IllegalArgumentException.class)
-	public void test03() {
-		this.controller = new ControllerGames("C:\\ProgramData\\ActionsTest03");
+	@Test
+	public void test02() throws InterruptedException {
+		this.controller = new ControllerGames("src/main/resources/user04test02");
 		this.controller.initGames();
+		this.controller.runGames();
+		Thread.sleep(10000);
 	}
 }

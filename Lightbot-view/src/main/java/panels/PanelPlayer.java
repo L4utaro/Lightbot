@@ -31,7 +31,7 @@ public class PanelPlayer implements Observer {
 		this.size = new Size(800, 300);
 		this.panel = new JPanel();
 		this.panel.setLayout(null);
-		this.panel.setSize(800, 250);
+		this.panel.setSize(1200, 250);
 
 		this.time = 1.5;
 		drawTime();
