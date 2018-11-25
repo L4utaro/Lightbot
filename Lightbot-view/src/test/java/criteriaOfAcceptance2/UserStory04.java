@@ -14,13 +14,13 @@ public class UserStory04 {
 	 * grilla de color y las instrucciones usadas por el player. Al finalizar las
 	 * instrucciones debera de mostrar que el player gano el juego.
 	 */
-	@Test
-	public void test01() throws InterruptedException {
-		this.controller = new ControllerGames("src/main/resources/user04test01");
-		this.controller.initGames();
-		this.controller.runGames();
-		Thread.sleep(10000);
-	}
+//	@Test
+//	public void test01() throws InterruptedException {
+//		this.controller = new ControllerGames("src/main/resources/user04test01");
+//		this.controller.initGames();
+//		this.controller.runGames();
+//		Thread.sleep(10000);
+//	}
 
 	/*
 	 * Cargar las acciones de la carpeta ActionsTest en el directorio
@@ -30,13 +30,13 @@ public class UserStory04 {
 	 * Over: The avatar don't turned all the lights).
 	 */
 
-	@Test
-	public void test02() throws InterruptedException {
-		this.controller = new ControllerGames("src/main/resources/user04test02");
-		this.controller.initGames();
-		this.controller.runGames();
-		Thread.sleep(10000);
-	}
+//	@Test
+//	public void test02() throws InterruptedException {
+//		this.controller = new ControllerGames("src/main/resources/user04test02");
+//		this.controller.initGames();
+//		this.controller.runGames();
+//		Thread.sleep(10000);
+//	}
 	
 	/*
 	 * Cargar las acciones de la carpeta ActionsTest en el directorio

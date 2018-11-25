@@ -29,7 +29,7 @@ public class UserStory02 {
 	@Test
 	public void test01() throws IOException {
 		this.gameGenerator = new GameGenerator(ConstantsTest.ROUTE_MAP_PROPERTIES, ConstantsTest.ROUTE_JSON_ACTIONS_6);
-		Game game = new Game(ConstantsTest.ROUTE_MAP_PROPERTIES, ConstantsTest.ROUTE_JSON_ACTIONS_6);
+		Game game = new Game(this.gameGenerator.getMap(), this.gameGenerator.getInvokerCommands(),null);
 		assertEquals(9, game.getInvokersCommands().size());
 		game.run();
 		assertEquals(new Point(3, 3), game.getMap().getAvatarPos());
@@ -50,8 +50,9 @@ public class UserStory02 {
 	 */
 
 	@Test(expected = IllegalArgumentException.class)
-	public void test02() {
-		Game game = new Game(ConstantsTest.ROUTE_MAP_PROPERTIES, ConstantsTest.ROUTE_JSON_ACTIONS_INVALID_5);
+	public void test02() throws IOException {
+		this.gameGenerator = new GameGenerator(ConstantsTest.ROUTE_MAP_PROPERTIES, ConstantsTest.ROUTE_JSON_ACTIONS_INVALID_5);
+		Game game = new Game(this.gameGenerator.getMap(), this.gameGenerator.getInvokerCommands(),null);
 		game.run();
 	}
 	/*
@@ -71,7 +72,8 @@ public class UserStory02 {
 	@Test
 	public void test03() throws IOException, InterruptedException {
 		Timestamp timestamp = new Timestamp(System.currentTimeMillis());
-		Game game = new Game(ConstantsTest.ROUTE_MAP_PROPERTIES, ConstantsTest.ROUTE_JSON_ACTIONS_6);
+		this.gameGenerator = new GameGenerator(ConstantsTest.ROUTE_MAP_PROPERTIES, ConstantsTest.ROUTE_JSON_ACTIONS_6);
+		Game game = new Game(this.gameGenerator.getMap(), this.gameGenerator.getInvokerCommands(),null);
 		game.setStateGame(StateGame.STOP);
 		Thread.sleep(3000);
 		game.setStateGame(StateGame.PLAY);
@@ -88,7 +90,8 @@ public class UserStory02 {
 	@Test
 	public void test04() throws IOException, InterruptedException {
 		Timestamp timestamp = new Timestamp(System.currentTimeMillis());
-		Game game = new Game(ConstantsTest.ROUTE_MAP_PROPERTIES, ConstantsTest.ROUTE_JSON_ACTIONS_1);
+		this.gameGenerator = new GameGenerator(ConstantsTest.ROUTE_MAP_PROPERTIES, ConstantsTest.ROUTE_JSON_ACTIONS_1);
+		Game game = new Game(this.gameGenerator.getMap(), this.gameGenerator.getInvokerCommands(),null);
 		game.setTimeForInstruction(2.0);
 		game.run();
 		assertTrue((new Timestamp(System.currentTimeMillis())).getTime() - (timestamp.getTime()) > 17000 );

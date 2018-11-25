@@ -29,8 +29,6 @@ public class GameGenerator {
 	public GameGenerator(String mapRoute) throws IOException {
 		this.invokerCommands = new ArrayList<InvokerCommand>();
 		createMap(mapRoute);
-		this.implementation = new Implementation(Constants.ROUTE_JSON_ACTIONS_1);
-		createActions();
 	}
 
 	/** whit all options */
@@ -82,5 +80,11 @@ public class GameGenerator {
 
 	public int getCantOfActions() {
 		return cantOfActions;
+	}
+
+	public List<InvokerCommand> createActions(String actionsRoute) {
+		this.implementation = new Implementation(actionsRoute);
+		createActions();
+		return this.invokerCommands;
 	}
 }

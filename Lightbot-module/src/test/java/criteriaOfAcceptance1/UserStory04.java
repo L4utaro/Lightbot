@@ -3,8 +3,6 @@ package criteriaOfAcceptance1;
 import static org.junit.Assert.assertNotEquals;
 
 import java.io.IOException;
-
-import org.junit.Before;
 import org.junit.Test;
 
 import configuration.ConstantsTest;
@@ -14,12 +12,7 @@ import modelo.Game;
 public class UserStory04 {
 	private GameGenerator creator;
 	private Game game;
-
-	@Before
-	public void init() {
-		this.game = new Game();
-	}
-
+	
 	/**
 	 * Leer la colección de acciones [commandRight, commandMove, commandLeft,
 	 * commandMove, commandRight, commandMove, commandLeft, commandMove], como todas
@@ -42,10 +35,13 @@ public class UserStory04 {
 	 * deberá corroborar que el avatar no salga del camino posible, pero como salió
 	 * del mismo, se deberá lanzar un IllegalArgumentException, indicando que el
 	 * avatar salió del camino posible.
+	 * @throws IOException 
 	 */
 	@Test(expected = IllegalArgumentException.class)
-	public void checkActionsTest02() {
-		this.game = new Game(ConstantsTest.ROUTE_MAP_PROPERTIES, ConstantsTest.ROUTE_JSON_ACTIONS_INVALID_2);
+	public void checkActionsTest02() throws IOException {
+		this.creator = new GameGenerator(ConstantsTest.ROUTE_MAP_PROPERTIES);
+		this.game = new Game(this.creator.getMap(), this.creator.createActions(ConstantsTest.ROUTE_JSON_ACTIONS_INVALID_2) , this.creator.getFunctions());
+		this.game.init();
 		this.game.run();
 	}
 	/* Forma del mapa:
@@ -68,8 +64,10 @@ public class UserStory04 {
 	 * encuentran encendida.
 	 */
 	@Test(expected = IllegalArgumentException.class)
-	public void checkActionsTest03() {
-		this.game = new Game(ConstantsTest.ROUTE_MAP_PROPERTIES, ConstantsTest.ROUTE_JSON_ACTIONS_2);
+	public void checkActionsTest03() throws IOException {
+		this.creator = new GameGenerator(ConstantsTest.ROUTE_MAP_PROPERTIES);
+		this.game = new Game(this.creator.getMap(), this.creator.createActions(ConstantsTest.ROUTE_JSON_ACTIONS_2) ,this.creator.getFunctions());
+		this.game.init();
 		this.game.run();
 	}
 	/* Forma del mapa:

@@ -2,18 +2,20 @@ package criteriaOfAcceptance2;
 
 import static org.junit.Assert.assertEquals;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
 import org.junit.Before;
 import org.junit.Test;
 
-import configuration.Constants;
+import configuration.ConstantsTest;
+import generators.GameGenerator;
 import lectors.LectorFolder;
 import model.Player;
 
 public class UserStory03 {
-
+	private GameGenerator gameGenerator;
 	@Before
 	public void init() {
 	}
@@ -33,7 +35,7 @@ public class UserStory03 {
 	 * y cada uno con su respectivo juego.
 	 */
 	@Test 
-	public void test02() {
+	public void test02() throws IOException {
 		LectorFolder lectorFolder = new LectorFolder("src/main/resources/user03test02");
 		List<Player> players = createPlayers(lectorFolder.getRoutesOfActions());
 		assertEquals(3, players.size());
@@ -56,10 +58,11 @@ public class UserStory03 {
 		lectorFolder.getRoutesOfActions();
 	}
 
-	public List<Player> createPlayers(List<String> routesActions) {
+	public List<Player> createPlayers(List<String> routesActions) throws IOException {
 		List<Player> players = new ArrayList<>();
 		for (int i = 0; i < routesActions.size(); i++) {
-			players.add(new Player(Constants.ROUTE_MAP_PROPERTIES, routesActions.get(i)));
+			this.gameGenerator = new GameGenerator(ConstantsTest.ROUTE_MAP_PROPERTIES, ConstantsTest.ROUTE_JSON_ACTIONS_6);
+			players.add(new Player(this.gameGenerator.getMap(), this.gameGenerator.getInvokerCommands(),null));
 		}
 		return players;
 	}

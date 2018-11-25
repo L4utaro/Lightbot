@@ -1,12 +1,10 @@
 package modelo;
 
-import java.io.IOException;
 import java.util.List;
 import java.util.Observable;
 
 import commands.invoker.InvokerCommand;
 import enums.StateGame;
-import generators.GameGenerator;
 import model.Map;
 import validators.ValidatorGame;
 
@@ -14,51 +12,23 @@ public class Game extends Observable{
 	private Map map;
 	private ValidatorGame validatorGame;
 	private String message;
-	private	GameGenerator creator;
 	private List<InvokerCommand> invokersCommands;
 	private StateGame stateGame;
-	//private Thread thread;
+	private java.util.Map<String, List<InvokerCommand>> functions;
 	
-	/**default*/
-	public Game(){
-		try {
-			 creator = new GameGenerator();
-		} catch (IOException e) {
-			message = e.getMessage();
-		}
-		init();
-	}
-	
-	/**whit map*/
-	public Game(String mapRoute){
-		try {
-			 creator = new GameGenerator(mapRoute);
-		} catch (IOException e) {
-			message = e.getMessage();
-		}
-		init();
+	public Game(Map map, List<InvokerCommand> invokersCommands, java.util.Map<String, List<InvokerCommand>> functions) {
+		this.map = map;
+		this.invokersCommands = invokersCommands;
+		this.functions = functions;
 	}
 
-	/**whit all options*/
-	public Game(String mapRoute, String jsonRoute){
-		try {
-			 creator = new GameGenerator(mapRoute, jsonRoute);
-		} catch (IOException e) {
-			message = e.getMessage();
-		}
-		init();
-	}
-	
 	public void init() {
-		this.map = creator.getMap();
 		this.validatorGame = new ValidatorGame(map);
-		this.invokersCommands = creator.getInvokerCommands();
 		this.stateGame = StateGame.PLAY;
 		modelChange();
 	}
 	
 	public void run() {
-		//for (InvokerCommand invokerCommand : this.invokersCommands) {
 		int i = 0;
 		while (!this.stateGame.equals(StateGame.FINISH)) {
 			while(this.stateGame.equals(StateGame.PLAY)) {
@@ -103,7 +73,7 @@ public class Game extends Observable{
 	}
 	
 	public java.util.Map<String, List<InvokerCommand>> getFunctions() {
-		return this.creator.getFunctions();
+		return this.functions;
 	}
 	
 	public Map getMap() {
@@ -125,6 +95,6 @@ public class Game extends Observable{
 	}
 	
 	public int getCantActions() {
-		return this.creator.getCantOfActions();
+		return this.functions.get("actions").size();
 	}
 }

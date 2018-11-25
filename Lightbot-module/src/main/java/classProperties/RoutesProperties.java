@@ -14,7 +14,7 @@ public class RoutesProperties {
 		loadDataProperties();
 	}
 
-	private void loadDataProperties() {
+	public void loadDataProperties() {
 		String routeFolderActions = this.properties.getProperty("routeFolderActions");
 		routesConfiguration = new RoutesConfiguration(routeFolderActions);
 	}

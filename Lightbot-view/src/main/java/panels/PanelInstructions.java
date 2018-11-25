@@ -89,7 +89,6 @@ public class PanelInstructions implements Observer {
 	
 	@Override
 	public void update(Observable observable, Object object) {
-		//this.invokersCommands = ((Game) observable).getInvokersCommands();
 		this.functions = ((Game) observable).getFunctions(); 
 		draw();
 	}

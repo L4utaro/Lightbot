@@ -11,6 +11,8 @@ public class ConstantsTest {
 	public static final String NAME_POSAVATAR_PROPERTIES = "posAvatar";
 	public static final String NAME_POSLIGHT_PROPERTIES = "posLight";
 	public static final String NAME_PATHPOSSIBLE_PROPERTIES = "pathPossible";
+	
+	public static final String ROUTE_ROUTES_CONFIGURATION_PROPERTIES = "src/main/resources/configurationProperties/configuration.properties";
 
 	public static final String ROUTE_JSON_ACTIONS_1 = "src/main/resources/configurationActions/actions.json";
 	public static final String ROUTE_JSON_ACTIONS_2 = "src/main/resources/configurationActions/actions2.json";
