@@ -40,8 +40,9 @@ public class PanelInstructions implements Observer {
 		for (int i = 0; i < invokersCommands.size(); i++) {
 			if(i == 0) {
 				newString = newString + " [" + getNameOfAction(invokersCommands.get(i).getCommand()) + "]";
+			} else {
+				newString = newString + ", [" + getNameOfAction(invokersCommands.get(i).getCommand()) + "]";
 			}
-			newString = newString + ", [" + getNameOfAction(invokersCommands.get(i).getCommand()) + "]";
 			if(i+1 == invokersCommands.size()) {
 				newString = newString + "} ";
 			}
