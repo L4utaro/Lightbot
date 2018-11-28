@@ -19,7 +19,6 @@ public class UserStory04 {
 		this.controller = new ControllerGames("src/main/resources/user04test01");
 		this.controller.initGames();
 		this.controller.runGames();
-		Thread.sleep(5000);
 	}
 
 	/*
@@ -35,7 +34,6 @@ public class UserStory04 {
 		this.controller = new ControllerGames("src/main/resources/user04test02");
 		this.controller.initGames();
 		this.controller.runGames();
-		Thread.sleep(5000);
 	}
 	
 	/*
@@ -52,6 +50,5 @@ public class UserStory04 {
 		this.controller = new ControllerGames("src/main/resources/user04test03");
 		this.controller.initGames();
 		this.controller.runGames();
-		Thread.sleep(5000);
 	}
 }
