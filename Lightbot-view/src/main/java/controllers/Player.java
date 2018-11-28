@@ -50,7 +50,6 @@ public class Player implements ActionListener {
 
 	public void runGame() {
 		try {
-			System.out.println(this.game.getMap());
 			this.game.run();
 			this.panelPlayer.setMessage("You win");
 			this.panelPlayer.draw();

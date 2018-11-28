@@ -7,7 +7,6 @@ import java.util.List;
 import configuration.Constants;
 import generators.GameGenerator;
 import lectors.LectorFolder;
-import model.Map;
 import validators.ValidatorRoutesActions;
 
 public class ControllerGames {
@@ -27,17 +26,8 @@ public class ControllerGames {
 	public void initGames() {
 		this.routesActions = this.lector.getRoutesOfActions();
 		if (this.validatorRoutesActions.areAValidsRoutes(routesActions)) {
-			try {
-				this.gameGenerator = new GameGenerator(Constants.ROUTE_MAP_PROPERTIES);
-			} catch (IOException e) {
-				throw new IllegalArgumentException("There don't exists a map, in that route");
-			}
 			this.players = createPlayers(routesActions);
-			try {
-				initPlayers();
-			} catch (CloneNotSupportedException e) {
-				e.printStackTrace();
-			}
+			initPlayers();
 			this.controllerPlayersView.init(this.players);
 		} else {
 			throw new IllegalArgumentException("There are invalids files in the folder");
@@ -52,15 +42,23 @@ public class ControllerGames {
 		return players;
 	}
 
-	public void initPlayers() throws CloneNotSupportedException {
+	public void initPlayers() {
 		for (int i = 0; i < this.players.size(); i++) {
-			this.players.get(i).createGame((Map) this.gameGenerator.getMap().clone(),
+			createMap();
+			this.players.get(i).createGame(this.gameGenerator.getMap(),
 					this.gameGenerator.createActions(routesActions.get(i)), this.gameGenerator.getFunctions());
 			this.players.get(i).getPanelPlayer().draw();
 			this.players.get(i).getGame().addObserver(this.controllerPlayersView.getPlayersView());
 		}
 	}
 
+	public void createMap() {
+		try {
+			this.gameGenerator = new GameGenerator(Constants.ROUTE_MAP_PROPERTIES);
+		} catch (IOException e) {
+			throw new IllegalArgumentException("There don't exists a map, in that route");
+		}
+	}
 	public void runGames() {
 		for (Player player : this.players) {
 			player.runGame();
@@ -75,7 +73,6 @@ public class ControllerGames {
 			if (minInstructions >= this.players.get(i).getGame().getCantActions()
 					&& this.players.get(i).getPanelPlayer().getMessage().equals("You win")) {
 				minInstructions = this.players.get(i).getGame().getCantActions();
-				//messageWinner = "The winner is player: " + (i + 1);
 				messageWinner = "The winner is player: " + this.players.get(i).getPanelPlayer().getNamePlayer();
 			}
 		}
