@@ -34,6 +34,8 @@ public class PlayersView implements Observer {
 	}
 	
 	public void draw() {
+		this.panel.revalidate();
+		this.panel.repaint();
 		for (int i = 0; i < this.players.size(); i++) {
 			PanelPlayer panelPlayer = this.players.get(i).getPanelPlayer();
 			panelPlayer.getPanel().setLocation(new Point(0 ,250 * i));
