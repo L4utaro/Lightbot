@@ -1,5 +1,6 @@
 package lectors.implementation;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -7,12 +8,14 @@ import java.util.Map;
 
 import org.json.simple.JSONArray;
 
+import classProperties.ActionsProperties;
 import commands.CommandFunction;
 import commands.CommandLeft;
 import commands.CommandLight;
 import commands.CommandMove;
 import commands.CommandRight;
 import commands.invoker.InvokerCommand;
+import configuration.Constants;
 import lectors.LectorJson;
 import lectors.LectorTxt;
 import lectors.interfaces.ILector;
@@ -25,7 +28,8 @@ public class Implementation {
 	private IValidatorInstructions validatorLector;
 	private JSONArray actionsJson;
 	private List<String> namesOfFunctions;
-
+	private ActionsProperties actionsProperties;
+	
 	public Implementation(String route) {
 		if (route.charAt(route.length() - 1) == 'n') {
 			implementationJson(route);
@@ -34,6 +38,11 @@ public class Implementation {
 		}
 		this.namesOfFunctions = new ArrayList<String>();
 		this.namesOfFunctions = getNamesOfFunctions();
+		try {
+			this.actionsProperties = new ActionsProperties(Constants.ROUTE_CONFIGURATIONS_ACTIONS);
+		} catch (IOException e) {
+			throw new IllegalArgumentException("Actions configurations not found");
+		}
 	}
 
 	public void implementationJson(String route) {
@@ -77,13 +86,13 @@ public class Implementation {
 	}
 
 	public void addAction(String action, List<InvokerCommand> invokerCommands) {
-		if (action.equals("avanzar") || action.equals("move")) {
+		if (this.actionsProperties.getActionsConfiguration().getAvanzar().contains(action)) {
 			invokerCommands.add(new InvokerCommand(new CommandMove()));
-		} else if (action.equals("izquierda") || action.equals("left")) {
+		} else if (this.actionsProperties.getActionsConfiguration().getIzquierda().contains(action)) {
 			invokerCommands.add(new InvokerCommand(new CommandLeft()));
-		} else if (action.equals("derecha") || action.equals("right")) {
+		} else if (this.actionsProperties.getActionsConfiguration().getDerecha().contains(action)) {
 			invokerCommands.add(new InvokerCommand(new CommandRight()));
-		} else if (action.equals("luz") || action.equals("light")) {
+		} else if (this.actionsProperties.getActionsConfiguration().getLuz().contains(action)) {
 			invokerCommands.add(new InvokerCommand(new CommandLight()));
 		} else {
 			invokerCommands.add(new InvokerCommand(new CommandFunction(action)));

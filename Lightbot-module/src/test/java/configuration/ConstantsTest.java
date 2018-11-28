@@ -13,6 +13,7 @@ public class ConstantsTest {
 	public static final String NAME_PATHPOSSIBLE_PROPERTIES = "pathPossible";
 	
 	public static final String ROUTE_ROUTES_CONFIGURATION_PROPERTIES = "src/main/resources/configurationProperties/configuration.properties";
+	public static final String ROUTE_CONFIGURATION_ACTIONS = "src/main/resources/configurationProperties/configurationActions.properties";
 
 	public static final String ROUTE_JSON_ACTIONS_1 = "src/main/resources/configurationActions/actions.json";
 	public static final String ROUTE_JSON_ACTIONS_2 = "src/main/resources/configurationActions/actions2.json";
