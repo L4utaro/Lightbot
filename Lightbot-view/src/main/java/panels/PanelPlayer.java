@@ -23,8 +23,9 @@ public class PanelPlayer implements Observer {
 	private JButton btnTimeUp;
 	private JLabel timeOfInstruction;
 	private Double time;
-
-	public PanelPlayer() {
+	private String namePlayer;
+	
+	public PanelPlayer(String namePlayer) {
 		this.panelMap = new PanelMap();
 		this.panelMapConsole = new PanelMapConsole();
 		this.panelInstructions = new PanelInstructions();
@@ -32,7 +33,7 @@ public class PanelPlayer implements Observer {
 		this.panel = new JPanel();
 		this.panel.setLayout(null);
 		this.panel.setSize(1200, 250);
-
+		this.namePlayer = namePlayer;
 		this.time = 1.5;
 		drawTime();
 		drawbtns();
@@ -47,11 +48,12 @@ public class PanelPlayer implements Observer {
 		panel.add(this.panelInstructions.getPanel());
 		if (this.message != null) {
 			JLabel label = new JLabel(this.message);
-			label.setBounds(5, 0, 500, 25);
+			label.setBounds(150, 0, 500, 25);
 			label.setOpaque(true);
 			panel.add(label);
 		}
 		drawTime();
+		drawNamePlayer();
 	}
 	
 	public void drawTime() {
@@ -79,6 +81,12 @@ public class PanelPlayer implements Observer {
 		panel.add(btnStop);
 	}
 
+	public void drawNamePlayer() {
+		JLabel label = new JLabel(this.namePlayer + ":");
+		label.setBounds(0, 0, 150, 25);
+		label.setOpaque(true);
+		panel.add(label);
+	}
 	@Override
 	public void update(Observable o, Object arg) {
 		draw();
@@ -142,5 +150,9 @@ public class PanelPlayer implements Observer {
 
 	public JButton getBtnTimeUp() {
 		return btnTimeUp;
+	}
+
+	public String getNamePlayer() {
+		return namePlayer;
 	}
 }

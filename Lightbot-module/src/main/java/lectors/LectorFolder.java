@@ -25,4 +25,16 @@ public class LectorFolder {
 		}
 		return routesActions;
 	}
+	
+	public List<String> getNamesPlayers() {
+		List<String> namesPlayers = new ArrayList<>();
+		try {
+			for (final File fileEntry : this.folder.listFiles()) {
+				namesPlayers.add(fileEntry.getName());
+			}
+		} catch (NullPointerException e) {
+			throw new IllegalArgumentException("The folder don't exists");
+		}
+		return namesPlayers;
+	}
 }

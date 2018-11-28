@@ -8,7 +8,7 @@ import enums.LightStatus;
 import enums.TypeOfBox;
 import model.interfaces.IObjectGraphic;
 
-public class Map {
+public class Map implements Cloneable {
 	private Board board;
 
 	public Map(Builder builder) {
@@ -50,7 +50,7 @@ public class Map {
 	public List<Point> getListOfLightPos() {
 		return this.board.getListOfLightPos();
 	}
-	
+
 	public void setAvatarPos(Point avatarPos) {
 		this.board.setAvatarPos(avatarPos);
 	}
@@ -68,4 +68,8 @@ public class Map {
 		deleteBox(oldPosition);
 		setAvatarPos(newPosition);
 	}
+
+	 public Object clone() throws CloneNotSupportedException{
+	    return super.clone();
+	 }
 }

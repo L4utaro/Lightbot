@@ -23,5 +23,6 @@ public class ControllerPlayersView {
 	
 	public void drawWinner(String message) {
 		this.playersView.drawWinner(message);
+		this.playersView.update(null, null);
 	}
 }

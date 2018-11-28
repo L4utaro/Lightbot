@@ -14,8 +14,8 @@ public class Player implements ActionListener {
 	private Game game;
 	private PanelPlayer panelPlayer;
 
-	public Player() {
-		this.panelPlayer = new PanelPlayer();
+	public Player(String namePlayer) {
+		this.panelPlayer = new PanelPlayer(namePlayer);
 		this.panelPlayer.getBtnPlay().addActionListener(this);
 		this.panelPlayer.getBtnStop().addActionListener(this);
 		this.panelPlayer.getBtnTimeDown().addActionListener(this);
@@ -50,6 +50,7 @@ public class Player implements ActionListener {
 
 	public void runGame() {
 		try {
+			System.out.println(this.game.getMap());
 			this.game.run();
 			this.panelPlayer.setMessage("You win");
 			this.panelPlayer.draw();

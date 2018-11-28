@@ -74,7 +74,7 @@ public class PlayersView implements Observer {
 
 	public void drawWinner(String message) {
 		JLabel jLabel = new JLabel(message);
-		jLabel.setBounds(340,770,150,20);
+		jLabel.setBounds(340,770,500,20);
 		this.panel.add(jLabel);
 	}
 }
