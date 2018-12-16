@@ -1,0 +1,24 @@
+{
+  "actions": [
+    "derecha",
+    "avanzar",
+    "izquierda",
+    "avanzar",
+    "derecha",
+    "avanzar",
+    "izquierda",
+    "avanzar",
+    "fun1",
+    "fun2"
+  ],
+  "fun1": [
+    "derecha",
+    "derecha"
+  ],
+  "fun2": [
+    "avanzar",
+    "izquierda",
+    "izquierda",
+    "avanzar",
+    "luz"  ]
+}
