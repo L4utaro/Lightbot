@@ -34,7 +34,7 @@ public class UserStory01 {
 	public void test02() throws IOException {
 		this.gameGenerator = new GameGenerator(ConstantsTest.ROUTE_MAP_PROPERTIES, ConstantsTest.ROUTE_JSON_ACTIONS_3);
 		assertEquals(12, this.gameGenerator.getInvokerCommands().size());
-		assertEquals(2, this.gameGenerator.getFunctions().size());
+		assertEquals(3, this.gameGenerator.getFunctions().size());
 		assertEquals(2, this.gameGenerator.getFunctions().get("fun1").size());
 		assertEquals(2, this.gameGenerator.getFunctions().get("fun2").size());
 	}
