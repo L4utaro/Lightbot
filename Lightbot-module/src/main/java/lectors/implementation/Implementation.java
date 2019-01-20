@@ -63,6 +63,7 @@ public class Implementation {
 
 	public Map<String, List<InvokerCommand>> getAllFunctions() {
 		Map<String, List<InvokerCommand>> functions = new HashMap<String, List<InvokerCommand>>();
+		functions.putAll(defaultFunciontions());
 		functions.put("actions",createColecctionOfActions(this.namesOfFunctions));
 		for (String nameFunction : this.namesOfFunctions) {
 			if (!nameFunction.equals("actions")) {
@@ -71,6 +72,11 @@ public class Implementation {
 			}
 		}
 		return functions;
+	}
+
+	private Map<? extends String, ? extends List<InvokerCommand>> defaultFunciontions() {
+		//Constants.ROUTE_FUNCTIONS_MACRO
+		return null;
 	}
 
 	public List<InvokerCommand> createColecctionOfActions(List<String> namesOfFunctions) {
