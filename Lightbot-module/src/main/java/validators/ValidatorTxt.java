@@ -13,12 +13,15 @@ public class ValidatorTxt implements IValidatorInstructions{
 
 	public ValidatorTxt() {}
 	
-	public boolean validateInstructionsOfJsonArray(JSONArray actionsJson, List<String> namesOfFunctions) {
+	public boolean validateInstructionsOfJsonArray(JSONArray actionsJson, List<String> namesOfFunctions, List<String> namesOfFunctionsDefault) {
 		refreshInstructionsValids();
 		if(namesOfFunctions!=null) {
 			this.instrucctionsValids.addAll(namesOfFunctions);
 		} if(actionsJson==null) {
 			return false;
+		}
+		if(namesOfFunctionsDefault!=null) {
+			this.instrucctionsValids.addAll(namesOfFunctionsDefault);
 		}
 		for (int i = 0; i < actionsJson.size(); i++) {
 			if (!checkInstruction(actionsJson.get(i).toString())) {

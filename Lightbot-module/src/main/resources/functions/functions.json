@@ -1,18 +1,18 @@
 {
-  “supervelocidad”: [
-     “avanzar”, 
-     “avanzar”, 
-     “avanzar”
+  "supervelocidad": [
+     "avanzar", 
+     "avanzar", 
+     "avanzar"
   ], 
-  “caballo”: [
-    “avanzar”,
-    “derecha”,
-    “avanzar”,
-    “avanzar”
+  "caballo": [
+    "avanzar",
+    "derecha",
+    "avanzar",
+    "avanzar"
   ], 
-  “alfil”: [
-    “avanzar”,
-    “derecha”,
-    “avanzar”
+  "alfil": [
+    "avanzar",
+    "derecha",
+    "avanzar"
   ]
 }

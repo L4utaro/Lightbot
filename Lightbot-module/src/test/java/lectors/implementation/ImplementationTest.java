@@ -16,7 +16,7 @@ public class ImplementationTest {
 
 	@Before
 	public void init() {
-		this.implementation = new Implementation(ConstantsTest.ROUTE_JSON_ACTIONS_1);
+		this.implementation = new Implementation(ConstantsTest.ROUTE_JSON_ACTIONS_1, ConstantsTest.ROUTE_FUNCTIONS_MACRO);
 		this.invokerCommands = this.implementation.createColecctionOfActions(null);
 	}
 
@@ -46,13 +46,13 @@ public class ImplementationTest {
 
 	@Test
 	public void test05() {
-		this.implementation = new Implementation(ConstantsTest.ROUTE_JSON_ACTIONS_1);
+		this.implementation = new Implementation(ConstantsTest.ROUTE_JSON_ACTIONS_1, ConstantsTest.ROUTE_FUNCTIONS_MACRO);
 		assertEquals(this.implementation.getActionsJson().size(), 9);
 	}
 
 	@Test(expected = IllegalArgumentException.class)
 	public void test06() {
-		this.implementation = new Implementation("src/main/resources/error.json");
+		this.implementation = new Implementation("src/main/resources/error.json", ConstantsTest.ROUTE_FUNCTIONS_MACRO);
 	}
 
 	@Test
@@ -63,14 +63,14 @@ public class ImplementationTest {
 
 	@Test(expected = IllegalArgumentException.class)
 	public void test08() {
-		this.implementation = new Implementation(ConstantsTest.ROUTE_JSON_ACTIONS_INVALID_1);
+		this.implementation = new Implementation(ConstantsTest.ROUTE_JSON_ACTIONS_INVALID_1, ConstantsTest.ROUTE_FUNCTIONS_MACRO);
 		this.implementation.createColecctionOfActions(null);
 		assertEquals(this.implementation.getActionsJson().size(), 9);
 	}
 
 	@Test
 	public void test09() {
-		this.implementation = new Implementation(ConstantsTest.ROUTE_TXT_ACTIONS_3);
+		this.implementation = new Implementation(ConstantsTest.ROUTE_TXT_ACTIONS_3, ConstantsTest.ROUTE_FUNCTIONS_MACRO);
 		this.implementation.addAction("move", this.invokerCommands);
 		assertEquals(this.invokerCommands.size(), 10);
 	}

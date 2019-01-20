@@ -28,7 +28,7 @@ public class UserStory02 {
 	 */
 	@Test(expected = IllegalArgumentException.class)
 	public void test02() {
-		this.implementation = new Implementation(ConstantsTest.ROUTE_JSON_ACTIONS_INVALID_1);
+		this.implementation = new Implementation(ConstantsTest.ROUTE_JSON_ACTIONS_INVALID_1, ConstantsTest.ROUTE_FUNCTIONS_MACRO);
 		this.implementation.createColecctionOfActions(null);
 	}
 
@@ -41,7 +41,7 @@ public class UserStory02 {
 	 */
 	@Test
 	public void test03() {
-		this.implementation = new Implementation(ConstantsTest.ROUTE_JSON_ACTIONS_2);
+		this.implementation = new Implementation(ConstantsTest.ROUTE_JSON_ACTIONS_2, ConstantsTest.ROUTE_FUNCTIONS_MACRO);
 		assertEquals(this.implementation.createColecctionOfActions(null).size(), 8);
 	}
 }

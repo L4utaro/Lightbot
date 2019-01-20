@@ -16,7 +16,7 @@ public class ValidatorJsonTest {
 	@Before
 	public void init() {
 		this.validatorJson = new ValidatorJson();
-		this.implementacion = new Implementation(ConstantsTest.ROUTE_JSON_ACTIONS_1);
+		this.implementacion = new Implementation(ConstantsTest.ROUTE_JSON_ACTIONS_1, ConstantsTest.ROUTE_FUNCTIONS_MACRO);
 	}
 
 	@Test
@@ -27,12 +27,12 @@ public class ValidatorJsonTest {
 
 	@Test
 	public void test02() {
-		assertTrue(this.validatorJson.validateInstructionsOfJsonArray(this.implementacion.getActionsJson(), null));
+		assertTrue(this.validatorJson.validateInstructionsOfJsonArray(this.implementacion.getActionsJson(), null, null));
 	}
 
 	@Test
 	public void test03() {
-		this.implementacion = new Implementation(ConstantsTest.ROUTE_JSON_ACTIONS_INVALID_1);
-		assertFalse(this.validatorJson.validateInstructionsOfJsonArray(this.implementacion.getActionsJson(), null));
+		this.implementacion = new Implementation(ConstantsTest.ROUTE_JSON_ACTIONS_INVALID_1, ConstantsTest.ROUTE_FUNCTIONS_MACRO);
+		assertFalse(this.validatorJson.validateInstructionsOfJsonArray(this.implementacion.getActionsJson(), null, null));
 	}
 }

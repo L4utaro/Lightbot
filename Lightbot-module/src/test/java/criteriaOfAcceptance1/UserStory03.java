@@ -34,7 +34,7 @@ public class UserStory03 {
 
 	@Test(expected = IllegalArgumentException.class)
 	public void argumentsInvalidTest02() {
-		this.implementation = new Implementation(ConstantsTest.ROUTE_TXT_ACTIONS_INVALID_3);
+		this.implementation = new Implementation(ConstantsTest.ROUTE_TXT_ACTIONS_INVALID_3, ConstantsTest.ROUTE_FUNCTIONS_MACRO);
 		this.implementation.createColecctionOfActions(null);
 	}
 	
@@ -47,7 +47,7 @@ public class UserStory03 {
 	 */
 	@Test
 	public void test03() {
-		this.implementation = new Implementation(ConstantsTest.ROUTE_TXT_ACTIONS_3);
+		this.implementation = new Implementation(ConstantsTest.ROUTE_TXT_ACTIONS_3, ConstantsTest.ROUTE_FUNCTIONS_MACRO);
 		assertEquals(this.implementation.createColecctionOfActions(null).size(), 9);
 	}
 }

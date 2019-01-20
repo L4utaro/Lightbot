@@ -24,24 +24,34 @@ import validators.ValidatorTxt;
 import validators.interfaces.IValidatorInstructions;
 
 public class Implementation {
+	private DefaultFunctions defaultFunctions;
 	private ILector lector;
 	private IValidatorInstructions validatorLector;
 	private JSONArray actionsJson;
 	private List<String> namesOfFunctions;
 	private ActionsProperties actionsProperties;
 	
-	public Implementation(String route) {
+	public Implementation(String route, String routeDefaultFunctions) {
+		this.namesOfFunctions = new ArrayList<String>();
+		addDeaultFunctionsIfThereExists(routeDefaultFunctions);
 		if (route.charAt(route.length() - 1) == 'n') {
 			implementationJson(route);
 		} else {
 			implementationTxt(route);
 		}
-		this.namesOfFunctions = new ArrayList<String>();
-		this.namesOfFunctions = getNamesOfFunctions();
+		this.namesOfFunctions.addAll(getNamesOfFunctions());
 		try {
 			this.actionsProperties = new ActionsProperties(Constants.ROUTE_CONFIGURATIONS_ACTIONS);
 		} catch (IOException e) {
 			throw new IllegalArgumentException("Actions configurations not found");
+		}
+	}
+
+	private void addDeaultFunctionsIfThereExists(String routeDefaultFunctions) {
+		if(routeDefaultFunctions != null) {
+			this.defaultFunctions = new DefaultFunctions(routeDefaultFunctions);
+	//	this.namesOfFunctions.addAll(this.defaultFunctions.getNamesOfFunctions());
+			this.defaultFunctions.createFunctionsDefaulf();
 		}
 	}
 
@@ -61,9 +71,13 @@ public class Implementation {
 		return this.lector.getNamesOfArrays();
 	}
 
+	public Map<String, List<InvokerCommand>> getAllFunctionsDefaults() {
+		return this.defaultFunctions.getAllFunctions();
+	}
+	
 	public Map<String, List<InvokerCommand>> getAllFunctions() {
 		Map<String, List<InvokerCommand>> functions = new HashMap<String, List<InvokerCommand>>();
-		functions.putAll(defaultFunciontions());
+		functions.putAll(this.defaultFunctions.getAllFunctions());
 		functions.put("actions",createColecctionOfActions(this.namesOfFunctions));
 		for (String nameFunction : this.namesOfFunctions) {
 			if (!nameFunction.equals("actions")) {
@@ -74,14 +88,9 @@ public class Implementation {
 		return functions;
 	}
 
-	private Map<? extends String, ? extends List<InvokerCommand>> defaultFunciontions() {
-		//Constants.ROUTE_FUNCTIONS_MACRO
-		return null;
-	}
-
 	public List<InvokerCommand> createColecctionOfActions(List<String> namesOfFunctions) {
 		List<InvokerCommand> invokerCommands = new ArrayList<InvokerCommand>();
-		if (this.validatorLector.validateInstructionsOfJsonArray(this.actionsJson, namesOfFunctions)) {
+		if (this.validatorLector.validateInstructionsOfJsonArray(this.actionsJson, namesOfFunctions, this.defaultFunctions.getNamesOfFunctions())) {
 			for (int i = 0; i < this.actionsJson.size(); i++) {
 				addAction(actionsJson.get(i).toString(), invokerCommands);
 			}

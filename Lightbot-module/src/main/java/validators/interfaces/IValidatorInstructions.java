@@ -6,6 +6,6 @@ import org.json.simple.JSONArray;
 
 public interface IValidatorInstructions {
 
-	boolean validateInstructionsOfJsonArray(JSONArray actionsJson, List<String> namesOfFunctions);
+	boolean validateInstructionsOfJsonArray(JSONArray actionsJson, List<String> namesOfFunctions, List<String> namesOfFunctionsDefault);
 
 }
