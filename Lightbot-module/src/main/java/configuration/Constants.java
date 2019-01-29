@@ -23,4 +23,5 @@ public class Constants {
 	
 	public static final String ROUTE_ACTIONS = "C:\\ProgramData\\Actions";
 	public static final String ROUTE_FUNCTIONS_MACRO = "C:\\ProgramData\\functions.json";
+	public static final String ROUTE_COMMANDS = "C:\\ProgramData\\commands.json";
 }

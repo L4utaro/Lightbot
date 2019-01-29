@@ -1,0 +1,32 @@
+{
+	"commands": {
+		"teleport": {
+			"avatar": {
+				"position": "1,1",
+				"orientation": "Orientation.RIGHT"
+			},
+			"positions": [
+				"3,3"
+			],
+			"orientation": "Orientation.LEFT"
+		},
+		"jump": {
+			"avatar": {
+				"position": "1,1",
+				"orientation": "Orientation.RIGHT"
+			},
+			"positions": [
+				"1,3"
+			]
+		},
+		"superTeleport": {
+			"avatar": {
+				"position": "1,1",
+				"orientation": "Orientation.RIGHT"
+			},
+			"positions": [
+				"2,2", "3,3"
+			]
+		}
+	}
+}
