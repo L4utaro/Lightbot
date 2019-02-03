@@ -8,19 +8,28 @@ import enums.Orientation;
 public class Command {
 
 	private String name;
-	
-	private Avatar avatar;
-	
+
+	private String mode;
+
 	private List<Point> pointsPositions;
-	
+
+	private Integer movePositions;
+
 	private Orientation newOrientation;
 
-	public Command(String name, Avatar avatar, List<Point> pointsPositions, Orientation newOrientation) {
-		super();
+	private String turn;
+
+	private String light;
+
+	public Command(String name, String mode, List<Point> pointsPositions, Integer movePositions,
+			Orientation newOrientation, String turn, String light) {
 		this.name = name;
-		this.avatar = avatar;
+		this.mode = mode;
 		this.pointsPositions = pointsPositions;
+		this.movePositions = movePositions;
 		this.newOrientation = newOrientation;
+		this.turn = turn;
+		this.light = light;
 	}
 
 	public String getName() {
@@ -31,12 +40,12 @@ public class Command {
 		this.name = name;
 	}
 
-	public Avatar getAvatar() {
-		return avatar;
+	public String getMode() {
+		return mode;
 	}
 
-	public void setAvatar(Avatar avatar) {
-		this.avatar = avatar;
+	public void setMode(String mode) {
+		this.mode = mode;
 	}
 
 	public List<Point> getPointsPositions() {
@@ -53,5 +62,29 @@ public class Command {
 
 	public void setNewOrientation(Orientation newOrientation) {
 		this.newOrientation = newOrientation;
+	}
+
+	public Integer getMovePositions() {
+		return movePositions;
+	}
+
+	public void setMovePositions(Integer movePositions) {
+		this.movePositions = movePositions;
+	}
+
+	public String getGirar() {
+		return turn;
+	}
+
+	public void setGirar(String girar) {
+		this.turn = girar;
+	}
+
+	public String getLight() {
+		return light;
+	}
+
+	public void setLight(String light) {
+		this.light = light;
 	}
 }

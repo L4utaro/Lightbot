@@ -42,6 +42,18 @@ public class LectorJson implements ILector{
 		}
 	}
 	
+	public JSONObject getObjectJson(String keyValue) {
+		JSONParser parser = new JSONParser();
+		Object obj;
+		try {
+			obj = parser.parse(new FileReader(routeCodeJSON));
+			JSONObject jsonObject = (JSONObject) obj;
+			return (JSONObject) jsonObject.get(keyValue);
+		} catch (IOException | ParseException e) {
+			throw new IllegalArgumentException("The actions doesn't exits");
+		}
+	}
+	
 	@SuppressWarnings("unchecked")
 	public List<String> getNamesOfArrays() {
 		List<String> nameOfFunctions = new ArrayList<>();
@@ -58,5 +70,9 @@ public class LectorJson implements ILector{
 		} catch (IOException | ParseException e) {
 			throw new IllegalArgumentException("The actions doens't exits");
 		}
+	}
+
+	public Object getValueFromJSON(final JSONObject objectJSON, final String clave){
+		return (objectJSON.get(clave));
 	}
 }
