@@ -33,6 +33,14 @@ public class GameGenerator {
 	public GameGenerator(String mapRoute) throws IOException {
 		this.implementationCommands = new ImplementationCommands();
 		this.implementationCommands.createCommands();
+		System.out.println("entro");
+		System.out.println(this.implementationCommands.getCommands().get(0).toString());
+		System.out.println(this.implementationCommands.getCommands().get(1).toString());
+		System.out.println(this.implementationCommands.getCommands().get(2).toString());
+		System.out.println(this.implementationCommands.getCommands().get(3).toString());
+		System.out.println(this.implementationCommands.getCommands().get(4).toString());
+		System.out.println(this.implementationCommands.getCommands().get(5).toString());
+		System.out.println(this.implementationCommands.getCommands().get(6).toString());
 		this.invokerCommands = new ArrayList<InvokerCommand>();
 		createMap(mapRoute);
 		this.implementation = new Implementation(Constants.ROUTE_JSON_ACTIONS_1, Constants.ROUTE_FUNCTIONS_MACRO);

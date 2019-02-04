@@ -3,6 +3,7 @@ package model;
 import java.awt.Point;
 import java.util.List;
 
+import commands.ExecuteCommand;
 import enums.Orientation;
 
 public class Command {
@@ -21,6 +22,8 @@ public class Command {
 
 	private String light;
 
+	private ExecuteCommand executeCommand;
+	
 	public Command(String name, String mode, List<Point> pointsPositions, Integer movePositions,
 			Orientation newOrientation, String turn, String light) {
 		this.name = name;
@@ -30,8 +33,13 @@ public class Command {
 		this.newOrientation = newOrientation;
 		this.turn = turn;
 		this.light = light;
+		this.executeCommand = new ExecuteCommand(this);
 	}
 
+	public void executeCommand(Map map) {
+		this.executeCommand(map);
+	}
+	
 	public String getName() {
 		return name;
 	}
@@ -86,5 +94,19 @@ public class Command {
 
 	public void setLight(String light) {
 		this.light = light;
+	}
+
+	public ExecuteCommand getExecuteCommand() {
+		return executeCommand;
+	}
+
+	public void setExecuteCommand(ExecuteCommand executeCommand) {
+		this.executeCommand = executeCommand;
+	}
+
+	@Override
+	public String toString() {
+		return "Command [name=" + name + ", mode=" + mode + ", pointsPositions=" + pointsPositions + ", movePositions="
+				+ movePositions + ", newOrientation=" + newOrientation + ", turn=" + turn + ", light=" + light + "]";
 	}
 }

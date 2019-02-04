@@ -38,7 +38,7 @@ public class ImplementationCommands {
 		}
 		return new Command(nameCommand, this.lectorJson.getValueFromJSON(objectJson, "mode").toString(),
 				createPointsPosition(this.lectorJson.getValueFromJSON(objectJson, "positions")),
-				createInteger(this.lectorJson.getValueFromJSON(objectJson, "movePositions")),
+				createInteger(this.lectorJson.getValueFromJSON(objectJson, "movePosition")),
 				createOrientation(this.lectorJson.getValueFromJSON(objectJson, "orientation")),
 				createString(this.lectorJson.getValueFromJSON(objectJson, "turn")),
 				createString(this.lectorJson.getValueFromJSON(objectJson, "light")));
