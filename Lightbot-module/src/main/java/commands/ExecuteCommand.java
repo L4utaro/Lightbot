@@ -1,33 +1,27 @@
 package commands;
 
+import gameMode.ModeAlternativo;
+import gameMode.ModeSecuencial;
+import gameMode.interfaces.Mode;
 import model.Command;
 import model.Map;
 
 public class ExecuteCommand {
 	private Command command;
-
+	private Mode mode;
+	
 	public ExecuteCommand(Command command) {
 		this.command = command;
 	}
 
 	public void execute(Map map) {
 		if (this.command.getMode().equals("secuencial")) {
-			executeModeSecuencial(map);
+			mode = new ModeSecuencial(this.command, map);
 		} else {
-			executeModeAlternativo(map);
+			mode = new ModeAlternativo(this.command, map);
 		}
-	}
-
-	private Object executeModeAlternativo(Map map) {
-		//Debo pasar al avatar a la posicion deseada.
-		//hay varios casos:
-		//1) positions - orientation 
-		//2) positions - girar
-		return null;
-	}
-
-	private Object executeModeSecuencial(Map map) {
-		// TODO Auto-generated method stub
-		return null;
+		mode.changePosition();
+		mode.changeOrientation();
+		mode.changeLight();
 	}
 }

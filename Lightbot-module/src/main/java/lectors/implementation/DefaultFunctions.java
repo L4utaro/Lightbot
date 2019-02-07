@@ -1,6 +1,5 @@
 package lectors.implementation;
 
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -8,16 +7,12 @@ import java.util.Map;
 
 import org.json.simple.JSONArray;
 
-import classProperties.ActionsProperties;
-import commands.CommandFunction;
-import commands.CommandLeft;
-import commands.CommandLight;
-import commands.CommandMove;
-import commands.CommandRight;
 import commands.invoker.InvokerCommand;
-import configuration.Constants;
 import lectors.LectorJson;
 import lectors.interfaces.ILector;
+import model.Command;
+import model.CommandFunction;
+import model.interfaces.ICommand;
 import validators.ValidatorJson;
 import validators.interfaces.IValidatorInstructions;
 
@@ -26,20 +21,16 @@ public class DefaultFunctions {
 	private IValidatorInstructions validatorLector;
 	private JSONArray actionsJson;
 	private List<String> namesOfFunctions;
-	private ActionsProperties actionsProperties;
 	private Map<String, List<InvokerCommand>> functionsDefault;
+	private List<ICommand> commands;
 	
-	public DefaultFunctions(String routeFunctionsDefault) {
+	public DefaultFunctions(String routeFunctionsDefault, List<ICommand> commands) {
 		this.lector = new LectorJson(routeFunctionsDefault);
+		this.commands = commands;
 		this.actionsJson = (JSONArray) this.lector.getListOfJson("actions");
 		this.validatorLector = new ValidatorJson();
 		this.namesOfFunctions = new ArrayList<>();
 		this.namesOfFunctions.addAll(this.lector.getNamesOfArrays());
-		try {
-			this.actionsProperties = new ActionsProperties(Constants.ROUTE_CONFIGURATIONS_ACTIONS);
-		} catch (IOException e) {
-			throw new IllegalArgumentException("Actions configurations not found");
-		}
 		createFunctionsDefaulf();
 	}
 	
@@ -66,17 +57,8 @@ public class DefaultFunctions {
 	}
 	
 	public void addAction(String action, List<InvokerCommand> invokerCommands) {
-		if (this.actionsProperties.getActionsConfiguration().getAvanzar().contains(action)) {
-			invokerCommands.add(new InvokerCommand(new CommandMove()));
-		} else if (this.actionsProperties.getActionsConfiguration().getIzquierda().contains(action)) {
-			invokerCommands.add(new InvokerCommand(new CommandLeft()));
-		} else if (this.actionsProperties.getActionsConfiguration().getDerecha().contains(action)) {
-			invokerCommands.add(new InvokerCommand(new CommandRight()));
-		} else if (this.actionsProperties.getActionsConfiguration().getLuz().contains(action)) {
-			invokerCommands.add(new InvokerCommand(new CommandLight()));
-		} else {
-			invokerCommands.add(new InvokerCommand(new CommandFunction(action)));
-		}
+		invokerCommands.add( new InvokerCommand( this.commands.stream().filter(command -> 
+		((Command) command).getName().equals(action)).findAny().orElse(new CommandFunction(action))));
 	}
 	
 	public Map<String, List<InvokerCommand>> getAllFunctions() {

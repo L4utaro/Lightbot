@@ -10,11 +10,12 @@ import configuration.Constants;
 import enums.Orientation;
 import lectors.LectorJson;
 import model.Command;
+import model.interfaces.ICommand;
 import validators.ValidatorCommandJson;
 
 public class ImplementationCommands {
 	private List<String> namesCommands;
-	private List<Command> commands;
+	private List<ICommand> commands;
 	private LectorJson lectorJson;
 	private ValidatorCommandJson validatorCommandJson;
 
@@ -95,7 +96,7 @@ public class ImplementationCommands {
 		return strings;
 	}
 
-	public List<Command> getCommands() {
+	public List<ICommand> getCommands() {
 		return commands;
 	}
 }

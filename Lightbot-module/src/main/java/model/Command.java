@@ -5,8 +5,9 @@ import java.util.List;
 
 import commands.ExecuteCommand;
 import enums.Orientation;
+import model.interfaces.ICommand;
 
-public class Command {
+public class Command implements ICommand{
 
 	private String name;
 
@@ -16,13 +17,11 @@ public class Command {
 
 	private Integer movePositions;
 
-	private Orientation newOrientation;
+	private Orientation orientation;
 
 	private String turn;
 
 	private String light;
-
-	private ExecuteCommand executeCommand;
 	
 	public Command(String name, String mode, List<Point> pointsPositions, Integer movePositions,
 			Orientation newOrientation, String turn, String light) {
@@ -30,14 +29,9 @@ public class Command {
 		this.mode = mode;
 		this.pointsPositions = pointsPositions;
 		this.movePositions = movePositions;
-		this.newOrientation = newOrientation;
+		this.orientation = newOrientation;
 		this.turn = turn;
 		this.light = light;
-		this.executeCommand = new ExecuteCommand(this);
-	}
-
-	public void executeCommand(Map map) {
-		this.executeCommand(map);
 	}
 	
 	public String getName() {
@@ -64,12 +58,12 @@ public class Command {
 		this.pointsPositions = pointsPositions;
 	}
 
-	public Orientation getNewOrientation() {
-		return newOrientation;
+	public Orientation getOrientation() {
+		return orientation;
 	}
 
-	public void setNewOrientation(Orientation newOrientation) {
-		this.newOrientation = newOrientation;
+	public void setOrientation(Orientation newOrientation) {
+		this.orientation = newOrientation;
 	}
 
 	public Integer getMovePositions() {
@@ -96,17 +90,9 @@ public class Command {
 		this.light = light;
 	}
 
-	public ExecuteCommand getExecuteCommand() {
-		return executeCommand;
-	}
-
-	public void setExecuteCommand(ExecuteCommand executeCommand) {
-		this.executeCommand = executeCommand;
-	}
-
 	@Override
 	public String toString() {
 		return "Command [name=" + name + ", mode=" + mode + ", pointsPositions=" + pointsPositions + ", movePositions="
-				+ movePositions + ", newOrientation=" + newOrientation + ", turn=" + turn + ", light=" + light + "]";
+				+ movePositions + ", newOrientation=" + orientation + ", turn=" + turn + ", light=" + light + "]";
 	}
 }

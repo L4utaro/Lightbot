@@ -1,6 +1,5 @@
 package lectors.implementation;
 
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -8,17 +7,13 @@ import java.util.Map;
 
 import org.json.simple.JSONArray;
 
-import classProperties.ActionsProperties;
-import commands.CommandFunction;
-import commands.CommandLeft;
-import commands.CommandLight;
-import commands.CommandMove;
-import commands.CommandRight;
 import commands.invoker.InvokerCommand;
-import configuration.Constants;
 import lectors.LectorJson;
 import lectors.LectorTxt;
 import lectors.interfaces.ILector;
+import model.Command;
+import model.CommandFunction;
+import model.interfaces.ICommand;
 import validators.ValidatorJson;
 import validators.ValidatorTxt;
 import validators.interfaces.IValidatorInstructions;
@@ -29,10 +24,11 @@ public class Implementation {
 	private IValidatorInstructions validatorLector;
 	private JSONArray actionsJson;
 	private List<String> namesOfFunctions;
-	private ActionsProperties actionsProperties;
+	private List<ICommand> commands;
 	
-	public Implementation(String route, String routeDefaultFunctions) {
+	public Implementation(String route, String routeDefaultFunctions, List<ICommand> commands) {
 		this.namesOfFunctions = new ArrayList<String>();
+		this.commands = commands;
 		addDeaultFunctionsIfThereExists(routeDefaultFunctions);
 		if (route.charAt(route.length() - 1) == 'n') {
 			implementationJson(route);
@@ -40,17 +36,12 @@ public class Implementation {
 			implementationTxt(route);
 		}
 		this.namesOfFunctions.addAll(getNamesOfFunctions());
-		try {
-			this.actionsProperties = new ActionsProperties(Constants.ROUTE_CONFIGURATIONS_ACTIONS);
-		} catch (IOException e) {
-			throw new IllegalArgumentException("Actions configurations not found");
-		}
 	}
 
 	private void addDeaultFunctionsIfThereExists(String routeDefaultFunctions) {
 		if(routeDefaultFunctions != null) {
-			this.defaultFunctions = new DefaultFunctions(routeDefaultFunctions);
-	//	this.namesOfFunctions.addAll(this.defaultFunctions.getNamesOfFunctions());
+			this.defaultFunctions = new DefaultFunctions(routeDefaultFunctions, this.commands);
+			//this.namesOfFunctions.addAll(this.defaultFunctions.getNamesOfFunctions());
 			this.defaultFunctions.createFunctionsDefaulf();
 		}
 	}
@@ -101,17 +92,8 @@ public class Implementation {
 	}
 
 	public void addAction(String action, List<InvokerCommand> invokerCommands) {
-		if (this.actionsProperties.getActionsConfiguration().getAvanzar().contains(action)) {
-			invokerCommands.add(new InvokerCommand(new CommandMove()));
-		} else if (this.actionsProperties.getActionsConfiguration().getIzquierda().contains(action)) {
-			invokerCommands.add(new InvokerCommand(new CommandLeft()));
-		} else if (this.actionsProperties.getActionsConfiguration().getDerecha().contains(action)) {
-			invokerCommands.add(new InvokerCommand(new CommandRight()));
-		} else if (this.actionsProperties.getActionsConfiguration().getLuz().contains(action)) {
-			invokerCommands.add(new InvokerCommand(new CommandLight()));
-		} else {
-			invokerCommands.add(new InvokerCommand(new CommandFunction(action)));
-		}
+		invokerCommands.add( new InvokerCommand( this.commands.stream().filter(command -> 
+		((Command) command).getName().equals(action)).findAny().orElse(new CommandFunction(action))));
 	}
 
 	public JSONArray getActionsJson() {

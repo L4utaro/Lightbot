@@ -9,10 +9,11 @@ import java.util.Observer;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
-import commands.CommandFunction;
-import commands.interfaces.ICommand;
 import commands.invoker.InvokerCommand;
+import model.Command;
+import model.CommandFunction;
 import model.Size;
+import model.interfaces.ICommand;
 import modelo.Game;
 
 public class PanelInstructions implements Observer {
@@ -53,16 +54,11 @@ public class PanelInstructions implements Observer {
 	}
 
 	private String getNameOfAction(ICommand command) {
-		if(command.getClass().getSimpleName().equals("CommandMove")) {
-			return "Avanzar";
-		} else if(command.getClass().getSimpleName().equals("CommandLeft")) {
-			return "Izquierda";
-		} else if(command.getClass().getSimpleName().equals("CommandRight")) {
-			return "Derecha";
-		} else if(command.getClass().getSimpleName().equals("CommandLight")) {
-			return "luz";
+		if(command.getClass().getSimpleName().equals("CommandFunction")) {
+			return ((CommandFunction) command).getNameFunction();
+		} else {
+			return ((Command) command).getName();
 		}
-		return ((CommandFunction) command).getNameFunction();
 	}
 
 	public void drawInstructions(List<String> mapString) {

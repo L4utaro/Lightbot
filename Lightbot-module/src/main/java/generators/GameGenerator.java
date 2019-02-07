@@ -6,11 +6,11 @@ import java.util.List;
 import java.util.Map;
 
 import board.CreateMap;
-import commands.CommandFunction;
 import commands.invoker.InvokerCommand;
 import configuration.Constants;
 import lectors.implementation.Implementation;
 import lectors.implementation.ImplementationCommands;
+import model.CommandFunction;
 
 public class GameGenerator {
 	private model.Map map;
@@ -25,7 +25,7 @@ public class GameGenerator {
 		this.implementationCommands.createCommands();
 		this.invokerCommands = new ArrayList<InvokerCommand>();
 		createMap(Constants.ROUTE_MAP_PROPERTIES);
-		this.implementation = new Implementation(Constants.ROUTE_JSON_ACTIONS_1, Constants.ROUTE_FUNCTIONS_MACRO);
+		this.implementation = new Implementation(Constants.ROUTE_JSON_ACTIONS_1, Constants.ROUTE_FUNCTIONS_MACRO, this.implementationCommands.getCommands());
 		createActions();
 	}
 
@@ -33,7 +33,6 @@ public class GameGenerator {
 	public GameGenerator(String mapRoute) throws IOException {
 		this.implementationCommands = new ImplementationCommands();
 		this.implementationCommands.createCommands();
-		System.out.println("entro");
 		System.out.println(this.implementationCommands.getCommands().get(0).toString());
 		System.out.println(this.implementationCommands.getCommands().get(1).toString());
 		System.out.println(this.implementationCommands.getCommands().get(2).toString());
@@ -43,7 +42,7 @@ public class GameGenerator {
 		System.out.println(this.implementationCommands.getCommands().get(6).toString());
 		this.invokerCommands = new ArrayList<InvokerCommand>();
 		createMap(mapRoute);
-		this.implementation = new Implementation(Constants.ROUTE_JSON_ACTIONS_1, Constants.ROUTE_FUNCTIONS_MACRO);
+		this.implementation = new Implementation(Constants.ROUTE_JSON_ACTIONS_1, Constants.ROUTE_FUNCTIONS_MACRO, this.implementationCommands.getCommands());
 		createActions();
 	}
 
@@ -53,7 +52,7 @@ public class GameGenerator {
 		this.implementationCommands.createCommands();
 		this.invokerCommands = new ArrayList<InvokerCommand>();
 		createMap(mapRoute);
-		this.implementation = new Implementation(actionsRoute, Constants.ROUTE_FUNCTIONS_MACRO);
+		this.implementation = new Implementation(actionsRoute, Constants.ROUTE_FUNCTIONS_MACRO, this.implementationCommands.getCommands());
 		createActions();
 	}
 
@@ -74,9 +73,10 @@ public class GameGenerator {
 			Map<String, List<InvokerCommand>> functions) {
 		List<InvokerCommand> newInvokerCommands = new ArrayList<>();
 		for (InvokerCommand invokerCommand : invokerCommands) {
-			if (invokerCommand.getCommand().getClass().equals(CommandFunction.class)) {
+			/**CHEQUEAR ESTA PARTE, porque quiero que haga eso**/
+			if(invokerCommand.getCommand().getClass().getSimpleName().equals("CommandFunction")) {
 				newInvokerCommands
-						.addAll(functions.get(((CommandFunction) invokerCommand.getCommand()).getNameFunction()));
+						.addAll(functions.get((((CommandFunction) invokerCommand.getCommand()).getNameFunction())));
 			} else {
 				newInvokerCommands.add(invokerCommand);
 			}
@@ -101,7 +101,7 @@ public class GameGenerator {
 	}
 
 	public List<InvokerCommand> createActions(String actionsRoute) {
-		this.implementation = new Implementation(actionsRoute, Constants.ROUTE_FUNCTIONS_MACRO);
+		this.implementation = new Implementation(actionsRoute, Constants.ROUTE_FUNCTIONS_MACRO, this.implementationCommands.getCommands());
 		createActions();
 		return this.invokerCommands;
 	}
