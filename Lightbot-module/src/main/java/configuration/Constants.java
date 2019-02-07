@@ -20,8 +20,7 @@ public class Constants {
 	public static final String ROUTE_TXT_ACTIONS_3 = "C:\\ProgramData\\actions3.txt";
 	public static final String ROUTE_TXT_ACTIONS_4 = "C:\\ProgramData\\actions4.txt";
 	public static final String ROUTE_JSON_ACTIONS_5 = "C:\\ProgramData\\actions5.json";
-	
-	public static final String ROUTE_ACTIONS = "C:\\ProgramData\\Actions";
+
 	public static final String ROUTE_FUNCTIONS_MACRO = "C:\\ProgramData\\functions.json";
 	public static final String ROUTE_COMMANDS = "C:\\ProgramData\\commands.json";
 }

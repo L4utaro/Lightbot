@@ -65,7 +65,7 @@ public class Map {
 
 	public void moveObjectGraphic(Point oldPosition, Point newPosition) {
 		addBoxObjectGraphic(newPosition, getBox(oldPosition).getObjectGraphic());
-		deleteBox(oldPosition);
+		deleteObjectGraphic(oldPosition);
 		setAvatarPos(newPosition);
 	}
 }

@@ -3,6 +3,7 @@ package gameMode;
 import java.awt.Point;
 
 import enums.LightStatus;
+import enums.Orientation;
 import enums.TypeOfBox;
 import gameMode.interfaces.Mode;
 import model.Avatar;
@@ -23,7 +24,7 @@ public class ModeAlternativo implements Mode {
 		if (this.command.getPointsPositions() != null) {
 			changeAvatarPositions();
 		} else if (this.command.getMovePositions() != null) {
-			changeAvatarMovePositions();
+			changeAvatarMovePositions(this.command.getMovePositions());
 		}
 	}
 
@@ -49,8 +50,24 @@ public class ModeAlternativo implements Mode {
 		}
 	}
 
-	private void changeAvatarMovePositions() {
-		this.command.getMovePositions();
+	private void changeAvatarMovePositions(Integer moves) {
+		Point newAvatarPos = createAvatarPosForMoveAvatar(moves);
+		this.map.moveObjectGraphic(this.map.getAvatarPos(), newAvatarPos);
+		this.map.setAvatarPos(newAvatarPos);
+	}
+
+	private Point createAvatarPosForMoveAvatar(Integer moves) {
+		Avatar avatar = ((Avatar) map.getBox(map.getAvatarPos()).getObjectGraphic());
+		Point posAvatar = this.map.getAvatarPos();
+		if(avatar.getOrientation().equals(Orientation.DOWN)){
+			return new Point(posAvatar.x, posAvatar.y + moves);
+		} else if(avatar.getOrientation().equals(Orientation.RIGHT)){
+			return new Point(posAvatar.x + moves, posAvatar.y);
+		} else if(avatar.getOrientation().equals(Orientation.UP)){
+			return new Point(posAvatar.x, posAvatar.y - moves);
+		} else {
+			return new Point(posAvatar.x - moves, posAvatar.y);
+		}
 	}
 
 	private void changeAvatarPositions() {
@@ -59,7 +76,7 @@ public class ModeAlternativo implements Mode {
 			if (this.map.getBox(newAvatarPos).getTypeOfBox().equals(TypeOfBox.NO_WALK)) {
 				throw new IllegalArgumentException("The avatar get out of the path possible!");
 			}
-			this.map.getBox(newAvatarPos).setObjectGraphic((Avatar) map.getBox(map.getAvatarPos()).getObjectGraphic());
+			this.map.moveObjectGraphic(this.map.getAvatarPos(), newAvatarPos);
 			this.map.setAvatarPos(newAvatarPos);
 		}
 	}

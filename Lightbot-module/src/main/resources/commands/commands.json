@@ -40,5 +40,26 @@
 		"positions": [ "" ],
 		"orientation": "",
 		"light": "ON-OFF"
+	},
+	"izquierda": {
+		"mode": "secuencial",
+		"positions": [ "" ],
+		"turn": "LEFT"
+	},
+	"derecha": {
+		"mode": "secuencial",
+		"positions": [ "" ],
+		"turn": "RIGHT"
+	},
+	"avanzar": {
+		"mode": "secuencial",
+		"movePosition": "1",
+		"orientation": ""
+	},
+	"luz": {
+		"mode": "secuencial",
+		"positions": [ "" ],
+		"orientation": "",
+		"light": "ON-OFF"
 	}
 }
