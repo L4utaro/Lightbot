@@ -21,16 +21,19 @@ public class DefaultFunctions {
 	private IValidatorInstructions validatorLector;
 	private JSONArray actionsJson;
 	private List<String> namesOfFunctions;
+	private List<String> namesOfCommands;
 	private Map<String, List<InvokerCommand>> functionsDefault;
 	private List<ICommand> commands;
 	
 	public DefaultFunctions(String routeFunctionsDefault, List<ICommand> commands) {
+		this.namesOfCommands = new ArrayList<String>();
 		this.lector = new LectorJson(routeFunctionsDefault);
 		this.commands = commands;
 		this.actionsJson = (JSONArray) this.lector.getListOfJson("actions");
 		this.validatorLector = new ValidatorJson();
 		this.namesOfFunctions = new ArrayList<>();
 		this.namesOfFunctions.addAll(this.lector.getNamesOfArrays());
+		this.namesOfCommands.addAll(getNamesOfCommands());
 		createFunctionsDefaulf();
 	}
 	
@@ -43,10 +46,20 @@ public class DefaultFunctions {
 			}
 		}
 	}
+
+	public List<String> getNamesOfCommands() {
+		List<String> namesCommands = new ArrayList<>();
+		this.commands.stream().forEach(command -> { 
+			if(((Command) command).getName() != null) {
+				namesCommands.add(((Command) command).getName());
+			}
+		});
+		return namesCommands;
+	}
 	
 	private List<InvokerCommand> createColecctionOfActions(Object object) {
 		List<InvokerCommand> invokerCommands = new ArrayList<InvokerCommand>();
-		if (this.validatorLector.validateInstructionsOfJsonArray(this.actionsJson, namesOfFunctions, null)) {
+		if (this.validatorLector.validateInstructionsOfJsonArray(this.actionsJson, namesOfFunctions, this.namesOfCommands, null)) {
 			for (int i = 0; i < this.actionsJson.size(); i++) {
 				addAction(actionsJson.get(i).toString(), invokerCommands);
 			}

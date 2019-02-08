@@ -4,19 +4,21 @@ import java.awt.Point;
 
 import enums.LightStatus;
 import enums.Orientation;
-import enums.TypeOfBox;
 import gameMode.interfaces.Mode;
 import model.Avatar;
 import model.Command;
 import model.Map;
+import validators.ValidatorPathOfObjectGraphic;
 
 public class ModeAlternativo implements Mode {
 	private Command command;
 	private Map map;
+	private ValidatorPathOfObjectGraphic validatorPathAvatar;
 
 	public ModeAlternativo(Command command, Map map) {
 		this.command = command;
 		this.map = map;
+		this.validatorPathAvatar = new ValidatorPathOfObjectGraphic(map);
 	}
 
 	@Override
@@ -32,7 +34,7 @@ public class ModeAlternativo implements Mode {
 	public void changeOrientation() {
 		if (this.command.getOrientation() != null) {
 			setOrientation(map);
-		} else {
+		} else if (this.command.getGirar() != null) {
 			girarAvatar(map);
 		}
 	}
@@ -73,7 +75,7 @@ public class ModeAlternativo implements Mode {
 	private void changeAvatarPositions() {
 		for (Point point : this.command.getPointsPositions()) {
 			Point newAvatarPos = createPointsPass(point);
-			if (this.map.getBox(newAvatarPos).getTypeOfBox().equals(TypeOfBox.NO_WALK)) {
+			if(!this.validatorPathAvatar.validatePositionForObjectGraphic(newAvatarPos)){
 				throw new IllegalArgumentException("The avatar get out of the path possible!");
 			}
 			this.map.moveObjectGraphic(this.map.getAvatarPos(), newAvatarPos);
@@ -90,6 +92,7 @@ public class ModeAlternativo implements Mode {
 	}
 
 	private void girarAvatar(Map map) {
+		System.out.println(this.command.getGirar());
 		if (this.command.getGirar().equals("RIGHT")) {
 			((Avatar) map.getBox(map.getAvatarPos()).getObjectGraphic()).turnRight();
 		} else {

@@ -24,10 +24,12 @@ public class Implementation {
 	private IValidatorInstructions validatorLector;
 	private JSONArray actionsJson;
 	private List<String> namesOfFunctions;
+	private List<String> namesOfCommands;
 	private List<ICommand> commands;
 	
 	public Implementation(String route, String routeDefaultFunctions, List<ICommand> commands) {
 		this.namesOfFunctions = new ArrayList<String>();
+		this.namesOfCommands = new ArrayList<String>();
 		this.commands = commands;
 		addDeaultFunctionsIfThereExists(routeDefaultFunctions);
 		if (route.charAt(route.length() - 1) == 'n') {
@@ -35,13 +37,13 @@ public class Implementation {
 		} else {
 			implementationTxt(route);
 		}
+		this.namesOfCommands.addAll(getNamesOfCommands());
 		this.namesOfFunctions.addAll(getNamesOfFunctions());
 	}
 
 	private void addDeaultFunctionsIfThereExists(String routeDefaultFunctions) {
 		if(routeDefaultFunctions != null) {
 			this.defaultFunctions = new DefaultFunctions(routeDefaultFunctions, this.commands);
-			//this.namesOfFunctions.addAll(this.defaultFunctions.getNamesOfFunctions());
 			this.defaultFunctions.createFunctionsDefaulf();
 		}
 	}
@@ -62,6 +64,16 @@ public class Implementation {
 		return this.lector.getNamesOfArrays();
 	}
 
+	public List<String> getNamesOfCommands() {
+		List<String> namesCommands = new ArrayList<>();
+		this.commands.stream().forEach(command -> { 
+			if(((Command) command).getName() != null) {
+				namesCommands.add(((Command) command).getName());
+			}
+		});
+		return namesCommands;
+	}
+	
 	public Map<String, List<InvokerCommand>> getAllFunctionsDefaults() {
 		return this.defaultFunctions.getAllFunctions();
 	}
@@ -81,7 +93,7 @@ public class Implementation {
 
 	public List<InvokerCommand> createColecctionOfActions(List<String> namesOfFunctions) {
 		List<InvokerCommand> invokerCommands = new ArrayList<InvokerCommand>();
-		if (this.validatorLector.validateInstructionsOfJsonArray(this.actionsJson, namesOfFunctions, this.defaultFunctions.getNamesOfFunctions())) {
+		if (this.validatorLector.validateInstructionsOfJsonArray(this.actionsJson, namesOfFunctions, this.namesOfCommands, this.defaultFunctions.getNamesOfFunctions())) {
 			for (int i = 0; i < this.actionsJson.size(); i++) {
 				addAction(actionsJson.get(i).toString(), invokerCommands);
 			}

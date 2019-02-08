@@ -66,7 +66,7 @@ public class ModeSecuencial implements Mode {
 		for(Point point: this.command.getPointsPositions()) {
 			List<Point> pointsPass = createPointsPass(point);
 			for(Point newAvatarPos: pointsPass) {
-				if(this.validatorPathAvatar.validatePositionForObjectGraphic(newAvatarPos)){
+				if(!this.validatorPathAvatar.validatePositionForObjectGraphic(newAvatarPos)){
 					throw new IllegalArgumentException("The avatar get out of the path possible!");
 				}
 				this.map.moveObjectGraphic(this.map.getAvatarPos(), newAvatarPos);
@@ -102,27 +102,29 @@ public class ModeSecuencial implements Mode {
 	 * luego en y.
 	 */
 	private List<Point> createPointsPass(Point point) {
+		int x = point.x;
+		int y = point.y;
+		Point newPoint = this.map.getAvatarPos();
 		List<Point> pointsPass = new ArrayList<>();
-		while (point.equals(new Point(0, 0))) {
-			if (point.x != 0) {
-				if (point.x < 0) {
-					pointsPass.add(new Point(this.map.getAvatarPos().x - 1, this.map.getAvatarPos().y));
-					point.x -= 1;
-				} else {
-					pointsPass.add(new Point(this.map.getAvatarPos().x + 1, this.map.getAvatarPos().y));
-					point.x += 1;
-				}
+		while (x != 0 ) {
+			if (x < 0) {
+				newPoint = new Point(newPoint.x - 1, newPoint.y);
+				x = x + 1;
 			} else {
-				if (point.y != 0) {
-					if (point.y < 0) {
-						pointsPass.add(new Point(this.map.getAvatarPos().x, this.map.getAvatarPos().y - 1));
-						point.y -= 1;
-					} else {
-						pointsPass.add(new Point(this.map.getAvatarPos().x, this.map.getAvatarPos().y + 1));
-						point.y += 1;
-					}
-				}
+				newPoint = new Point(newPoint.x + 1, newPoint.y);
+				x = x - 1;
 			}
+			pointsPass.add(newPoint);
+		}
+		while (y != 0) {
+			if (y < 0) {
+				newPoint = new Point(newPoint.x, newPoint.y - 1);
+				y = y + 1;
+			} else {
+				newPoint = new Point(newPoint.x, newPoint.y + 1);
+				y = y - 1;
+			}
+			pointsPass.add(newPoint);
 		}
 		return pointsPass;
 	}

@@ -13,8 +13,9 @@ public class ValidatorTxt implements IValidatorInstructions{
 
 	public ValidatorTxt() {}
 	
-	public boolean validateInstructionsOfJsonArray(JSONArray actionsJson, List<String> namesOfFunctions, List<String> namesOfFunctionsDefault) {
+	public boolean validateInstructionsOfJsonArray(JSONArray actionsJson, List<String> namesOfFunctions, List<String> namesOfCommands, List<String> namesOfFunctionsDefault) {
 		refreshInstructionsValids();
+		this.instrucctionsValids.addAll(namesOfCommands);
 		if(namesOfFunctions!=null) {
 			this.instrucctionsValids.addAll(namesOfFunctions);
 		} if(actionsJson==null) {
