@@ -50,7 +50,6 @@ public class Implementation {
 	private void addDeaultFunctionsIfThereExists(String routeDefaultFunctions) {
 		if(routeDefaultFunctions != null) {
 			this.defaultFunctions = new DefaultFunctions(routeDefaultFunctions);
-	//	this.namesOfFunctions.addAll(this.defaultFunctions.getNamesOfFunctions());
 			this.defaultFunctions.createFunctionsDefaulf();
 		}
 	}
